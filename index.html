@@ -67,7 +67,7 @@ h3{font-size:16px;font-weight:700;line-height:1.6;}
   padding:11px 13px;font-size:13.5px;color:#0a3fa8;margin-bottom:14px;line-height:1.7;
 }
 .suggest svg{flex-shrink:0;margin-top:4px;}
-.daypick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.daypick{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
 .daypick button{
   appearance:none;border:1.5px solid var(--line-strong);background:var(--bg);
   border-radius:var(--r);padding:13px 6px 12px;cursor:pointer;
@@ -255,13 +255,7 @@ footer{
 /* ===== 日ごとの出し分け ===== */
 [data-show]{display:none;}
 body[data-day="upper"] [data-show~="upper"],
-body[data-day="lowerA"] [data-show~="lowerA"],
-body[data-day="lowerB"] [data-show~="lowerB"]{display:block;}
-body[data-day="upper"] .exlist [data-show~="upper"],
-body[data-day="lowerA"] .exlist [data-show~="lowerA"],
-body[data-day="lowerB"] .exlist [data-show~="lowerB"]{display:block;}
-body[data-day="lowerA"] .v-b,
-body[data-day="lowerB"] .v-a{display:none;}
+body[data-day="lower"] [data-show~="lower"]{display:block;}
 </style>
 </head>
 <body data-day="upper">
@@ -289,16 +283,14 @@ body[data-day="lowerB"] .v-a{display:none;}
 
   <div class="daypick">
     <button type="button" data-pick="upper" aria-pressed="true"><b>上半身</b><small>胸・背中・肩</small></button>
-    <button type="button" data-pick="lowerA" aria-pressed="false"><b>下半身 A</b><small>腰の日</small></button>
-    <button type="button" data-pick="lowerB" aria-pressed="false"><b>下半身 B</b><small>お尻の日</small></button>
+    <button type="button" data-pick="lower" aria-pressed="false"><b>下半身</b><small>脚・お尻・下腹</small></button>
   </div>
 
   <details>
     <summary>順番はどう回すのか</summary>
     <div class="det-body">
-      <p>上半身 → 下半身A → 上半身 → 下半身B、の繰り返しです。<strong>曜日は固定しません。</strong>ジムに行った日に次の順番をやるだけなので、週3回でも週4回でも自然にずれていって崩れません。</p>
-      <p>下半身だけAとBの2種類があります。違うのは<strong>ルーマニアンデッドリフトとヒップスラストのセット数だけ</strong>で、他の3種目は同じです。分けている理由は下の「考え方」に書きました。</p>
-      <p><strong>どっちの日か分からなくなったらAをやってください。</strong>重い方が本番です。</p>
+      <p>上半身 → 下半身 → 上半身 → 下半身、の繰り返しです。<strong>曜日は固定しません。</strong>ジムに行った日に前回と逆をやるだけなので、週3回でも週4回でも自然にずれていって崩れません。</p>
+      <p><strong>下半身のメニューは毎回同じです。</strong>覚えることはありません。どちらをやったか分からなくなったら、間隔が空いている方をやってください。</p>
     </div>
   </details>
 </section>
@@ -307,7 +299,7 @@ body[data-day="lowerB"] .v-a{display:none;}
 <section id="menu">
   <div class="sec-head">
     <h2 id="menu-title">上半身の日</h2>
-    <p class="lead">上から順に。筋トレ約38分＋有酸素30分。</p>
+    <p class="lead">上から順に。筋トレ約40分＋有酸素30分。</p>
   </div>
 
   <div class="prog">
@@ -497,7 +489,7 @@ body[data-day="lowerB"] .v-a{display:none;}
     </article>
 
     <!-- ---------- 下半身 ---------- -->
-    <article class="ex" data-show="lowerA lowerB" data-id="l1">
+    <article class="ex" data-show="lower" data-id="l1">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>1</span></button>
         <button type="button" class="ex-open">
@@ -526,20 +518,20 @@ body[data-day="lowerB"] .v-a{display:none;}
       </div>
     </article>
 
-    <article class="ex" data-show="lowerA lowerB" data-id="l2">
+    <article class="ex" data-show="lower" data-id="l2">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>2</span></button>
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">ルーマニアンデッドリフト</span>
-            <span class="ex-num"><b>10回</b> × <b class="v-a">3セット</b><b class="v-b">2セット</b><span class="ex-load">65〜70kg</span></span>
+            <span class="ex-num"><b>10回</b> × 3セット<span class="ex-load">65〜70kg</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
       </div>
       <div class="ex-detail">
         <div class="ex-img"><img src="img/m-barbell.webp" alt="バーベル" loading="lazy"></div>
-        <div class="note plain">今まで毎回・週3〜4回×4セットやっていたのを、<strong>週2回（Aは3セット / Bは2セット）</strong>に減らします。減らした分、重量を60kg → <strong>65〜70kg</strong>に上げます。</div>
+        <div class="note plain">今まで毎回・週3〜4回×4セット（週12〜16セット）やっていたのを、<strong>下半身の日だけ・3セット（週6セット）</strong>に減らします。減らした分、重量を60kg → <strong>65〜70kg</strong>に上げます。</div>
         <ol class="steps">
           <li>バーを肩幅で握り、<strong>足は腰幅</strong>で立つ</li>
           <li>膝を軽く曲げた状態で固定（ここから膝は動かさない）</li>
@@ -549,6 +541,7 @@ body[data-day="lowerB"] .v-a{display:none;}
         </ol>
         <div class="note warn"><strong>背中が丸まった瞬間に腰を壊す種目です。</strong>胸を張り、背中は常に一直線。バーは太ももを擦るくらい近くを通す。背中が丸まるなら、そこが今日の限界です。重量を下げてください。</div>
         <div class="note tip"><strong>裏ももとお尻が張るなら正解。</strong>腰だけが痛いならフォームが崩れています。その日は中止していい。</div>
+        <div class="note plain"><strong>前回の腰の張りが残っている日は、その場で2セットに減らして構いません。</strong>この種目だけは、決めた数より体の状態を優先します。</div>
         <div class="note up"><strong>上げ幅</strong>　両端に2.5kgずつ（計 +5kg）。<strong>この種目だけは、12回できてもフォームが崩れるなら上げません。</strong></div>
         <div class="links">
           <a href="https://belegend.jp/article/communication/10323/" target="_blank" rel="noopener">写真つき解説</a>
@@ -557,7 +550,7 @@ body[data-day="lowerB"] .v-a{display:none;}
       </div>
     </article>
 
-    <article class="ex" data-show="lowerA lowerB" data-id="l3">
+    <article class="ex" data-show="lower" data-id="l3">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
         <button type="button" class="ex-open">
@@ -588,13 +581,13 @@ body[data-day="lowerB"] .v-a{display:none;}
       </div>
     </article>
 
-    <article class="ex" data-show="lowerA lowerB" data-id="l4">
+    <article class="ex" data-show="lower" data-id="l4">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">ヒップスラスト<span class="tag new">新</span></span>
-            <span class="ex-num"><b>12回</b> × <b class="v-a">2セット</b><b class="v-b">3セット</b><span class="ex-load">自重 → 10〜15kg</span></span>
+            <span class="ex-num"><b>12回</b> × 3セット<span class="ex-load">自重 → 10〜15kg</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
@@ -619,7 +612,7 @@ body[data-day="lowerB"] .v-a{display:none;}
       </div>
     </article>
 
-    <article class="ex" data-show="lowerA lowerB" data-id="l5">
+    <article class="ex" data-show="lower" data-id="l5">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>5</span></button>
         <button type="button" class="ex-open">
@@ -649,7 +642,7 @@ body[data-day="lowerB"] .v-a{display:none;}
     </article>
 
     <!-- ---------- 有酸素（全日共通） ---------- -->
-    <article class="ex" data-show="upper lowerA lowerB" data-id="cardio">
+    <article class="ex" data-show="upper lower" data-id="cardio">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>7</span></button>
         <button type="button" class="ex-open">
@@ -750,7 +743,7 @@ body[data-day="lowerB"] .v-a{display:none;}
   </div>
 
   <!-- 下半身の日だけ: 疲労が出たときの調整 -->
-  <div data-show="lowerA lowerB" style="margin-top:22px;">
+  <div data-show="lower" style="margin-top:22px;">
     <details>
       <summary>脚が回復していないと感じたら</summary>
       <div class="det-body">
@@ -975,12 +968,11 @@ body[data-day="lowerB"] .v-a{display:none;}
   </details>
 
   <details>
-    <summary>なぜ下半身をAとBに分けたか</summary>
+    <summary>なぜルーマニアンデッドリフトを週2回に減らしたか</summary>
     <div class="det-body">
-      <p>下半身を週2回やること自体は変えていません。分けているのは<strong>ルーマニアンデッドリフトだけ</strong>です。理由は3つ。</p>
-      <p>1. この種目は腰と裏ももの疲労が突出して大きく、回復に48〜72時間かかる。週2回だと中2日しかない<br>
-      2. そこに傾斜12.5%の歩き30分が毎回入る。これも裏ももとお尻を使うので疲労が重なる<br>
-      3. 週6セット → 週5セットに落とし、減らした1セットをヒップスラストへ移す。<strong>お尻の総量は落とさず、腰の負担だけ下がる</strong></p>
+      <p>この種目は腰と裏ももの疲労が突出して大きく、<strong>回復に48〜72時間かかります</strong>。そこに傾斜12.5%の歩き30分が毎回入り、これも裏ももとお尻を使うので疲労が重なる。加えて、フォームが崩れたときに腰を壊すリスクが全種目の中で最も高い。トレーナーなしで週3〜4回はリスクとリターンが釣り合っていませんでした。</p>
+      <p>週12〜16セット（週3〜4回×4セット）から<strong>週6セット（週2回×3セット）へ、半分以下に落としています</strong>。減らした分は重量に回して60kg → 65〜70kg。総量を落として1回の質を上げる、という組み替えです。</p>
+      <p>なお、下半身の日はAとBの2種類に分けていた時期がありましたが、<strong>やめました。</strong>違いがこの種目とヒップスラストのセット数1つずつだけで、回復に意味のある差が出ないのに、ジムで「今日はどっちだったか」を思い出させるコストだけがかかっていたためです。腰の張りが残っている日は、その場で2セットに減らせば足ります。</p>
     </div>
   </details>
 
@@ -1030,7 +1022,7 @@ body[data-day="lowerB"] .v-a{display:none;}
 
 <script>
 (function(){
-  var KEY='bt-state-v2';
+  var KEY='bt-state-v3';
   var st={};
   try{ st=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ st={}; }
 
@@ -1040,7 +1032,7 @@ body[data-day="lowerB"] .v-a{display:none;}
     return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
   }
 
-  var LABEL={upper:'上半身の日',lowerA:'下半身 A の日（腰の日）',lowerB:'下半身 B の日（お尻の日）'};
+  var LABEL={upper:'上半身の日',lower:'下半身の日'};
   var picks=document.querySelectorAll('[data-pick]');
   var title=document.getElementById('menu-title');
   var sugg=document.getElementById('suggest-text');
@@ -1048,8 +1040,7 @@ body[data-day="lowerB"] .v-a{display:none;}
   /* ---- 次にやる日を決める ---- */
   function nextDay(){
     if(!st.last) return 'upper';
-    if(st.last==='upper') return (st.lastLower==='lowerA')?'lowerB':'lowerA';
-    return 'upper';
+    return (st.last==='upper')?'lower':'upper';
   }
 
   function setDay(day,record){
@@ -1058,7 +1049,6 @@ body[data-day="lowerB"] .v-a{display:none;}
     picks.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.pick===day?'true':'false'); });
     if(record){
       st.last=day;
-      if(day!=='upper') st.lastLower=day;
       st.date=today();
       save();
     }
