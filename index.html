@@ -2,1198 +2,1139 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<title>BODY TRANSFORM | 体脂肪率 22.5% → 15%</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>今日のメニュー | BODY TRANSFORM</title>
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="上半身/下半身2分割のトレーニングメニュー。">
 <style>
-:root {
-  --primary: #76FF03;
-  --primary-dim: rgba(118,255,3,0.08);
-  --primary-border: rgba(118,255,3,0.18);
-  --accent: #FF6D00;
-  --bg: #0A0A0A;
-  --bg-elevated: #141414;
-  --bg-card: #1A1A1A;
-  --white: #F5F5F5;
-  --text: #E0E0E0;
-  --text-muted: #888;
-  --cardio: #FF1744;
-  --warn: #FFC107;
-  --info: #29B6F6;
-  --purple: #B388FF;
-  --ok: #76FF03;
-  --ng: #FF1744;
-  --mid: #FFC107;
-  --radius: 16px;
-  --radius-sm: 8px;
-  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
-  --max-w: 960px;
+:root{
+  --bg:#ffffff;
+  --surface:#f6f6f4;
+  --surface-2:#eeeeeb;
+  --line:#e3e1dd;
+  --line-strong:#c9c6c1;
+  --ink:#191919;
+  --ink-2:#5b5f66;
+  --ink-3:#8c9097;
+  --accent:#0b5fff;
+  --accent-soft:#eaf1ff;
+  --warn:#bd2a1f;
+  --warn-soft:#fdeeec;
+  --good:#0c7a43;
+  --good-soft:#e8f6ee;
+  --r:14px;
+  --r-s:10px;
+  --max:720px;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Noto Sans JP','Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+  font-size:15px;line-height:1.8;font-feature-settings:"palt";
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:60px;
+}
+b,strong{font-weight:700;}
+a{color:var(--accent);}
+.num{font-variant-numeric:tabular-nums;}
 
-/* ===== Progress ===== */
-.progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:300;width:0%;transition:width 80ms;}
+/* ===== レイアウト ===== */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 18px;}
+section{padding:38px 0 8px;}
+section + section{border-top:1px solid var(--line);padding-top:38px;}
+.sec-head{margin-bottom:18px;}
+h1{font-size:clamp(24px,6.4vw,32px);line-height:1.35;letter-spacing:-.02em;font-weight:800;}
+h2{font-size:clamp(19px,4.8vw,23px);line-height:1.4;letter-spacing:-.01em;font-weight:800;}
+h3{font-size:16px;font-weight:700;line-height:1.6;}
+.lead{color:var(--ink-2);font-size:14px;margin-top:8px;}
 
-/* ===== Nav ===== */
-nav{position:fixed;top:3px;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;transition:var(--transition);}
-nav.scrolled{background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);box-shadow:0 1px 30px rgba(0,0,0,0.5);}
-.logo{font:700 17px/1 'Inter',sans-serif;color:var(--white);letter-spacing:3px;text-decoration:none;}
-.logo span{color:var(--primary);}
-.nav-links{display:flex;gap:20px;list-style:none;}
-.nav-links a{color:var(--text-muted);text-decoration:none;font:600 12px/1 'Inter',sans-serif;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;position:relative;}
-.nav-links a:hover{color:var(--primary);}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--primary);transition:width .2s;}
-.nav-links a:hover::after{width:100%;}
-@media(max-width:768px){.nav-links{display:none;}}
+/* ===== トップバー ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{max-width:var(--max);margin:0 auto;padding:11px 18px;display:flex;align-items:baseline;gap:10px;}
+.brand{font-size:14px;font-weight:800;letter-spacing:.04em;}
+.brand-sub{font-size:12px;color:var(--ink-3);}
+.brand-sub b{color:var(--ink-2);}
 
-/* ===== Hero ===== */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(118,255,3,0.06) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(255,109,0,0.04) 0%,transparent 50%);}
-.hero-content{position:relative;z-index:1;max-width:760px;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 11px/1 'Inter',sans-serif;letter-spacing:4px;color:var(--primary);margin-bottom:24px;padding:8px 16px;border:1px solid var(--primary-border);border-radius:99px;background:var(--primary-dim);}
-.hero h1{font:900 clamp(2.4rem,7vw,4rem)/1.1 'Inter','Noto Sans JP',sans-serif;color:var(--white);margin-bottom:12px;}
-.hero h1 .num{background:linear-gradient(135deg,var(--primary),#B2FF59);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.hero h1 .unit{font-size:0.4em;color:var(--text-muted);-webkit-text-fill-color:var(--text-muted);}
-.hero-sub{font-size:15px;color:var(--text-muted);margin-bottom:12px;font-weight:300;}
-.hero-note{font-size:13px;color:var(--primary);margin-bottom:36px;font-weight:600;}
-.hero-stats{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
-.hero-stat{background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:18px 26px;min-width:130px;transition:var(--transition);}
-.hero-stat:hover{border-color:var(--primary-border);transform:translateY(-2px);}
-.hero-stat-value{font:900 26px/1 'Inter',sans-serif;color:var(--primary);margin-bottom:4px;}
-.hero-stat-value.dim{color:var(--text-muted);}
-.hero-stat-label{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;font-weight:600;}
+/* ===== 今日はどれ ===== */
+.suggest{
+  display:flex;gap:9px;align-items:flex-start;
+  background:var(--accent-soft);border-radius:var(--r-s);
+  padding:11px 13px;font-size:13.5px;color:#0a3fa8;margin-bottom:14px;line-height:1.7;
+}
+.suggest svg{flex-shrink:0;margin-top:4px;}
+.daypick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.daypick button{
+  appearance:none;border:1.5px solid var(--line-strong);background:var(--bg);
+  border-radius:var(--r);padding:13px 6px 12px;cursor:pointer;
+  font-family:inherit;color:var(--ink-2);text-align:center;transition:.15s;
+}
+.daypick button:hover{border-color:var(--ink-3);}
+.daypick b{display:block;font-size:15px;font-weight:700;line-height:1.4;}
+.daypick small{display:block;font-size:11px;color:var(--ink-3);margin-top:2px;}
+.daypick button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
+.daypick button[aria-pressed="true"] small{color:rgba(255,255,255,.62);}
+.daypick button.rec{border-color:var(--accent);}
+.daypick button.rec[aria-pressed="false"] b{color:var(--accent);}
 
-/* ===== Section ===== */
-.section{padding:80px 24px;}
-.section-inner{max-width:var(--max-w);margin:0 auto;}
-.section-eyebrow{font:700 11px/1 'Inter',sans-serif;letter-spacing:4px;color:var(--primary);margin-bottom:8px;}
-.section-title{font:700 clamp(1.5rem,4vw,2rem)/1.3 'Noto Sans JP',sans-serif;color:var(--white);margin-bottom:8px;}
-.section-title .accent{color:var(--primary);}
-.section-lead{font-size:14px;color:var(--text-muted);margin-bottom:32px;}
-.alt-bg{background:var(--bg-elevated);}
+/* ===== 折りたたみ ===== */
+details{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);margin-top:10px;}
+details[open]{background:var(--surface);}
+summary{
+  list-style:none;cursor:pointer;padding:13px 15px;
+  font-size:14px;font-weight:700;color:var(--ink-2);
+  display:flex;align-items:center;gap:9px;
+}
+summary::-webkit-details-marker{display:none;}
+summary::after{
+  content:"";margin-left:auto;width:8px;height:8px;flex-shrink:0;
+  border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);
+  transform:rotate(45deg);transition:transform .2s;
+}
+details[open] summary::after{transform:rotate(-135deg);}
+details[open] summary{color:var(--ink);}
+.det-body{padding:0 15px 16px;font-size:14px;color:var(--ink-2);}
+.det-body > * + *{margin-top:12px;}
+.det-body strong{color:var(--ink);}
 
-/* ===== Rule Section ===== */
-.rule-hero{background:linear-gradient(135deg,rgba(118,255,3,0.1),rgba(118,255,3,0.02));border:1px solid var(--primary-border);border-radius:var(--radius);padding:28px;margin-bottom:26px;}
-.rule-hero-q{font-size:13px;color:var(--text-muted);margin-bottom:10px;}
-.rule-hero-a{font:700 clamp(1.05rem,3.2vw,1.35rem)/1.6 'Noto Sans JP',sans-serif;color:var(--white);}
-.rule-hero-a em{color:var(--primary);font-style:normal;}
+/* ===== 進捗 ===== */
+.prog{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.prog-bar{flex:1;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;width:0;background:var(--good);border-radius:99px;transition:width .25s;}
+.prog-txt{font-size:13px;color:var(--ink-3);font-weight:700;white-space:nowrap;}
+.prog-reset{
+  appearance:none;border:1px solid var(--line);background:var(--bg);border-radius:8px;
+  font-family:inherit;font-size:12px;color:var(--ink-3);padding:4px 9px;cursor:pointer;
+}
 
-.step-list{display:grid;gap:12px;margin-bottom:28px;}
-.step{display:flex;gap:16px;background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:20px 22px;}
-.step-n{width:30px;height:30px;border-radius:9px;background:var(--primary);color:#000;display:flex;align-items:center;justify-content:center;font:900 14px 'Inter',sans-serif;flex-shrink:0;}
-.step-b{flex:1;}
-.step-t{font:700 14.5px/1.6 'Noto Sans JP',sans-serif;color:var(--white);margin-bottom:5px;}
-.step-d{font-size:12.5px;color:var(--text-muted);line-height:1.85;}
-.step-d strong{color:var(--white);}
-
-/* ===== Sticky Rule ===== */
-.rule-banner{position:sticky;top:56px;z-index:60;display:flex;align-items:center;gap:14px;background:rgba(20,20,20,0.94);border:1px solid var(--primary-border);border-radius:var(--radius);padding:13px 18px;margin-bottom:24px;backdrop-filter:blur(12px);text-decoration:none;}
-.rule-banner .material-icons{color:var(--primary);font-size:24px;flex-shrink:0;}
-.rule-banner-text{font-size:13px;color:var(--white);font-weight:700;line-height:1.5;flex:1;}
-.rule-banner-text span{display:block;font-size:11px;color:var(--text-muted);font-weight:400;margin-top:2px;}
-.rule-banner .go{color:var(--text-muted);font-size:18px;}
-
-/* ===== Rotation ===== */
-.rotation{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:18px 22px;margin-bottom:24px;}
-.rot-label{font:700 10px/1 'Inter',sans-serif;letter-spacing:2px;color:var(--text-muted);width:100%;margin-bottom:4px;}
-.rot-chip{padding:6px 14px;border-radius:99px;font-size:12px;font-weight:700;}
-.rot-chip.up{background:rgba(41,182,246,0.12);color:var(--info);}
-.rot-chip.low{background:rgba(179,136,255,0.12);color:var(--purple);}
-.rot-arrow{color:var(--text-muted);font-size:16px;}
-.rot-note{font-size:12px;color:var(--text-muted);width:100%;margin-top:6px;}
-.rot-note strong{color:var(--white);}
-
-/* ===== Tab System ===== */
-.tab-bar{display:flex;gap:4px;background:var(--bg-card);border-radius:var(--radius);padding:4px;margin-bottom:20px;overflow-x:auto;}
-.tab-btn{flex:1;padding:14px 8px;border:none;background:transparent;color:var(--text-muted);font:600 13px/1.4 'Noto Sans JP',sans-serif;cursor:pointer;border-radius:12px;transition:var(--transition);white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:4px;}
-.tab-btn .tab-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-family:'Inter',sans-serif;}
-.tab-btn:hover{color:var(--white);background:rgba(255,255,255,0.04);}
-.tab-btn.active{background:rgba(118,255,3,0.1);color:var(--primary);box-shadow:0 0 20px rgba(118,255,3,0.05);}
-.tab-panel{display:none;animation:fadeUp .4s ease;}
-.tab-panel.active{display:block;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
-/* ===== Exercise Card ===== */
-.exercise-grid{display:grid;grid-template-columns:1fr;gap:14px;}
-.ex-card{background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);overflow:hidden;transition:var(--transition);}
-.ex-card:hover{border-color:rgba(255,255,255,0.08);}
-.ex-card.is-new{border-color:rgba(255,109,0,0.25);}
-.ex-main{display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;}
-.ex-main:hover{background:rgba(255,255,255,0.02);}
-.ex-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;font-family:'Inter',sans-serif;}
-.ex-icon.machine{background:rgba(41,182,246,0.1);color:var(--info);}
-.ex-icon.floor{background:rgba(255,193,7,0.1);color:var(--warn);}
-.ex-icon.free{background:rgba(179,136,255,0.1);color:var(--purple);}
+/* ===== 種目カード ===== */
+.exlist{display:flex;flex-direction:column;gap:9px;}
+.ex{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);overflow:hidden;}
+.ex.done{background:var(--surface);border-color:var(--surface-2);}
+.ex-head{display:flex;align-items:stretch;}
+.ex-check{
+  appearance:none;border:none;background:none;cursor:pointer;
+  width:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  border-right:1px solid var(--line);
+}
+.ex-check span{
+  width:26px;height:26px;border-radius:50%;border:2px solid var(--line-strong);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12.5px;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums;
+}
+.ex.done .ex-check span{background:var(--good);border-color:var(--good);color:#fff;}
+.ex-open{
+  appearance:none;border:none;background:none;cursor:pointer;font-family:inherit;
+  flex:1;display:flex;align-items:center;gap:10px;padding:13px 14px 13px 12px;text-align:left;
+}
 .ex-info{flex:1;min-width:0;}
-.ex-name{font:600 15px/1.35 'Noto Sans JP',sans-serif;color:var(--white);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.badge-new{font:700 9px/1 'Inter',sans-serif;letter-spacing:1px;background:var(--accent);color:#000;padding:4px 7px;border-radius:4px;}
-.ex-move{font-size:12.5px;color:var(--primary);font-weight:600;margin-top:4px;line-height:1.5;}
-.ex-meta{font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap;}
-.ex-meta .material-icons{font-size:14px;}
-.ex-meta .sep{opacity:.3;}
-.ex-meta .load{color:var(--white);font-weight:700;}
-.ex-arrow{color:var(--text-muted);font-size:20px;transition:transform .3s;}
-.ex-card.open .ex-arrow{transform:rotate(180deg);}
-.ex-detail{display:none;padding:0 20px 20px;border-top:1px solid rgba(255,255,255,0.04);}
-.ex-card.open .ex-detail{display:block;animation:fadeUp .3s ease;}
-.ex-img{margin:16px 0;border-radius:var(--radius-sm);overflow:hidden;background:rgba(255,255,255,0.02);text-align:center;}
-.ex-img img{width:auto;height:auto;max-width:100%;max-height:760px;display:inline-block;vertical-align:middle;}
-.ex-steps{padding-left:20px;font-size:13px;line-height:1.95;color:var(--text-muted);}
-.ex-steps strong{color:var(--white);}
-.ex-tip{display:flex;gap:10px;padding:11px 14px;border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.7;}
-.ex-tip .material-icons{font-size:16px;flex-shrink:0;margin-top:2px;}
-.ex-tip.green{background:rgba(118,255,3,0.04);border-left:3px solid var(--primary);}
-.ex-tip.green .material-icons{color:var(--primary);}
-.ex-tip.red{background:rgba(255,23,68,0.05);border-left:3px solid var(--cardio);}
-.ex-tip.red .material-icons{color:var(--cardio);}
-.ex-tip.why{background:rgba(255,109,0,0.05);border-left:3px solid var(--accent);}
-.ex-tip.why .material-icons{color:var(--accent);}
-.ex-tip.up{background:rgba(41,182,246,0.05);border-left:3px solid var(--info);}
-.ex-tip.up .material-icons{color:var(--info);}
-.ex-tip strong{color:var(--white);}
-
-/* ===== Exercise Links ===== */
-.ex-links{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
-.ex-link{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:99px;font:700 12px/1 'Noto Sans JP',sans-serif;text-decoration:none;transition:var(--transition);}
-.ex-link .material-icons{font-size:17px;}
-.ex-link.article{background:rgba(41,182,246,0.1);color:var(--info);border:1px solid rgba(41,182,246,0.22);}
-.ex-link.article:hover{background:rgba(41,182,246,0.18);}
-.ex-link.video{background:rgba(255,23,68,0.1);color:var(--cardio);border:1px solid rgba(255,23,68,0.22);}
-.ex-link.video:hover{background:rgba(255,23,68,0.18);}
-
-/* ===== Checklist ===== */
-.checklist{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
-.check-item{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:99px;font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:var(--transition);user-select:none;}
-.check-item:hover{border-color:var(--primary-border);}
-.check-item.done{opacity:0.35;text-decoration:line-through;border-color:var(--primary-border);color:var(--primary);}
-.check-item .material-icons{font-size:16px;}
-.check-item.done .material-icons{color:var(--primary);}
-
-/* ===== Cardio ===== */
-.cardio-hero{display:flex;align-items:center;gap:24px;background:var(--bg-card);border:1px solid rgba(255,23,68,0.16);border-radius:var(--radius);padding:26px;flex-wrap:wrap;}
-.cardio-nums{display:flex;gap:26px;flex-wrap:wrap;}
-.cardio-num-item{text-align:center;}
-.cardio-num{font:900 30px/1 'Inter',sans-serif;color:var(--cardio);}
-.cardio-unit{font-size:10px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
-.cardio-desc{flex:1;min-width:240px;font-size:13px;color:var(--text-muted);line-height:1.8;}
-.cardio-desc strong{color:var(--white);}
-.cardio-when{display:flex;align-items:center;gap:12px;background:rgba(255,23,68,0.06);border:1px solid rgba(255,23,68,0.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:18px;}
-.cardio-when .material-icons{color:var(--cardio);font-size:24px;}
-.cardio-when-t{font:700 14px/1.5 'Noto Sans JP',sans-serif;color:var(--white);}
-.cardio-when-t span{display:block;font-size:12px;color:var(--text-muted);font-weight:400;margin-top:2px;}
-
-/* ===== Goal Cards ===== */
-.goal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px;}
-.goal-card{background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:22px;position:relative;overflow:hidden;}
-.goal-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.goal-card:nth-child(1)::before{background:var(--accent);}
-.goal-card:nth-child(2)::before{background:var(--primary);}
-.goal-card:nth-child(3)::before{background:var(--info);}
-.goal-label{font:700 10px/1 'Inter',sans-serif;letter-spacing:2px;color:var(--text-muted);margin-bottom:10px;}
-.goal-now{font:900 24px/1 'Inter',sans-serif;color:var(--white);}
-.goal-arrow{color:var(--text-muted);font-size:14px;margin:0 6px;}
-.goal-target{font:900 24px/1 'Inter',sans-serif;color:var(--primary);}
-.goal-desc{font-size:12px;color:var(--text-muted);line-height:1.7;margin-top:10px;}
-
-/* ===== Table ===== */
-.data-table{width:100%;border-collapse:collapse;font-size:13px;}
-.data-table thead th{text-align:left;padding:10px 14px;font:700 10px/1 'Inter',sans-serif;letter-spacing:1px;color:var(--text-muted);border-bottom:1px solid rgba(255,255,255,0.06);text-transform:uppercase;}
-.data-table tbody td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--text-muted);}
-.data-table tbody td:first-child{color:var(--white);font-weight:600;}
-.data-table tbody tr:last-child td{border-bottom:none;}
-.data-table tbody tr:hover{background:rgba(255,255,255,0.02);}
-.t-ok{color:var(--ok)!important;font-weight:700;}
-.t-mid{color:var(--mid)!important;font-weight:700;}
-.t-ng{color:var(--ng)!important;font-weight:700;}
-.t-add{color:var(--accent)!important;font-weight:700;}
-.table-wrap{overflow-x:auto;}
-
-/* ===== Diet ===== */
-.diet-tabs{display:flex;gap:4px;background:var(--bg-card);border-radius:var(--radius);padding:4px;margin-bottom:24px;overflow-x:auto;}
-.diet-tab{flex:1;padding:12px 8px;border:none;background:transparent;color:var(--text-muted);font:600 12px/1.3 'Noto Sans JP',sans-serif;cursor:pointer;border-radius:12px;transition:var(--transition);white-space:nowrap;text-align:center;}
-.diet-tab:hover{color:var(--white);background:rgba(255,255,255,0.04);}
-.diet-tab.active{background:rgba(118,255,3,0.1);color:var(--primary);}
-.diet-panel{display:none;animation:fadeUp .4s ease;}
-.diet-panel.active{display:block;}
-.protein-summary{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
-.ps-card{flex:1;min-width:180px;background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:20px;text-align:center;}
-.ps-card.bad{border-color:rgba(255,23,68,0.2);}
-.ps-card.good{border-color:var(--primary-border);}
-.ps-label{font:700 10px/1 'Inter',sans-serif;letter-spacing:2px;color:var(--text-muted);margin-bottom:8px;}
-.ps-value{font:900 30px/1 'Inter',sans-serif;}
-.ps-card.bad .ps-value{color:var(--cardio);}
-.ps-card.good .ps-value{color:var(--primary);}
-.ps-card.need .ps-value{color:var(--warn);}
-.ps-note{font-size:11px;color:var(--text-muted);margin-top:8px;}
-
-/* ===== Why List ===== */
-.why-list{display:grid;gap:12px;}
-.why-item{display:flex;gap:14px;padding:18px 20px;background:var(--bg-card);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);transition:var(--transition);}
-.why-item:hover{border-color:var(--primary-border);}
-.why-num{width:28px;height:28px;border-radius:8px;background:var(--primary-dim);color:var(--primary);display:flex;align-items:center;justify-content:center;font:700 13px 'Inter',sans-serif;flex-shrink:0;}
-.why-body{flex:1;}
-.why-title{font:700 14px/1.5 'Noto Sans JP',sans-serif;color:var(--white);margin-bottom:4px;}
-.why-desc{font-size:12.5px;color:var(--text-muted);line-height:1.8;}
-.why-desc strong{color:var(--white);}
-
-.keep-box{background:rgba(118,255,3,0.04);border:1px solid var(--primary-border);border-radius:var(--radius);padding:22px;margin-bottom:28px;}
-.keep-title{font:700 14px/1 'Noto Sans JP',sans-serif;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-.keep-list{list-style:none;display:grid;gap:9px;}
-.keep-list li{font-size:12.5px;color:var(--text-muted);padding-left:20px;position:relative;line-height:1.75;}
-.keep-list li::before{content:'✓';position:absolute;left:0;color:var(--primary);font-weight:700;}
-.keep-list strong{color:var(--white);}
-
-/* ===== Footer ===== */
-footer{border-top:1px solid rgba(255,255,255,0.04);padding:24px;text-align:center;}
-footer p{font:600 11px/1 'Inter',sans-serif;letter-spacing:2px;color:rgba(255,255,255,0.15);}
-
-/* ===== Scroll Animation ===== */
-.fi{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
-.fi.visible{opacity:1;transform:translateY(0);}
-.fi.d1{transition-delay:.1s;}.fi.d2{transition-delay:.2s;}.fi.d3{transition-delay:.3s;}.fi.d4{transition-delay:.4s;}
-
-/* ===== Responsive ===== */
-@media(max-width:768px){
-  .section{padding:60px 18px;}
-  .hero-stats{gap:12px;}
-  .hero-stat{min-width:calc(50% - 6px);padding:16px;}
-  .goal-grid{grid-template-columns:1fr;}
-  .tab-btn{padding:12px 6px;font-size:12px;}
-  .rule-banner{top:52px;padding:12px 15px;gap:10px;}
-  .rule-banner-text{font-size:12px;}
-  .rule-hero{padding:22px;}
-  .cardio-hero{padding:20px;gap:18px;}
-  .cardio-nums{gap:18px;width:100%;justify-content:space-around;}
-  .ex-link{padding:10px 14px;font-size:11.5px;}
-  /* スマホでは器具の写真を画面幅いっぱいに（説明プレートの文字を読めるように） */
-  .ex-img{margin:16px -20px;border-radius:0;}
-  .ex-img img{max-height:none;width:100%;}
+.ex-name{font-size:16px;font-weight:700;line-height:1.45;color:var(--ink);}
+.ex.done .ex-name{color:var(--ink-3);text-decoration:line-through;}
+.ex-num{
+  display:flex;flex-wrap:wrap;align-items:center;gap:5px 8px;
+  font-size:13.5px;color:var(--ink-2);margin-top:3px;font-variant-numeric:tabular-nums;
 }
+.ex-num b{color:var(--ink);font-weight:700;}
+.ex-load{background:var(--surface-2);border-radius:6px;padding:1px 7px;font-size:12.5px;font-weight:700;color:var(--ink);}
+.tag{
+  display:inline-block;vertical-align:2px;margin-left:6px;border-radius:5px;
+  font-size:10.5px;font-weight:800;padding:1px 6px;letter-spacing:.02em;
+}
+.tag.new{background:var(--accent-soft);color:var(--accent);}
+.tag.opt{background:var(--surface-2);color:var(--ink-3);}
+.ex-caret{
+  width:9px;height:9px;flex-shrink:0;border-right:2px solid var(--line-strong);
+  border-bottom:2px solid var(--line-strong);transform:rotate(45deg);transition:transform .2s;
+}
+.ex.open .ex-caret{transform:rotate(-135deg);}
+.ex-detail{display:none;padding:2px 15px 17px;border-top:1px solid var(--line);}
+.ex.open .ex-detail{display:block;}
+.ex-detail > * + *{margin-top:14px;}
+
+.ex-img{margin:14px -15px 0;background:var(--surface);text-align:center;}
+.ex-img img{width:100%;height:auto;display:block;}
+@media(min-width:560px){
+  .ex-img{margin:14px 0 0;border-radius:var(--r-s);overflow:hidden;}
+  .ex-img img{width:auto;max-width:100%;max-height:520px;display:inline-block;}
+}
+
+.steps{list-style:none;counter-reset:s;}
+.steps li{
+  counter-increment:s;position:relative;padding-left:27px;
+  font-size:14px;line-height:1.75;color:var(--ink-2);
+}
+.steps li + li{margin-top:7px;}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:3px;
+  width:19px;height:19px;border-radius:50%;background:var(--surface-2);
+  font-size:11px;font-weight:800;color:var(--ink-2);
+  display:flex;align-items:center;justify-content:center;
+}
+.steps strong{color:var(--ink);}
+
+.note{border-radius:var(--r-s);padding:11px 13px;font-size:13.5px;line-height:1.75;}
+.note strong{font-weight:700;}
+.note.warn{background:var(--warn-soft);color:#7d1c15;}
+.note.warn strong{color:var(--warn);}
+.note.tip{background:var(--good-soft);color:#0a5c33;}
+.note.up{background:var(--accent-soft);color:#0a3fa8;}
+.note.plain{background:var(--surface);color:var(--ink-2);}
+
+.links{display:flex;gap:8px;flex-wrap:wrap;}
+.links a{
+  flex:1;min-width:130px;text-align:center;text-decoration:none;
+  border:1px solid var(--line);border-radius:var(--r-s);
+  padding:9px 10px;font-size:13px;font-weight:700;color:var(--ink-2);background:var(--bg);
+}
+.links a:hover{border-color:var(--line-strong);}
+
+/* ===== 有酸素カード ===== */
+.cardio{border:1px solid var(--line);border-radius:var(--r);padding:0;overflow:hidden;}
+.cardio-nums{display:flex;text-align:center;background:var(--surface);}
+.cardio-nums div{flex:1;padding:14px 4px;}
+.cardio-nums div + div{border-left:1px solid var(--line);}
+.cardio-v{font-size:23px;font-weight:800;line-height:1.2;font-variant-numeric:tabular-nums;}
+.cardio-v small{font-size:13px;font-weight:700;}
+.cardio-l{font-size:11.5px;color:var(--ink-3);margin-top:1px;}
+
+/* ===== 重量の上げ方 ===== */
+.rule-card{border:1.5px solid var(--ink);border-radius:var(--r);padding:16px 17px;}
+.rule-card h3{margin-bottom:9px;}
+.rule-lines{display:flex;flex-direction:column;gap:10px;}
+.rule-line{display:flex;gap:10px;font-size:14.5px;line-height:1.7;}
+.rule-line svg{flex-shrink:0;margin-top:5px;}
+
+/* ===== 食事 ===== */
+.big-num{
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;background:var(--surface);
+}
+.big-num-v{font-size:38px;font-weight:800;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+.big-num-v small{font-size:18px;}
+.big-num-t{font-size:13.5px;color:var(--ink-2);line-height:1.6;}
+.chg{display:flex;flex-direction:column;gap:8px;}
+.chg-item{
+  display:flex;gap:11px;align-items:flex-start;
+  border:1px solid var(--line);border-radius:var(--r-s);padding:12px 14px;
+}
+.chg-when{
+  flex-shrink:0;width:64px;font-size:12.5px;font-weight:800;color:var(--ink-3);
+  padding-top:1px;
+}
+.chg-body{flex:1;font-size:14px;line-height:1.7;}
+.chg-plus{flex-shrink:0;font-size:13px;font-weight:800;color:var(--good);font-variant-numeric:tabular-nums;}
+
+/* ===== 表 ===== */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--r-s);}
+table{width:100%;border-collapse:collapse;font-size:13.5px;white-space:nowrap;}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);}
+th{background:var(--surface);font-size:12px;font-weight:700;color:var(--ink-3);}
+tr:last-child td{border-bottom:none;}
+td.ok{color:var(--good);font-weight:700;}
+td.ng{color:var(--warn);font-weight:700;}
+td.mid{color:var(--ink-3);font-weight:700;}
+
+/* ===== 目標 ===== */
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.goal{border:1px solid var(--line);border-radius:var(--r-s);padding:12px 10px;text-align:center;}
+.goal-l{font-size:11.5px;color:var(--ink-3);font-weight:700;}
+.goal-v{font-size:15px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums;line-height:1.4;}
+.goal-v i{font-style:normal;color:var(--ink-3);font-weight:700;}
+.goal-v em{font-style:normal;color:var(--accent);}
+
+footer{
+  max-width:var(--max);margin:0 auto;padding:34px 18px 0;
+  border-top:1px solid var(--line);margin-top:38px;
+  font-size:12px;color:var(--ink-3);
+}
+
+/* ===== 日ごとの出し分け ===== */
+[data-show]{display:none;}
+body[data-day="upper"] [data-show~="upper"],
+body[data-day="lowerA"] [data-show~="lowerA"],
+body[data-day="lowerB"] [data-show~="lowerB"]{display:block;}
+body[data-day="upper"] .exlist [data-show~="upper"],
+body[data-day="lowerA"] .exlist [data-show~="lowerA"],
+body[data-day="lowerB"] .exlist [data-show~="lowerB"]{display:block;}
+body[data-day="lowerA"] .v-b,
+body[data-day="lowerB"] .v-a{display:none;}
 </style>
 </head>
-<body>
+<body data-day="upper">
 
-<div class="progress-bar" id="progressBar"></div>
+<header class="topbar">
+  <div class="topbar-in">
+    <span class="brand">BODY TRANSFORM</span>
+    <span class="brand-sub">体脂肪率 <b>22.5%</b> → <b>15%</b></span>
+  </div>
+</header>
 
-<nav id="nav">
-  <a href="#" class="logo">BODY<span>TRANSFORM</span></a>
-  <ul class="nav-links">
-    <li><a href="#rule">Rule</a></li>
-    <li><a href="#program">Program</a></li>
-    <li><a href="#cardio">Cardio</a></li>
-    <li><a href="#goal">Goal</a></li>
-    <li><a href="#diet">Diet</a></li>
-    <li><a href="#why">Why</a></li>
-  </ul>
-</nav>
+<div class="wrap">
 
-<!-- ===== Hero ===== -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow fi">
-      <span class="material-icons" style="font-size:14px;">fitness_center</span>
-      UPPER / LOWER SPLIT — 2026.08
+<!-- ========== 1. 今日はどれ ========== -->
+<section id="today">
+  <div class="sec-head">
+    <h1>今日はどれ？</h1>
+    <p class="lead">タップすると、その日のメニューだけが下に出ます。</p>
+  </div>
+
+  <div class="suggest" id="suggest">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5v4M8 11h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    <span id="suggest-text">はじめての表示です。上半身から始めてください。</span>
+  </div>
+
+  <div class="daypick">
+    <button type="button" data-pick="upper" aria-pressed="true"><b>上半身</b><small>胸・背中・肩</small></button>
+    <button type="button" data-pick="lowerA" aria-pressed="false"><b>下半身 A</b><small>腰の日</small></button>
+    <button type="button" data-pick="lowerB" aria-pressed="false"><b>下半身 B</b><small>お尻の日</small></button>
+  </div>
+
+  <details>
+    <summary>順番はどう回すのか</summary>
+    <div class="det-body">
+      <p>上半身 → 下半身A → 上半身 → 下半身B、の繰り返しです。<strong>曜日は固定しません。</strong>ジムに行った日に次の順番をやるだけなので、週3回でも週4回でも自然にずれていって崩れません。</p>
+      <p>下半身だけAとBの2種類があります。違うのは<strong>ルーマニアンデッドリフトとヒップスラストのセット数だけ</strong>で、他の3種目は同じです。分けている理由は下の「考え方」に書きました。</p>
+      <p><strong>どっちの日か分からなくなったらAをやってください。</strong>重い方が本番です。</p>
     </div>
-    <h1 class="fi d1"><span class="num">22.5</span><span class="unit">%</span> → <span class="num">15</span><span class="unit">%</span></h1>
-    <p class="hero-sub fi d2">追うのは体重ではなく体脂肪率。筋肉を増やしながら脂肪だけを落とす。</p>
-    <p class="hero-note fi d2">最優先課題 — 下腹</p>
-    <div class="hero-stats fi d3">
-      <div class="hero-stat">
-        <div class="hero-stat-value">70.6<small style="font-size:13px;">kg</small></div>
-        <div class="hero-stat-label">体重（追わない）</div>
+  </details>
+</section>
+
+<!-- ========== 2. やること ========== -->
+<section id="menu">
+  <div class="sec-head">
+    <h2 id="menu-title">上半身の日</h2>
+    <p class="lead">上から順に。筋トレ約38分＋有酸素30分。</p>
+  </div>
+
+  <div class="prog">
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+    <span class="prog-txt" id="progTxt">0 / 7</span>
+    <button type="button" class="prog-reset" id="progReset">リセット</button>
+  </div>
+
+  <div class="exlist">
+
+    <!-- ---------- 上半身 ---------- -->
+    <article class="ex" data-show="upper" data-id="u1">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>1</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ワイドチェストプレス</span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">片側 40kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">51.8<small style="font-size:13px;">kg</small></div>
-        <div class="hero-stat-label">筋肉量</div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-chest-press.webp" alt="ワイドチェストプレス" loading="lazy"></div>
+        <ol class="steps">
+          <li>シートに座り、<strong>背中を背もたれに完全につける</strong></li>
+          <li>グリップは胸の高さ。肩幅よりやや広め</li>
+          <li><strong>胸を張り、肩甲骨を寄せて固定</strong>したまま押す</li>
+          <li>肘は<strong>伸ばしきらず</strong>手前で止める</li>
+          <li>3秒かけて戻す。胸が伸びる位置まで下ろす</li>
+        </ol>
+        <div class="note tip"><strong>肩甲骨を寄せたまま腕だけ動かす。</strong>肩が前に出ると胸ではなく肩に効き、痛めます。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +2.5〜5kg。</div>
+        <div class="links">
+          <a href="https://melos.media/training/137381/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%81%E3%82%A7%E3%82%B9%E3%83%88%E3%83%97%E3%83%AC%E3%82%B9%20%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+        </div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">90.7<small style="font-size:13px;">cm</small></div>
-        <div class="hero-stat-label">腹囲</div>
+    </article>
+
+    <article class="ex" data-show="upper" data-id="u2">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>2</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ラットプルダウン</span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">30kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value dim">7</div>
-        <div class="hero-stat-label">内臓脂肪Lv（低）</div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-lat-row.webp" alt="ラットプルダウン" loading="lazy"></div>
+        <ol class="steps">
+          <li>シートに座り、太ももをパッドで固定</li>
+          <li>バーを<strong>肩幅より少し広め</strong>で握る</li>
+          <li><strong>胸を張って</strong>上体を少し後ろに倒す</li>
+          <li>バーを<strong>鎖骨あたり</strong>まで引き下ろす</li>
+          <li>肩甲骨を「下に引き下げる」意識</li>
+          <li><strong>3秒かけて</strong>戻す</li>
+        </ol>
+        <div class="note tip"><strong>腕で引かず、肘を後ろの下に引く。</strong>腕ばかり疲れて背中が疲れないなら、握りを浅くします。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら目盛り1つ分。</div>
+        <div class="links">
+          <a href="https://melos.media/training/53230/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%A9%E3%83%83%E3%83%88%E3%83%97%E3%83%AB%E3%83%80%E3%82%A6%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%20%E8%83%8C%E4%B8%AD" target="_blank" rel="noopener">動画で見る</a>
+        </div>
       </div>
+    </article>
+
+    <article class="ex" data-show="upper" data-id="u3">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ショルダープレス<span class="tag new">新</span></span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">20kgから探る</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-shoulder-press.webp" alt="ショルダープレスマシン" loading="lazy"></div>
+        <div class="note plain">写真のマシンです。チェストプレスの上向き版で、<strong>胸ではなく肩</strong>を鍛えます。今まで一度も使っていないマシンです。</div>
+        <ol class="steps">
+          <li>シートの高さを調整し、<strong>背中を背もたれにつける</strong></li>
+          <li>握った時に<strong>肘が90度</strong>になる位置。肩幅よりやや広め</li>
+          <li><strong>耳の横から真上に</strong>押し上げる</li>
+          <li>肘は伸ばしきる手前で止める</li>
+          <li>下ろすのは<strong>耳の高さまで</strong>。それ以上下げない</li>
+        </ol>
+        <div class="note warn"><strong>肘を体の前に出しすぎない。</strong>胸に逃げます。逆に真横に開きすぎる・下げすぎるのは肩を痛めます。耳の横のラインを守ってください。</div>
+        <div class="note up"><strong>初回の決め方</strong>　20kgで10回やってみる。楽なら次のセットで上げて、12回が限界の重さを探します。焦らず軽めから。</div>
+        <div class="links">
+          <a href="https://melos.media/training/158248/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%B7%E3%83%A7%E3%83%AB%E3%83%80%E3%83%BC%E3%83%97%E3%83%AC%E3%82%B9%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="upper" data-id="u4">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">シーテッドロウ</span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">30kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-row.webp" alt="シーテッドロウ" loading="lazy"></div>
+        <ol class="steps">
+          <li>シートに座り、胸をパッドにつける</li>
+          <li><strong>胸を張ったまま</strong>肘を後ろへ引く</li>
+          <li>引ききった位置で<strong>肩甲骨をギュッと寄せる</strong></li>
+          <li>肘が体の横を通るように</li>
+          <li>ゆっくり戻す。背中が丸まらない範囲で</li>
+        </ol>
+        <div class="note tip"><strong>背中の真ん中を締める感覚。</strong>肩がすくむのは重すぎるサインです。</div>
+        <div class="note plain"><strong>腕の種目を入れる日は、これを2セットに減らします。</strong>時間を増やさないためです。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら目盛り1つ分。</div>
+        <div class="links">
+          <a href="https://melos.media/training/188467/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%82%B7%E3%83%BC%E3%83%86%E3%83%83%E3%83%89%E3%83%AD%E3%82%A6%20%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E8%83%8C%E4%B8%AD" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="upper" data-id="u5">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>5</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">サイドレイズ<span class="tag new">新</span></span>
+            <span class="ex-num"><b>12〜15回</b> × 2セット<span class="ex-load">片手 5kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベルラック" loading="lazy"></div>
+        <div class="note plain">ダンベルを両手に持って立ち、鳥が羽を広げるように<strong>真横に上げるだけ</strong>。マシンは使いません。肩の横を作ります。</div>
+        <ol class="steps">
+          <li>立って両手にダンベル。体の横に下ろす</li>
+          <li><strong>肘を軽く曲げたまま固定</strong></li>
+          <li><strong>真横に</strong>、肩の高さまで上げる</li>
+          <li>肩の高さで止める。それ以上上げない</li>
+          <li>3秒かけて下ろす</li>
+        </ol>
+        <div class="note warn"><strong>この種目だけは重くしません。</strong>重くすると反動を使って首の付け根に逃げます。12回できたら重量ではなく<strong>回数を15回まで伸ばす</strong>のが正解です。</div>
+        <div class="links">
+          <a href="https://melos.media/training/66723/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%82%B5%E3%82%A4%E3%83%89%E3%83%AC%E3%82%A4%E3%82%BA%20%E3%83%80%E3%83%B3%E3%83%99%E3%83%AB%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="upper" data-id="u6">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>6</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">腹筋ローラー</span>
+            <span class="ex-num"><b>10回</b> × 3セット<span class="ex-load">自重</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-ab-roller.webp" alt="腹筋ローラー" loading="lazy"></div>
+        <ol class="steps">
+          <li>膝をついて、ローラーを肩の真下に置く</li>
+          <li><strong>腰を丸めた状態</strong>から始める（反らせない）</li>
+          <li>ゆっくり前に転がす</li>
+          <li><strong>腰が反りそうになった位置</strong>が今日の限界。そこで止める</li>
+          <li>お腹の力で戻す</li>
+        </ol>
+        <div class="note warn"><strong>腰が反ったまま伸ばすと腰を痛めます。</strong>伸ばせる距離より「腰を丸めたまま」を優先。</div>
+        <div class="note plain">これは腹直筋（表面のシックスパック）の種目です。<strong>下腹の脂肪を落とす効果はありません。</strong>下腹担当は下半身の日のデッドバグ。</div>
+        <div class="links">
+          <a href="https://melos.media/training/15658/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E8%85%B9%E7%AD%8B%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC%20%E8%86%9D%E3%82%B3%E3%83%AD%20%E3%82%84%E3%82%8A%E6%96%B9" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- 下半身 ---------- -->
+    <article class="ex" data-show="lowerA lowerB" data-id="l1">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>1</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">レッグプレス</span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">片側 45kg（左右で90kg）</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-leg-press.webp" alt="レッグプレス" loading="lazy"></div>
+        <ol class="steps">
+          <li>シートに深く座り、足を<strong>肩幅</strong>でプレートに置く</li>
+          <li>つま先は少し外向き。<strong>足の位置を高め</strong>にするとお尻に効く</li>
+          <li>安全ハンドルを回してロック解除</li>
+          <li><strong>3秒かけて</strong>膝を曲げる</li>
+          <li>90度まで来たら<strong>かかとで押し上げる</strong>。膝は伸ばしきらない</li>
+        </ol>
+        <div class="note tip"><strong>膝がつま先より内側に入らないように。</strong></div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +5kg。<strong>この種目はそろそろ上げられるはず</strong>なので、次回まず試してください。</div>
+        <div class="links">
+          <a href="https://melos.media/training/138036/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%AC%E3%83%83%E3%82%B0%E3%83%97%E3%83%AC%E3%82%B9%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="lowerA lowerB" data-id="l2">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>2</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ルーマニアンデッドリフト</span>
+            <span class="ex-num"><b>10回</b> × <b class="v-a">3セット</b><b class="v-b">2セット</b><span class="ex-load">65〜70kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-barbell.webp" alt="バーベル" loading="lazy"></div>
+        <div class="note plain">今まで毎回・週3〜4回×4セットやっていたのを、<strong>週2回（Aは3セット / Bは2セット）</strong>に減らします。減らした分、重量を60kg → <strong>65〜70kg</strong>に上げます。</div>
+        <ol class="steps">
+          <li>バーを肩幅で握り、<strong>足は腰幅</strong>で立つ</li>
+          <li>膝を軽く曲げた状態で固定（ここから膝は動かさない）</li>
+          <li><strong>お尻を後ろに引きながら</strong>バーを太ももに沿って下ろす</li>
+          <li><strong>裏ももが突っ張った位置</strong>で止める（膝下まで下ろさなくていい）</li>
+          <li>お尻を締めながら体を起こす</li>
+        </ol>
+        <div class="note warn"><strong>背中が丸まった瞬間に腰を壊す種目です。</strong>胸を張り、背中は常に一直線。バーは太ももを擦るくらい近くを通す。背中が丸まるなら、そこが今日の限界です。重量を下げてください。</div>
+        <div class="note tip"><strong>裏ももとお尻が張るなら正解。</strong>腰だけが痛いならフォームが崩れています。その日は中止していい。</div>
+        <div class="note up"><strong>上げ幅</strong>　両端に2.5kgずつ（計 +5kg）。<strong>この種目だけは、12回できてもフォームが崩れるなら上げません。</strong></div>
+        <div class="links">
+          <a href="https://belegend.jp/article/communication/10323/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%AB%E3%83%BC%E3%83%9E%E3%83%8B%E3%82%A2%E3%83%B3%E3%83%87%E3%83%83%E3%83%89%E3%83%AA%E3%83%95%E3%83%88%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="lowerA lowerB" data-id="l3">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">レッグカール<span class="tag new">新</span></span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">20kgから探る</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-leg-curl.webp" alt="レッグカールマシン" loading="lazy"></div>
+        <div class="note plain">すでに足の日に使っている写真のマシンです。同じマシンで動きが2種類あり、<strong>膝を伸ばす＝前もも、曲げる＝裏もも</strong>。今回やるのは<strong>かかとをお尻に引き寄せる方</strong>です。</div>
+        <ol class="steps">
+          <li>マシンに<strong>うつ伏せ</strong>、または座って設定（機種による）</li>
+          <li>アキレス腱の少し上にパッドを当てる</li>
+          <li><strong>かかとをお尻に近づける</strong>ように曲げる</li>
+          <li>曲げきったら1秒キープ</li>
+          <li><strong>3秒かけて</strong>戻す。伸ばしきらない</li>
+        </ol>
+        <div class="note tip"><strong>腰が浮くのは重すぎるサイン。</strong></div>
+        <div class="note plain">裏ももへの直接刺激が今までルーマニアンデッドリフトだけだったので、<strong>そのセット数を減らす分をここで補います。</strong></div>
+        <div class="note up"><strong>初回の決め方</strong>　20kgで10回できるか試す。12回いけるなら次のセットから目盛り1つ上げます。</div>
+        <div class="links">
+          <a href="https://melos.media/training/250474/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%AC%E3%83%83%E3%82%B0%E3%82%AB%E3%83%BC%E3%83%AB%20%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="lowerA lowerB" data-id="l4">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ヒップスラスト<span class="tag new">新</span></span>
+            <span class="ex-num"><b>12回</b> × <b class="v-a">2セット</b><b class="v-b">3セット</b><span class="ex-load">自重 → 10〜15kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベル" loading="lazy"></div>
+        <div class="note plain"><strong>下腹対策の本命です。</strong>ベンチに肩甲骨だけを乗せ、腰の上にダンベルを置いて、お尻を上下させます。骨盤が前に倒れていると内臓が前に押し出されて<strong>実際より腹が出て見えます</strong>。ここを鍛える担当です。</div>
+        <ol class="steps">
+          <li>ベンチに<strong>肩甲骨だけ</strong>を乗せる（背中全体ではない）</li>
+          <li>足は肩幅、<strong>膝が90度</strong>になる位置に置く</li>
+          <li>腰の付け根にダンベルを縦に置き、両手で支える</li>
+          <li><strong>お尻の力だけで</strong>腰を持ち上げ、肩から膝まで一直線に</li>
+          <li>一番上で<strong>1秒お尻を締める</strong></li>
+          <li>ゆっくり下ろす。床につく手前で次の1回へ</li>
+        </ol>
+        <div class="note warn"><strong>一直線より上に持ち上げて腰を反らせない。</strong>反らせると腰の種目になり、お尻に効かなくなります。あごを軽く引いて、視線は正面か少し下。</div>
+        <div class="note up"><strong>初回</strong>　まず<strong>ダンベルなし</strong>で10回やってフォームを覚える。お尻が効いている感覚がつかめてから重りを足します。</div>
+        <div class="links">
+          <a href="https://melos.media/training/67377/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%92%E3%83%83%E3%83%97%E3%82%B9%E3%83%A9%E3%82%B9%E3%83%88%20%E3%83%80%E3%83%B3%E3%83%99%E3%83%AB%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="lowerA lowerB" data-id="l5">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>5</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">デッドバグ<span class="tag new">新</span></span>
+            <span class="ex-num"><b>左右10回</b> × 2セット<span class="ex-load">自重・器具なし</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="note plain">仰向けで両手を天井・両膝を90度に上げた姿勢から、<strong>右手と左足を同時にゆっくり伸ばして戻す</strong>だけ。マットの上でできます。下腹を内側から引き締める<strong>腹横筋</strong>の担当で、腹筋ローラーでは鍛えられない場所です。</div>
+        <ol class="steps">
+          <li>仰向けに寝て、<strong>両手を天井にまっすぐ</strong>伸ばす</li>
+          <li>膝を90度に曲げ、太ももが床と垂直になるまで上げる</li>
+          <li><strong>腰を床に押し付ける</strong>（ここが一番大事。手が入る隙間をなくす）</li>
+          <li>息を吐きながら、<strong>右手と左足</strong>をゆっくり伸ばす</li>
+          <li>床につく手前で止め、ゆっくり戻す。左右交互に10回ずつ</li>
+        </ol>
+        <div class="note warn"><strong>腰が浮いたら、そこが限界です。</strong>手足を遠くまで伸ばすことより、腰が床から離れないことが全て。浮くなら伸ばす範囲を小さくしてください。</div>
+        <div class="note tip"><strong>下腹の奥がプルプルしてくれば正解。</strong>腰が痛いなら腰が浮いています。</div>
+        <div class="links">
+          <a href="https://melos.media/training/272658/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/results?search_query=%E3%83%87%E3%83%83%E3%83%89%E3%83%90%E3%82%B0%20%E3%82%84%E3%82%8A%E6%96%B9%20%E4%BD%93%E5%B9%B9" target="_blank" rel="noopener">動画で見る</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- 有酸素（全日共通） ---------- -->
+    <article class="ex" data-show="upper lowerA lowerB" data-id="cardio">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>7</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">有酸素（傾斜歩き）</span>
+            <span class="ex-num"><b>30分</b><span class="ex-load">傾斜 12.5% ・ 5.0km/h</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="cardio" style="margin-top:14px;">
+          <div class="cardio-nums">
+            <div><div class="cardio-v">12.5<small>%</small></div><div class="cardio-l">傾斜</div></div>
+            <div><div class="cardio-v">5.0</div><div class="cardio-l">km/h</div></div>
+            <div><div class="cardio-v">30<small>分</small></div><div class="cardio-l">時間（+5〜10分）</div></div>
+          </div>
+        </div>
+        <div class="note plain"><strong>ジムに行った日は毎回。筋トレを全部終えた後です。</strong>今までどおりで、変更は20〜25分 → 30分だけ。10分足すと1回の消費が約150kcal → 約200kcalになります。</div>
+        <div class="note tip"><strong>走らないのは正解です。</strong>走ると強度が上がりすぎて筋肉まで分解されます。傾斜歩きは関節の負担が少なく、心拍が脂肪の燃えやすい帯域に収まり、お尻と裏ももも平地より使います。</div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ---------- 予備枠: 腕（上半身の日だけ） ---------- -->
+  <div data-show="upper" style="margin-top:22px;">
+    <details>
+      <summary>予備枠：腕（やるかどうかは、その日に決める）</summary>
+      <div class="det-body">
+        <p>チェストプレスやラットプルダウンでも腕は使われるので、腕の種目がないと筋肉が増えないというほどではありません。ただし<strong>腕が限界に達する前に胸や背中が先に限界になる</strong>ため、刺激は腕に届き切りません。腕の見た目を優先したい日だけ入れる、という位置づけです。ルールは3つ。</p>
+        <p><strong>入れる日はシーテッドロウを3 → 2セットに減らす。</strong>時間を増やさないためです。<br>
+        <strong>2種目とも同じ日にはやらない。</strong>やる日はどちらか片方だけ。次にやる日はもう片方。<br>
+        <strong>左腕から始めて、左右まったく同じ重量・同じ回数にする。</strong>左右差5%への対処はこれだけで十分です。</p>
+      </div>
+    </details>
+
+    <div class="exlist" style="margin-top:9px;">
+      <article class="ex" data-id="opt1" style="display:block;">
+        <div class="ex-head">
+          <button type="button" class="ex-check" aria-label="完了にする"><span>＋</span></button>
+          <button type="button" class="ex-open">
+            <span class="ex-info">
+              <span class="ex-name">ケーブルプレスダウン<span class="tag opt">予備</span></span>
+              <span class="ex-num"><b>10〜12回</b> × 2セット<span class="ex-load">15kgから探る</span></span>
+            </span>
+            <span class="ex-caret"></span>
+          </button>
+        </div>
+        <div class="ex-detail">
+          <div class="note plain"><strong>担当は二の腕の裏（上腕三頭筋）。</strong>今まで使っていたケーブルマシンにロープを付けて行う種目です。「二頭筋の裏側」と呼んでいたのは正確にはここ。腕の太さは<strong>三頭筋が3分の2</strong>を占めるので、腕を太く見せたいならこちらが本命です。</div>
+          <ol class="steps">
+            <li>ケーブルを<strong>一番上</strong>にセットし、ロープを付ける</li>
+            <li>マシンの正面に立ち、ロープを両手で握る</li>
+            <li><strong>脇を締めて肘を体の横に固定</strong>（ここから肘は動かさない）</li>
+            <li>肘から先だけで<strong>真下に押し下げる</strong></li>
+            <li>下で1秒止め、二の腕の裏を締める。ゆっくり戻す</li>
+          </ol>
+          <div class="note warn"><strong>肘が体から離れたら、それは重すぎです。</strong>上体を前に倒して体重で押すのもなし。重量より、肘を固定できているかが全て。</div>
+          <div class="note up"><strong>上げ幅</strong>　2セットとも12回できたら目盛り1つ分。</div>
+          <div class="links">
+            <a href="https://melos.media/training/71947/" target="_blank" rel="noopener">写真つき解説</a>
+            <a href="https://www.youtube.com/results?search_query=%E3%83%88%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%97%E3%82%B9%E3%83%97%E3%83%AC%E3%82%B9%E3%83%80%E3%82%A6%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="ex" data-id="opt2" style="display:block;">
+        <div class="ex-head">
+          <button type="button" class="ex-check" aria-label="完了にする"><span>＋</span></button>
+          <button type="button" class="ex-open">
+            <span class="ex-info">
+              <span class="ex-name">ダンベルカール（片手ずつ）<span class="tag opt">予備</span></span>
+              <span class="ex-num"><b>左右10〜12回</b> × 2セット<span class="ex-load">片手 7.5〜10kgから</span></span>
+            </span>
+            <span class="ex-caret"></span>
+          </button>
+        </div>
+        <div class="ex-detail">
+          <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベル" loading="lazy"></div>
+          <div class="note plain"><strong>担当は力こぶ（上腕二頭筋）。</strong>両手同時ではなく<strong>片手ずつ</strong>。左腕3.24kg / 右腕3.39kgの差があるためです。ただしこの5%は測定誤差の範囲でもあるので、右腕だけ追加で鍛えることはしません。</div>
+          <ol class="steps">
+            <li>立って片手にダンベル。もう片方は腰か手すりに添える</li>
+            <li><strong>肘を体の横に固定</strong>（前に出さない）</li>
+            <li>手のひらを上に向けたまま、肩に向けて巻き上げる。上で1秒止める</li>
+            <li><strong>3秒かけて</strong>下ろす。伸ばしきる手前で止める</li>
+            <li><strong>左腕から</strong>。終わったら右腕を同じ回数</li>
+          </ol>
+          <div class="note warn"><strong>反動を使ったら意味がありません。</strong>体を反らせて振り上げるのは重すぎのサイン。効いているのは腰であって腕ではない。</div>
+          <div class="note up"><strong>上げ幅</strong>　左右とも12回できたら次のダンベルへ（2.5kg刻み）。<strong>左が先にバテたら、その回数に右を合わせます。</strong></div>
+          <div class="links">
+            <a href="https://melos.media/training/59341/" target="_blank" rel="noopener">写真つき解説</a>
+            <a href="https://www.youtube.com/results?search_query=%E3%83%80%E3%83%B3%E3%83%99%E3%83%AB%E3%82%AB%E3%83%BC%E3%83%AB%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener">動画で見る</a>
+          </div>
+        </div>
+      </article>
     </div>
+  </div>
+
+  <!-- 下半身の日だけ: 疲労が出たときの調整 -->
+  <div data-show="lowerA lowerB" style="margin-top:22px;">
+    <details>
+      <summary>脚が回復していないと感じたら</summary>
+      <div class="det-body">
+        <p>次のどれかが出たら、<strong>有酸素の傾斜を12.5% → 10%に下げてください。</strong>感覚だけで判断できます。</p>
+        <p>下半身の日に重量・回数が落ち続ける ／ RDLの後、腰の張りが翌日まで残る ／ 翌朝まで脚の疲労が強い ／ 膝・アキレス腱・足の裏に痛みが出る</p>
+      </div>
+    </details>
   </div>
 </section>
 
-<!-- ===== Rule ===== -->
-<section class="section alt-bg" id="rule">
-  <div class="section-inner">
-    <p class="section-eyebrow fi">RULE — 全種目に共通する、たった1つのこと</p>
-    <h2 class="section-title fi d1">「12回できたら」の<span class="accent">意味</span></h2>
+<!-- ========== 3. 重量の上げ方 ========== -->
+<section id="rule">
+  <div class="sec-head">
+    <h2>重量の上げ方</h2>
+    <p class="lead">全種目に共通。半年伸びなかった原因はここです。</p>
+  </div>
 
-    <div class="rule-hero fi d2">
-      <div class="rule-hero-q">Q. 10回でやっているのに「12回できたら」とは？</div>
-      <div class="rule-hero-a">A. そのとおりです。<em>今まで10回で終わっていたものが12回できてしまったら、その重さは卒業</em>という意味です。</div>
-    </div>
-
-    <p class="section-lead fi d2" style="margin-bottom:20px;">今は「10回3セット」と最初から決めてやっている状態です。これを「<strong style="color:var(--white)">10回はできる。12回はできない</strong>」重さを毎回さがす、というやり方に変えます。手順は次の4つだけです。</p>
-
-    <div class="step-list fi d3">
-      <div class="step">
-        <div class="step-n">1</div>
-        <div class="step-b">
-          <div class="step-t">今の重さで10回やる</div>
-          <div class="step-d">ここまでは今までどおり。</div>
-        </div>
+  <div class="rule-card">
+    <h3>3セットとも12回できたら、その重さは卒業</h3>
+    <div class="rule-lines">
+      <div class="rule-line">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="#0c7a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>10回で止めず、まだ上がるなら11回・12回と続ける。<strong>3セット全部で12回できて、フォームが崩れていなければ、次から重くする。</strong></div>
       </div>
-      <div class="step">
-        <div class="step-n">2</div>
-        <div class="step-b">
-          <div class="step-t">10回で止めず、いけるならそのまま続ける</div>
-          <div class="step-d">ここが今までと違うところ。<strong>10回に達しても、まだ上がるなら11回、12回と続ける。</strong>本当に上がらなくなったところで終わり。</div>
-        </div>
+      <div class="rule-line">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="#0c7a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div>最後のセットを終えて<strong>「あと1〜3回ならできそう」が正しい重さ</strong>。「あと5回はいける」なら軽すぎ、「1回も上がらない」なら重すぎ。</div>
       </div>
-      <div class="step">
-        <div class="step-n">3</div>
-        <div class="step-b">
-          <div class="step-t">3セットとも12回できたら、その重さは軽い</div>
-          <div class="step-d">12回上がるということは、体にとってもう楽な重さになっているというサインです。<strong>次のセットから重くします。</strong>（次回まで待たなくていい）<br><br><strong>ただし条件が2つあります。</strong>1つ目、<strong>3セット全部で12回</strong>できていること。1セット目だけ12回で、3セット目が8回なら、まだその重さです。2つ目、<strong>フォームが崩れていないこと</strong>。反動を使って12回上げたのは12回に数えません。</div>
-        </div>
+      <div class="rule-line">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="#0c7a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><strong>重くした直後は10回がやっとになります。それが正解。</strong>その重さで続けて、また12回できるようになったら、また重くする。この繰り返しです。</div>
       </div>
-      <div class="step">
-        <div class="step-n">4</div>
-        <div class="step-b">
-          <div class="step-t">重くすると10回に落ちる。それが正解</div>
-          <div class="step-d">重くした直後は10回がやっとになります。<strong>それでいい。</strong>その重さで続けて、また12回できるようになったら、また重くする。この繰り返しです。</div>
-        </div>
-      </div>
-    </div>
-
-    <h3 style="font:700 15px 'Noto Sans JP',sans-serif;color:var(--white);margin-bottom:14px;" class="fi">どれだけ上げるか</h3>
-    <div class="table-wrap fi">
-      <table class="data-table">
-        <thead><tr><th>種類</th><th>1回で上げる幅</th><th>該当する種目</th></tr></thead>
-        <tbody>
-          <tr><td>ピンを刺すマシン</td><td class="t-ok">目盛り1つ分（2.5〜5kg）</td><td>ラットプルダウン / シーテッドロウ / ショルダープレス / レッグカール</td></tr>
-          <tr><td>プレートを差すマシン</td><td class="t-ok">片側 +2.5〜5kg</td><td>チェストプレス / レッグプレス</td></tr>
-          <tr><td>バーベル</td><td class="t-ok">両端に2.5kgずつ（計 +5kg）</td><td>ルーマニアンデッドリフト</td></tr>
-          <tr><td>ダンベル（サイドレイズ）</td><td class="t-ng">上げない</td><td>5kgのまま、回数を15回まで伸ばす</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="ex-tip why fi" style="margin-top:22px;padding:18px 20px;">
-      <span class="material-icons">priority_high</span>
-      <div style="font-size:12.5px;line-height:1.85;">
-        <strong>なぜこれが要るのか。</strong><br>
-        筋肉は「前より重いものを持たされた」ときにだけ増えます。同じ重さを何ヶ月続けても、体は<strong>「この程度なら今の筋肉で足りている」</strong>と判断して、それ以上作りません。半年やって全種目が「10回3セット」で揃っているのは、重量がほぼ伸びていないサインです。<strong>脂肪は落ちても筋肉が増えていないのは、ここが原因です。</strong>
-      </div>
-    </div>
-
-    <div class="ex-tip red fi" style="padding:18px 20px;">
-      <span class="material-icons">flag</span>
-      <div style="font-size:12.5px;line-height:1.85;">
-        <strong>セットの止めどころ。ここが一番大事です。</strong><br>
-        最後のセットを終えた時点で<strong>「あと1〜3回ならできそう」</strong>なら正しい重さです。<strong>「あと5回はいける」なら軽すぎ</strong>、<strong>「もう1回も上がらない」なら重すぎ</strong>。<br><br>
-        6ヶ月間まったく重量が伸びなかった最大の原因は、種目の選び方ではなく<strong>ここが管理されていなかったこと</strong>です。10回3セットと最初から決めていると、限界まであと何回残っているかを誰も見ていない状態になります。
-      </div>
-    </div>
-
-    <div class="ex-tip green fi" style="padding:18px 20px;">
-      <span class="material-icons">check_circle</span>
-      <div style="font-size:12.5px;line-height:1.85;">
-        <strong>記録は取らなくていい。</strong><br>
-        前回の重さを覚えていなくても、このやり方なら回ります。<strong>その場で「まだ上がるか」を感じるだけ</strong>で判断できるからです。ノートもアプリも要りません。
+      <div class="rule-line">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="#0c7a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div><strong>記録は取らなくていい。</strong>その場で「まだ上がるか」を感じるだけで判断できます。</div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ===== Program ===== -->
-<section class="section" id="program">
-  <div class="section-inner">
-    <p class="section-eyebrow fi">TRAINING PROGRAM</p>
-    <h2 class="section-title fi d1">上半身 / 下半身の<span class="accent">2分割</span></h2>
-    <p class="section-lead fi d2">各部位を週2回。曜日は固定しない。行った日に「次の順番」をやるだけ。</p>
-
-    <div class="rotation fi d2">
-      <div class="rot-label">ROTATION</div>
-      <span class="rot-chip up">上半身</span>
-      <span class="material-icons rot-arrow">arrow_forward</span>
-      <span class="rot-chip low">下半身 A</span>
-      <span class="material-icons rot-arrow">arrow_forward</span>
-      <span class="rot-chip up">上半身</span>
-      <span class="material-icons rot-arrow">arrow_forward</span>
-      <span class="rot-chip low">下半身 B</span>
-      <div class="rot-note">週4回なら上・下・上・下。<strong>週3回なら上・下・上 → 翌週は下・上・下</strong>と自然にずれていくので、曜日を気にしなくていい。土日が不定期でも崩れない。<br><br><strong>下半身だけはA・Bの2種類</strong>があり、行くたびに交互にします。違うのはルーマニアンデッドリフトとヒップスラストのセット数だけ（下半身タブに記載）。どっちの日か分からなくなったらAをやってください。</div>
-    </div>
-
-    <a href="#rule" class="rule-banner fi d3">
-      <span class="material-icons">trending_up</span>
-      <div class="rule-banner-text">
-        12回できたら、その場で重量を上げる
-        <span>10回で止めない。いけるなら11・12回と続ける。12回上がったら軽い証拠（タップで解説へ）</span>
-      </div>
-      <span class="material-icons go">help_outline</span>
-    </a>
-
-    <div class="tab-bar fi d3">
-      <button class="tab-btn active" onclick="switchTab('upper',this)">
-        <span class="tab-label">DAY A</span>上半身
-      </button>
-      <button class="tab-btn" onclick="switchTab('lower',this)">
-        <span class="tab-label">DAY B</span>下半身
-      </button>
-    </div>
-
-    <!-- ========== 上半身 ========== -->
-    <div class="tab-panel active" id="tab-upper">
-      <div class="exercise-grid">
-
-        <div class="ex-card">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">ワイドチェストプレス</div>
-              <div class="ex-move">座って、胸の前のグリップを前に押し出す</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 3セット<span class="sep">|</span><span class="load">片側 40kg</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-chest-press.webp" alt="ワイドチェストプレス" loading="lazy"></div>
-            <ol class="ex-steps">
-              <li>シートに座り、<strong>背中を背もたれに完全につける</strong></li>
-              <li>グリップは胸の高さ。肩幅よりやや広め</li>
-              <li><strong>胸を張り、肩甲骨を寄せて固定</strong>したまま押す</li>
-              <li>肘は<strong>伸ばしきらず</strong>手前で止める</li>
-              <li>3秒かけて戻す。胸が伸びる位置まで下ろす</li>
-            </ol>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>ポイント:</strong> 肩甲骨を寄せたまま「腕だけ」動かす。肩が前に出ると胸ではなく肩に効き、痛める。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 12回できたら片側 +2.5〜5kg。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/137381/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%81%E3%82%A7%E3%82%B9%E3%83%88%E3%83%97%E3%83%AC%E3%82%B9%20%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">ラットプルダウン</div>
-              <div class="ex-move">座って、頭の上のバーを胸まで引き下ろす</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 3セット<span class="sep">|</span><span class="load">30kg</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-lat-row.webp" alt="ラットプルダウン" loading="lazy"></div>
-            <ol class="ex-steps">
-              <li>シートに座り、太ももをパッドで固定</li>
-              <li>バーを<strong>肩幅より少し広め</strong>で握る</li>
-              <li><strong>胸を張って</strong>上体を少し後ろに倒す</li>
-              <li>バーを<strong>鎖骨あたり</strong>まで引き下ろす</li>
-              <li>肩甲骨を「下に引き下げる」意識</li>
-              <li><strong>3秒かけて</strong>戻す</li>
-            </ol>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>ポイント:</strong> 腕で引かず「肘を後ろの下に引く」イメージ。腕ばかり疲れて背中が疲れないなら、握りを浅くする。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 12回できたら目盛り1つ分。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/53230/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%A9%E3%83%83%E3%83%88%E3%83%97%E3%83%AB%E3%83%80%E3%82%A6%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%20%E8%83%8C%E4%B8%AD" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">ショルダープレス <span class="badge-new">NEW</span></div>
-              <div class="ex-move">座って、耳の横から真上にグリップを押し上げる</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 3セット<span class="sep">|</span><span class="load">20kgから探る</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-shoulder-press.webp" alt="ショルダープレスマシン" loading="lazy"></div>
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>これは何か:</strong> ジムにある、この写真のマシンです。チェストプレスの「上向き版」だと思ってください。座って、耳の横にあるグリップを真上に押し上げる動きで、<strong>胸ではなく肩を鍛えます。</strong><br><br>ウエストヒップ比0.95（高判定）の見た目を改善する最短ルートは、腹を細くするより<strong>肩幅を出すこと</strong>です。肩に丸みがつくと、腹囲が同じでもウエストが細く見えます。今まで一度も使っていないマシンです。</div></div>
-            <ol class="ex-steps">
-              <li>シートの高さを調整し、<strong>背中を背もたれにつける</strong></li>
-              <li>グリップは肩幅よりやや広め。握った時に<strong>肘が90度</strong>になる位置</li>
-              <li><strong>耳の横から真上に</strong>押し上げる</li>
-              <li>肘は伸ばしきる手前で止める</li>
-              <li>下ろすのは<strong>耳の高さまで</strong>。それ以上下げない</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>注意:</strong> 肘を体の前に出しすぎない（胸に逃げる）。逆に真横に開きすぎると肩の関節を痛める。<strong>耳の横のライン</strong>を守る。下げすぎも肩を痛める原因。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>初回の決め方:</strong> 20kgで10回やってみる。楽なら次のセットで上げる。<strong>12回が限界の重さ</strong>を探す。ここは焦らず、軽めから。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/158248/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%B7%E3%83%A7%E3%83%AB%E3%83%80%E3%83%BC%E3%83%97%E3%83%AC%E3%82%B9%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">シーテッドロウ</div>
-              <div class="ex-move">座って、正面のハンドルを手前に引く</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 3セット（腕をやる日は2）<span class="sep">|</span><span class="load">30kg</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-row.webp" alt="シーテッドロウ" loading="lazy"></div>
-            <ol class="ex-steps">
-              <li>シートに座り、胸をパッドにつける</li>
-              <li>ハンドルを両手で握る</li>
-              <li><strong>胸を張ったまま</strong>肘を後ろへ引く</li>
-              <li>引ききった位置で<strong>肩甲骨をギュッと寄せる</strong></li>
-              <li>肘が体の横を通るように</li>
-              <li>ゆっくり戻す。背中が丸まらない範囲で</li>
-            </ol>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>ポイント:</strong> 背中の真ん中を締める感覚。肩がすくむのは重すぎるサイン。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 12回できたら目盛り1つ分。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/188467/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%82%B7%E3%83%BC%E3%83%86%E3%83%83%E3%83%89%E3%83%AD%E3%82%A6%20%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E8%83%8C%E4%B8%AD" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon free">D</div>
-            <div class="ex-info">
-              <div class="ex-name">サイドレイズ <span class="badge-new">NEW</span></div>
-              <div class="ex-move">立って、両手のダンベルを真横に肩の高さまで上げる</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>12〜15回 × 2セット<span class="sep">|</span><span class="load">片手 5kg</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベルラック" loading="lazy"></div>
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>これは何か:</strong> ダンベルを両手に持って立ち、鳥が羽を広げるように<strong>真横に上げるだけ</strong>の種目です。マシンは使いません。肩の「横」を作ります。<br><br>ショルダープレスは肩の前が主役なので、横はこれでしか作れません。加えて<strong>左腕3.24kg / 右腕3.39kg（約5%差）</strong>の左右差は、両手同時に動かすマシンでは開いたままになります。片手ずつ扱うダンベルで埋めます。</div></div>
-            <ol class="ex-steps">
-              <li>立って両手にダンベル。体の横に下ろす</li>
-              <li><strong>肘を軽く曲げたまま固定</strong></li>
-              <li><strong>真横に</strong>、肩の高さまで上げる</li>
-              <li>肩の高さで止める。それ以上上げない</li>
-              <li>3秒かけて下ろす</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>この種目だけは重くしない:</strong> 5kgで十分効きます。重くすると反動を使ってしまい、首の付け根（僧帽筋）に逃げて肩に効かなくなる。<strong>12回できたら重量ではなく回数を15回まで伸ばす</strong>のが正解。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/66723/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%82%B5%E3%82%A4%E3%83%89%E3%83%AC%E3%82%A4%E3%82%BA%20%E3%83%80%E3%83%B3%E3%83%99%E3%83%AB%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon floor">F</div>
-            <div class="ex-info">
-              <div class="ex-name">腹筋ローラー</div>
-              <div class="ex-move">膝をついて、ローラーを前に転がして戻す</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10回 × 3セット</div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-ab-roller.webp" alt="腹筋ローラー" loading="lazy"></div>
-            <ol class="ex-steps">
-              <li>膝をついて、ローラーを肩の真下に置く</li>
-              <li><strong>腰を丸めた状態</strong>から始める（反らせない）</li>
-              <li>ゆっくり前に転がす</li>
-              <li><strong>腰が反りそうになった位置</strong>が今日の限界。そこで止める</li>
-              <li>お腹の力で戻す</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>注意:</strong> 腰が反ったまま伸ばすと腰を痛める。伸ばせる距離より「腰を丸めたまま」を優先。</div></div>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>役割の整理:</strong> これは腹直筋（表面のシックスパック）の種目。<strong>下腹の脂肪を落とす効果はない。</strong>下腹担当は下半身の日のデッドバグ。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/15658/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E8%85%B9%E7%AD%8B%E3%83%AD%E3%83%BC%E3%83%A9%E3%83%BC%20%E8%86%9D%E3%82%B3%E3%83%AD%20%E3%82%84%E3%82%8A%E6%96%B9" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="checklist">
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>チェストプレス 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>ラットプルダウン 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>ショルダープレス 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>シーテッドロウ 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>サイドレイズ 2セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>腹筋ローラー 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>有酸素 30分</div>
-      </div>
-
-      <!-- ===== 予備枠: 腕 ===== -->
-      <div class="ex-tip why" style="margin-top:28px;"><span class="material-icons">add_circle_outline</span><div><strong>予備枠：腕（やるかどうかは、その日に決める）</strong><br>
-      腕の見た目を優先したい日だけ入れます。毎回やる必要はありません。<br><br>
-      <strong>入れる日は、シーテッドロウを3セット → 2セットに減らす。</strong>時間を増やさないためです。<br>
-      <strong>2種目とも同じ日にやらない。</strong>やる日はどちらか片方だけ。次にやる日はもう片方。<br><br>
-      なぜ予備扱いかというと、チェストプレスやラットプルダウンでも腕は使われるので、腕の種目がないと筋肉が増えないというほどではないからです。ただし<strong>腕が限界に達する前に胸や背中が先に限界になる</strong>ため、刺激は腕に届き切りません。腕の見た目を優先するなら直接やった方が確実、という位置づけです。</div></div>
-
-      <div class="exercise-grid">
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">ケーブルプレスダウン <span class="badge-new">予備</span></div>
-              <div class="ex-move">立って、上のロープを真下に押し下げる</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 2セット<span class="sep">|</span><span class="load">15kgから探る</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>担当は二の腕の裏（上腕三頭筋）。</strong> 今まで使っていたケーブルマシンの、ロープを付けて行う種目です。「二頭筋の裏側」と呼んでいたのは、正確にはこの上腕三頭筋のことです。<br><br>腕の太さは<strong>三頭筋が3分の2</strong>を占めるので、腕を太く見せたいならこちらが本命です。</div></div>
-            <ol class="ex-steps">
-              <li>ケーブルを<strong>一番上</strong>にセットし、ロープを付ける</li>
-              <li>マシンの正面に立ち、ロープを両手で握る</li>
-              <li><strong>脇を締めて肘を体の横に固定</strong>（ここから肘は動かさない）</li>
-              <li>肘から先だけで<strong>真下に押し下げる</strong></li>
-              <li>下で1秒止め、二の腕の裏を締める</li>
-              <li>ゆっくり戻す。肘の位置は最後まで動かさない</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>肘が体から離れたら、それは重すぎです。</strong> 上体を前に倒して体重で押すのもなし。重量より、肘を固定できているかが全て。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 12回できたら目盛り1つ分。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/71947/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%88%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%97%E3%82%B9%E3%83%97%E3%83%AC%E3%82%B9%E3%83%80%E3%82%A6%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon free">D</div>
-            <div class="ex-info">
-              <div class="ex-name">ダンベルカール（片手ずつ） <span class="badge-new">予備</span></div>
-              <div class="ex-move">立って、ダンベルを片手ずつ肩まで巻き上げる</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>左右10〜12回 × 2セット<span class="sep">|</span><span class="load">片手 7.5〜10kgから</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベル" loading="lazy"></div>
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>担当は力こぶ（上腕二頭筋）。</strong> 両手同時ではなく<strong>片手ずつ</strong>やってください。<strong>左腕3.24kg / 右腕3.39kg（約5%差）</strong>の左右差があるためです。<br><br>ただしこの5%はInBodyの測定誤差の範囲内でもあるので、右腕だけ追加で鍛えるようなことはしません。<strong>左から始めて、左右まったく同じ重量・同じ回数</strong>にするだけで十分です。左が先にバテたら、その回数に右を合わせます。</div></div>
-            <ol class="ex-steps">
-              <li>立って、片手にダンベル。もう片方は腰か手すりに添える</li>
-              <li><strong>肘を体の横に固定</strong>（前に出さない）</li>
-              <li>手のひらを上に向けたまま、肩に向けて巻き上げる</li>
-              <li>上で1秒止める</li>
-              <li><strong>3秒かけて</strong>下ろす。伸ばしきる手前で止める</li>
-              <li><strong>左腕から</strong>。終わったら右腕を同じ回数</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>反動を使ったら意味がありません。</strong> 体を反らせて振り上げるのは重すぎのサイン。効いているのは腰であって腕ではない。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 左右とも12回できたら次のダンベルへ（2.5kg刻み）。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/59341/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%80%E3%83%B3%E3%83%99%E3%83%AB%E3%82%AB%E3%83%BC%E3%83%AB%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="ex-tip red" style="margin-top:20px;"><span class="material-icons">remove_circle_outline</span><div><strong>削除した種目:</strong> ペックフライ、ケーブルフライ。チェストプレスと役割が重複しており、その時間をショルダープレスに回した方が効果が大きいため。</div></div>
-    </div>
-
-    <!-- ========== 下半身 ========== -->
-    <div class="tab-panel" id="tab-lower">
-
-      <div class="ex-tip why" style="margin-bottom:20px;"><span class="material-icons">swap_horiz</span><div><strong>下半身の日は2種類あります。行くたびにA → B → A → Bと交互に。</strong><br>
-      違うのは<strong>ルーマニアンデッドリフトとヒップスラストのセット数だけ</strong>。他の3種目は両日とも同じです。<br><br>
-      <strong>A（腰の日）</strong>　RDL 3セット ／ ヒップスラスト 2セット<br>
-      <strong>B（お尻の日）</strong>　RDL 2セット ／ ヒップスラスト 3セット<br><br>
-      理由: RDLだけ腰と裏ももの疲労が突出して大きく、回復に48〜72時間かかります。週2回だと中2日しかない。そこに傾斜12.5%の歩き30分が毎回入り、これも裏ももとお尻を使うので疲労が重なる。<strong>RDLを週6セット→週5セットに落とし、減らした1セットをヒップスラストへ移す。</strong>お尻の総量は落とさず、腰の負担だけ下げます。<br><br>
-      どっちの日かを覚えていなければ<strong>Aをやってください</strong>（重い方が本番）。</div></div>
-
-      <div class="exercise-grid">
-
-        <div class="ex-card">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">レッグプレス</div>
-              <div class="ex-move">座って、足元のプレートを足で押し出す</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 3セット<span class="sep">|</span><span class="load">片側 45kg（左右で90kg）</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-leg-press.webp" alt="レッグプレス" loading="lazy"></div>
-            <ol class="ex-steps">
-              <li>シートに深く座り、足を<strong>肩幅</strong>でプレートに置く</li>
-              <li>つま先は少し外向き。<strong>足の位置を高め</strong>にするとお尻に効く</li>
-              <li>安全ハンドルを回してロック解除</li>
-              <li><strong>3秒かけて</strong>膝を曲げる</li>
-              <li>90度まで来たら<strong>かかとで押し上げる</strong></li>
-              <li>膝は伸ばしきらない</li>
-            </ol>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>ポイント:</strong> 膝がつま先より内側に入らないように。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 12回できたら片側 +5kg。<strong>この種目はそろそろ上げられるはず</strong>なので、次回まず試してみる。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/138036/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%AC%E3%83%83%E3%82%B0%E3%83%97%E3%83%AC%E3%82%B9%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon free">B</div>
-            <div class="ex-info">
-              <div class="ex-name">ルーマニアンデッドリフト</div>
-              <div class="ex-move">立って、バーベルを持ったままお辞儀をする</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10回 × <strong>A:3セット / B:2セット</strong><span class="sep">|</span><span class="load">65〜70kg</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-barbell.webp" alt="バーベル" loading="lazy"></div>
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>変更点:</strong> 今まで<strong>毎回・週3〜4回 × 4セット</strong>やっていたのを、<strong>週2回（Aは3セット / Bは2セット）</strong>に減らします。腰と裏ももの回復には48〜72時間かかるため、毎回やると疲労が抜けません。減らした分、重量を60kg → <strong>65〜70kg</strong>に上げます。<br><br>Bの日を2セットにしているのは、傾斜12.5%の歩き30分が毎回入って裏もも・お尻の疲労が重なるためです。減らした1セットはヒップスラストに移してあるので、お尻の総量は落ちません。</div></div>
-            <ol class="ex-steps">
-              <li>バーを肩幅で握り、<strong>足は腰幅</strong>で立つ</li>
-              <li>膝を軽く曲げた状態で固定（ここから膝は動かさない）</li>
-              <li><strong>お尻を後ろに引きながら</strong>バーを太ももに沿って下ろす</li>
-              <li><strong>裏ももが突っ張った位置</strong>で止める（膝下まで下ろさなくていい）</li>
-              <li>お尻を締めながら体を起こす</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>最重要の注意:</strong> <strong>背中が丸まった瞬間に腰を壊す</strong>種目です。胸を張り、背中は常に一直線。バーは体から離さず、太ももを擦るくらい近くを通す。<strong>背中が丸まるならそこが今日の限界。重量を下げる。</strong></div></div>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>効いている場所の確認:</strong> 裏もも（ハムストリング）とお尻が張るなら正解。<strong>腰だけが痛いならフォームが崩れている。</strong>その日は中止していい。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>上げ幅:</strong> 両端に2.5kgずつ（計 +5kg）。<strong>ただしこの種目だけは、12回できてもフォームが崩れるなら上げない。</strong></div></div>
-            <div class="ex-links">
-              <a href="https://belegend.jp/article/communication/10323/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%AB%E3%83%BC%E3%83%9E%E3%83%8B%E3%82%A2%E3%83%B3%E3%83%87%E3%83%83%E3%83%89%E3%83%AA%E3%83%95%E3%83%88%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon machine">M</div>
-            <div class="ex-info">
-              <div class="ex-name">レッグカール <span class="badge-new">NEW</span></div>
-              <div class="ex-move">うつ伏せ（か座って）、かかとをお尻に引き寄せる</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>10〜12回 × 3セット<span class="sep">|</span><span class="load">20kgから探る</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-leg-curl.webp" alt="レッグエクステンション / レッグカール" loading="lazy"></div>
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>これは何か:</strong> すでに足の日に使っている、この写真のマシンです。同じマシンで動きが2種類あります。<strong>膝を伸ばす動き（レッグエクステンション）＝前もも、曲げる動き（レッグカール）＝裏もも。</strong><br><br>今やっているのがどちらか本人も不明とのことなので、<strong>「かかとをお尻に引き寄せる」方をやってください。</strong>裏ももへの直接刺激が今までRDLだけだったので、RDLを週2回に減らす分をここで補います。</div></div>
-            <ol class="ex-steps">
-              <li>マシンに<strong>うつ伏せ</strong>、または座って設定（機種による）</li>
-              <li>アキレス腱の少し上にパッドを当てる</li>
-              <li><strong>かかとをお尻に近づける</strong>ように曲げる</li>
-              <li>曲げきったら1秒キープ</li>
-              <li><strong>3秒かけて</strong>戻す。伸ばしきらない</li>
-            </ol>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>ポイント:</strong> 腰が浮くのは重すぎるサイン。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>初回の決め方:</strong> 20kgで10回できるか試す。12回いけるなら次のセットから目盛り1つ上げる。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/250474/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%AC%E3%83%83%E3%82%B0%E3%82%AB%E3%83%BC%E3%83%AB%20%E3%83%9E%E3%82%B7%E3%83%B3%20%E3%82%84%E3%82%8A%E6%96%B9" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon free">D</div>
-            <div class="ex-info">
-              <div class="ex-name">ヒップスラスト <span class="badge-new">NEW</span></div>
-              <div class="ex-move">ベンチに背中を預けて、お尻を持ち上げる</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>12回 × <strong>A:2セット / B:3セット</strong><span class="sep">|</span><span class="load">まず自重 → 10〜15kg</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベル" loading="lazy"></div>
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>下腹対策の本命です。</strong> ベンチに肩甲骨だけを乗せ、床に足をついて、腰の上にダンベルを置き、<strong>お尻を上下させる</strong>種目です。<br><br>骨盤が前に倒れている（反り腰）と、内臓が前に押し出されて<strong>実際より腹が出て見えます</strong>。骨盤前傾は「前もも・股関節が硬い」＋「<strong>お尻と腹の奥が弱い</strong>」で起きます。今までストレッチ（伸ばす方）しかやっていなかったので、4ヶ月やっても変わらなかった。これは<strong>鍛える方</strong>の担当で、お尻に最も効く種目です。</div></div>
-            <ol class="ex-steps">
-              <li>ベンチに<strong>肩甲骨だけ</strong>を乗せる（背中全体ではない）</li>
-              <li>足は肩幅、<strong>膝が90度</strong>になる位置に置く</li>
-              <li>腰の付け根（骨盤の前）にダンベルを縦に置き、両手で支える</li>
-              <li><strong>お尻の力だけで</strong>腰を持ち上げ、肩から膝まで一直線に</li>
-              <li>一番上で<strong>1秒お尻を締める</strong></li>
-              <li>ゆっくり下ろす。床につく手前で次の1回へ</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>注意:</strong> 一直線より上に持ち上げて<strong>腰を反らせない</strong>。反らせると腰の種目になってお尻に効かなくなる。あごを軽く引いて、視線は正面か少し下。</div></div>
-            <div class="ex-tip up"><span class="material-icons">trending_up</span><div><strong>初回:</strong> まず<strong>ダンベルなし（自重）</strong>で10回やってフォームを覚える。お尻が「効いている」感覚がつかめてから重りを足す。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/67377/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%92%E3%83%83%E3%83%97%E3%82%B9%E3%83%A9%E3%82%B9%E3%83%88%20%E3%83%80%E3%83%B3%E3%83%99%E3%83%AB%20%E3%82%84%E3%82%8A%E6%96%B9%20%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="ex-card is-new">
-          <div class="ex-main" onclick="toggleEx(this)">
-            <div class="ex-icon floor">F</div>
-            <div class="ex-info">
-              <div class="ex-name">デッドバグ <span class="badge-new">NEW</span></div>
-              <div class="ex-move">仰向けで、対角の手と足をゆっくり伸ばす</div>
-              <div class="ex-meta"><span class="material-icons">repeat</span>左右10回 × 2セット<span class="sep">|</span><span class="load">自重（器具なし）</span></div>
-            </div>
-            <span class="material-icons ex-arrow">expand_more</span>
-          </div>
-          <div class="ex-detail">
-            <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>これは何か:</strong> 仰向けに寝て、両手を天井・両膝を90度に上げた「死んだ虫」のような姿勢から、<strong>右手と左足を同時にゆっくり伸ばして戻す</strong>だけの種目です。器具は要りません。マットの上でできます。<br><br>腹筋ローラーが鍛えるのは腹直筋（表面）。下腹を内側から引き締めるのは<strong>腹横筋</strong>という、腹をコルセットのように巻いている奥の筋肉です。ここは「力を入れて動かす」種目では鍛えにくく、<strong>腰を固定したまま手足を動かす</strong>この種目が最も効きます。</div></div>
-            <ol class="ex-steps">
-              <li>仰向けに寝て、<strong>両手を天井にまっすぐ</strong>伸ばす</li>
-              <li>膝を90度に曲げて、太ももが床と垂直になるまで上げる</li>
-              <li><strong>腰を床に押し付ける</strong>（ここが一番大事。手が入る隙間をなくす）</li>
-              <li>息を吐きながら、<strong>右手と左足</strong>をゆっくり伸ばす</li>
-              <li>床につく手前で止め、ゆっくり戻す</li>
-              <li>左右交互に。10回ずつ</li>
-            </ol>
-            <div class="ex-tip red"><span class="material-icons">warning</span><div><strong>腰が浮いたら、そこが限界。</strong> 手足を遠くまで伸ばすことより、<strong>腰が床から離れないこと</strong>が全てです。浮くなら、伸ばす範囲を小さくする。地味ですが、これが正しくできているかどうかで結果が変わります。</div></div>
-            <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>効いている確認:</strong> 下腹の奥がプルプルしてくれば正解。腰が痛いなら腰が浮いている。</div></div>
-            <div class="ex-links">
-              <a href="https://melos.media/training/272658/" target="_blank" rel="noopener" class="ex-link article"><span class="material-icons">article</span>写真つき解説</a>
-              <a href="https://www.youtube.com/results?search_query=%E3%83%87%E3%83%83%E3%83%89%E3%83%90%E3%82%B0%20%E3%82%84%E3%82%8A%E6%96%B9%20%E4%BD%93%E5%B9%B9" target="_blank" rel="noopener" class="ex-link video"><span class="material-icons">play_circle</span>動画で見る</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="checklist">
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>レッグプレス 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>RDL　A:3セット / B:2セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>レッグカール 3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>ヒップスラスト　A:2セット / B:3セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>デッドバグ 2セット</div>
-        <div class="check-item" onclick="toggleCheck(this)"><span class="material-icons">radio_button_unchecked</span>有酸素 30分</div>
-      </div>
-
-      <div class="ex-tip green" style="margin-top:20px;"><span class="material-icons">tips_and_updates</span><div><strong>脚が回復していないサインが出たら、傾斜を12.5% → 10%に下げる。</strong>次のどれかが出たときです。感覚だけで判断できます。<br>
-      ・下半身の日に重量・回数が落ち続ける　・RDLの後、腰の張りが翌日まで残る　・翌朝まで脚の疲労が強い　・膝／アキレス腱／足の裏に痛みが出る</div></div>
-
-      <div class="ex-tip red" style="margin-top:20px;"><span class="material-icons">remove_circle_outline</span><div><strong>削除した種目:</strong> アダクター（内もも）。優先度の低い小さい筋肉に3セット使うのは、限られた40分の中では割に合わないため。</div></div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ===== Cardio ===== -->
-<section class="section alt-bg" id="cardio">
-  <div class="section-inner">
-    <p class="section-eyebrow fi">CARDIO</p>
-    <h2 class="section-title fi d1">有酸素は<span class="accent">今のやり方が正解</span></h2>
-    <p class="section-lead fi d2">走るのをやめて傾斜歩きに変えた判断は合っている。変更点は時間だけ。</p>
-
-    <div class="cardio-when fi d2">
-      <span class="material-icons">event_repeat</span>
-      <div class="cardio-when-t">
-        ジムに行った日は、毎回やる
-        <span>上半身の日も下半身の日も。今までどおり、筋トレを全部終えた後に</span>
-      </div>
-    </div>
-
-    <div class="cardio-hero fi d3">
-      <div class="cardio-nums">
-        <div class="cardio-num-item">
-          <div class="cardio-num">12.5<small style="font-size:14px;">%</small></div>
-          <div class="cardio-unit">傾斜</div>
-        </div>
-        <div class="cardio-num-item">
-          <div class="cardio-num">5.0</div>
-          <div class="cardio-unit">km/h</div>
-        </div>
-        <div class="cardio-num-item">
-          <div class="cardio-num">30<small style="font-size:14px;">分</small></div>
-          <div class="cardio-unit">時間（+5〜10分）</div>
-        </div>
-      </div>
-      <div class="cardio-desc">
-        <strong>筋トレの後にやる順番も正しい。</strong>走るより関節への負担が少なく、心拍が脂肪の燃えやすい帯域に収まる。走ると強度が上がりすぎて筋肉まで分解されるので、<strong>筋肉を残して脂肪を落とす</strong>という目的にはこちらが適している。お尻と裏ももの動員も平地より多い。<br>
-        変更は<strong>20〜25分 → 30分</strong>だけ。10分足すと1回あたりの消費が約150kcal → 約200kcalになる。
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== Goal ===== -->
-<section class="section" id="goal">
-  <div class="section-inner">
-    <p class="section-eyebrow fi">GOAL</p>
-    <h2 class="section-title fi d1">体重は<span class="accent">見なくていい</span></h2>
-    <p class="section-lead fi d2">筋肉が増えて体重が増えるのは問題ない。月1回のInBodyで、この3つだけ見る。</p>
-
-    <div class="goal-grid fi d3">
-      <div class="goal-card">
-        <div class="goal-label">腹囲 — 最優先</div>
-        <div><span class="goal-now">90.7</span><span class="goal-arrow">→</span><span class="goal-target">85<small style="font-size:14px;">cm</small></span></div>
-        <div class="goal-desc">下腹の変化が最も早く出る指標。骨盤前傾の改善（ヒップスラスト＋デッドバグ）は<strong>数週間でここに出る可能性がある</strong>。脂肪が落ちる前に見た目が変わるとしたら、まずこれ。</div>
-      </div>
-      <div class="goal-card">
-        <div class="goal-label">体脂肪率</div>
-        <div><span class="goal-now">22.5</span><span class="goal-arrow">→</span><span class="goal-target">15<small style="font-size:14px;">%</small></span></div>
-        <div class="goal-desc">下腹が凹み始めるのはこの水準から。脂肪を<strong>あと5〜6kg</strong>落とす計算で、想定7〜8ヶ月。ここに近道はない。</div>
-      </div>
-      <div class="goal-card">
-        <div class="goal-label">筋肉量</div>
-        <div><span class="goal-now">51.8</span><span class="goal-arrow">→</span><span class="goal-target">53<small style="font-size:14px;">kg</small></span></div>
-        <div class="goal-desc">直近は体重 -0.5kgに対して脂肪 -0.8kg・筋肉 +0.3kg。<strong>これは理想的な変化</strong>。この方向を維持する。</div>
-      </div>
-    </div>
-
-    <div class="ex-tip green fi d4" style="padding:18px 20px;"><span class="material-icons">check_circle</span><div style="font-size:12.5px;line-height:1.85;"><strong>基準値（2026-07-25 測定）:</strong> 腹囲 90.7cm / 体脂肪率 22.5% / 筋肉量 51.8kg。<br>次にInBodyを撮ったとき、この3つとだけ比べてください。<strong>体重が増えていても、脂肪が減って筋肉が増えていれば成功です。</strong></div></div>
-  </div>
-</section>
-
-<!-- ===== Diet ===== -->
-<section class="section alt-bg" id="diet">
-  <div class="section-inner">
-    <p class="section-eyebrow fi">DIET</p>
-    <h2 class="section-title fi d1">狙うのは<span class="accent">1日115g</span></h2>
-    <p class="section-lead fi d2">今が壊滅的に足りないわけではない。ただし<strong>ジムに行かない日の約60gだけは明確に低い</strong>。そこをプロテイン1杯で埋める。</p>
-
-    <div class="diet-tabs fi d3">
-      <button class="diet-tab active" onclick="switchDiet('plan',this)">変更点</button>
-      <button class="diet-tab" onclick="switchDiet('eating-out',this)">外食ガイド</button>
-      <button class="diet-tab" onclick="switchDiet('yakiniku',this)">焼肉 部位別</button>
-      <button class="diet-tab" onclick="switchDiet('rules',this)">ルール・酒</button>
-    </div>
-
-    <div class="diet-panel active" id="diet-plan">
-      <div class="protein-summary">
-        <div class="ps-card bad">
-          <div class="ps-label">現状</div>
-          <div class="ps-value">85<small style="font-size:16px;">g</small></div>
-          <div class="ps-note">ジムに行かない日は約60g</div>
-        </div>
-        <div class="ps-card need">
-          <div class="ps-label">目安の幅</div>
-          <div class="ps-value">99-141<small style="font-size:16px;">g</small></div>
-          <div class="ps-note">体重70.6kg × 1.4〜2.0g（学会基準）</div>
-        </div>
-        <div class="ps-card good">
-          <div class="ps-label">変更後</div>
-          <div class="ps-value">115<small style="font-size:16px;">g</small></div>
-          <div class="ps-note">下の3ヶ所を変えるだけ</div>
-        </div>
-      </div>
-
-      <div class="ex-tip why"><span class="material-icons">priority_high</span><div><strong>この数字は2026-08-11に訂正しました。</strong>初版では必要量を「110〜140g（除脂肪体重に対して2.0〜2.5g）」、変更後を「130g」と書いていましたが、どちらも誤りです。<br><br>
-      2.0〜2.5gという基準は、<strong>減量中の上級者や、すでに体脂肪がかなり低い人</strong>が筋肉を減らさないために使う厳しめの数字で、今の久保田さんに必須のものではありません。学会（<a href="https://pubmed.ncbi.nlm.nih.gov/28642676/" target="_blank" rel="noopener" style="color:var(--primary)">ISSNのポジションステートメント</a>）が運動する人に示しているのは<strong>体重あたり1.4〜2.0g</strong>。体重70.6kgなら99〜141gです。<br><br>
-      変更後の115gは<strong>1.63g/kg</strong>で、この幅のちょうど真ん中。しかも<a href="https://bjsm.bmj.com/content/52/6/376" target="_blank" rel="noopener" style="color:var(--primary)">筋肥大とタンパク質量のメタ分析</a>では効果が約1.6g/kgで頭打ちになるため、<strong>130gまで増やす意味は薄い</strong>。<br><br>
-      つまり<strong>変更前の80〜90g（1.13〜1.27g/kg）は「筋肥大狙いにはやや低い」であって、「明確な不足」ではありません。</strong>6ヶ月間重量が伸びなかった原因をタンパク質のせいにはできない。本命は<a href="#rule" style="color:var(--primary)">漸進性過負荷</a>をやっていなかったことです。</div></div>
-
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead><tr><th></th><th>今</th><th>変更後</th><th>増分</th></tr></thead>
+  <details>
+    <summary>どれだけ上げるか（種目別）</summary>
+    <div class="det-body">
+      <div class="tw">
+        <table>
+          <thead><tr><th>種類</th><th>1回の上げ幅</th><th>該当する種目</th></tr></thead>
           <tbody>
-            <tr><td>朝</td><td>ゆで卵1個+納豆+キムチご飯</td><td>ゆで卵<strong style="color:var(--primary)">3個</strong>+納豆+キムチご飯</td><td class="t-add">+12g</td></tr>
-            <tr><td>昼</td><td>ゆで卵+豆腐+キムチご飯</td><td>ゆで卵+<strong style="color:var(--primary)">サラダチキン</strong>+キムチご飯</td><td class="t-add">+15g</td></tr>
-            <tr><td>晩</td><td>家庭料理</td><td>そのまま（変更なし）</td><td>—</td></tr>
-            <tr><td>プロテイン</td><td>トレーニング日のみ</td><td><strong style="color:var(--primary)">毎日</strong>（トレ日は筋トレ直後 / 休養日は寝る前）</td><td class="t-add">+20g</td></tr>
+            <tr><td>ピンを刺すマシン</td><td class="ok">目盛り1つ（2.5〜5kg）</td><td>ラットプルダウン / シーテッドロウ / ショルダープレス / レッグカール</td></tr>
+            <tr><td>プレートを差すマシン</td><td class="ok">片側 +2.5〜5kg</td><td>チェストプレス / レッグプレス</td></tr>
+            <tr><td>バーベル</td><td class="ok">両端に2.5kgずつ（+5kg）</td><td>ルーマニアンデッドリフト</td></tr>
+            <tr><td>ダンベル（サイドレイズ）</td><td class="ng">上げない</td><td>5kgのまま回数を15回まで</td></tr>
           </tbody>
         </table>
       </div>
-
-      <p style="font-size:13px;color:var(--text-muted);margin-top:12px;line-height:1.8;">変更後の内訳: 朝31g ＋ 昼35g ＋ 晩30g ＋ プロテイン20g ＝ <strong style="color:var(--white)">約115g</strong><br>
-      ※ 晩の30gは推定値。作っているのが本人ではないため実際の量は不明。<strong>確定した数字ではありません</strong></p>
-
-      <div class="ex-tip red" style="margin-top:20px;"><span class="material-icons">warning</span><div><strong>タンパク質を合わせても、それだけでは脂肪は落ちません。</strong> 1日の総カロリーが消費量を上回っていれば脂肪は減らないし、逆に減らしすぎれば筋肉も一緒に削られます。<br><br>
-      現状では<strong>ご飯の量・油・晩の主菜の量・間食が分からないため、総カロリーは判定できません</strong>。ここは未解決のまま残っています。まずは体重計の数字ではなく、<strong>月1回のInBodyで腹囲と体脂肪率が動いているか</strong>を見て、動いていなければ食事の量を見直す、という順番で進めます。<br><br>
-      なお炭水化物は減らさないでください。今の筋トレ＋傾斜歩き30分を支えているのはご飯です。</div></div>
-
-      <div class="ex-tip green"><span class="material-icons">tips_and_updates</span><div><strong>キムチ+納豆は継続:</strong> 発酵食品の組み合わせで腸内環境が整う。豆腐も抜く必要はなく、余裕があれば残す。</div></div>
+      <p>ルーマニアンデッドリフトだけ例外です。12回できても<strong>フォームが崩れるなら上げません</strong>。</p>
     </div>
+  </details>
 
-    <div class="diet-panel" id="diet-eating-out">
-      <div class="table-wrap">
-      <table class="data-table">
-        <thead><tr><th>メニュー</th><th>カロリー目安</th><th>判定</th></tr></thead>
-        <tbody>
-          <tr><td>焼き魚定食</td><td>500〜600kcal</td><td class="t-ok">優秀</td></tr>
-          <tr><td>もんじゃ（1枚）</td><td>300〜400kcal</td><td class="t-ok">優秀</td></tr>
-          <tr><td>焼肉（ホルモン・赤身中心）</td><td>700〜900kcal</td><td class="t-ok">良い</td></tr>
-          <tr><td>回転寿司（8〜10皿）</td><td>700〜800kcal</td><td class="t-ok">良い</td></tr>
-          <tr><td>ヒレかつ定食</td><td>600〜700kcal</td><td class="t-ok">OK</td></tr>
-          <tr><td>お好み焼き（豚玉1枚）</td><td>500〜600kcal</td><td class="t-ok">OK</td></tr>
-          <tr><td>牛丼（並）</td><td>700kcal</td><td class="t-mid">普通</td></tr>
-          <tr><td>カレー（普通盛り）</td><td>800〜900kcal</td><td class="t-ng">重い</td></tr>
-          <tr><td>とんかつ ロース定食</td><td>900〜1,100kcal</td><td class="t-ng">重い</td></tr>
-          <tr><td>ラーメン</td><td>800〜1,000kcal</td><td class="t-ng">避けたい</td></tr>
-          <tr><td>マクド（セット）</td><td>1,000〜1,200kcal</td><td class="t-ng">避けたい</td></tr>
-        </tbody>
-      </table>
-      </div>
+  <details>
+    <summary>なぜこれが要るのか</summary>
+    <div class="det-body">
+      <p>筋肉は<strong>「前より重いものを持たされた」ときにだけ</strong>増えます。同じ重さを何ヶ月続けても、体は「この程度なら今の筋肉で足りている」と判断してそれ以上作りません。</p>
+      <p>半年やって全種目が「10回3セット」で揃っているのは、重量がほぼ伸びていないサインです。<strong>脂肪は落ちても筋肉が増えていないのは、ここが原因</strong>。10回3セットと最初から決めていると、限界まであと何回残っているかを誰も見ていない状態になります。</p>
     </div>
-
-    <div class="diet-panel" id="diet-yakiniku">
-      <div class="table-wrap">
-      <table class="data-table">
-        <thead><tr><th>部位</th><th>100gあたり</th><th>タンパク質</th><th>判定</th></tr></thead>
-        <tbody>
-          <tr><td>ミノ</td><td>180kcal</td><td>25g</td><td class="t-ok">最強</td></tr>
-          <tr><td>レバー</td><td>130kcal</td><td>20g</td><td class="t-ok">最強</td></tr>
-          <tr><td>ハツ</td><td>140kcal</td><td>17g</td><td class="t-ok">最強</td></tr>
-          <tr><td>赤身ロース</td><td>190kcal</td><td>20g</td><td class="t-ok">良い</td></tr>
-          <tr><td>鶏もも</td><td>200kcal</td><td>17g</td><td class="t-ok">良い</td></tr>
-          <tr><td>ロース</td><td>240kcal</td><td>19g</td><td class="t-mid">普通</td></tr>
-          <tr><td>タン</td><td>270kcal</td><td>15g</td><td class="t-mid">普通</td></tr>
-          <tr><td>ハラミ</td><td>340kcal</td><td>15g</td><td class="t-ng">重い</td></tr>
-          <tr><td>カルビ</td><td>370kcal</td><td>14g</td><td class="t-ng">重い</td></tr>
-        </tbody>
-      </table>
-      </div>
-      <div class="ex-tip green" style="margin-top:16px;"><span class="material-icons">tips_and_updates</span><div><strong>食べ方:</strong> 最初にタン・ハツ・ミノから。カルビ・ハラミは2〜3切れ味わう枠。白飯なし+ハイボールが最強の組み合わせ。</div></div>
-    </div>
-
-    <div class="diet-panel" id="diet-rules">
-      <h3 style="font-size:15px;color:var(--white);margin-bottom:14px;font-weight:700;">外食で守る3つのルール</h3>
-      <div class="why-list">
-        <div class="why-item"><div class="why-num">1</div><div class="why-body"><div class="why-title">揚げ物は衣が薄いものを選ぶ</div><div class="why-desc">ヒレかつ、唐揚げ ＞ ロースかつ、天ぷら盛り合わせ</div></div></div>
-        <div class="why-item"><div class="why-num">2</div><div class="why-body"><div class="why-title">セットを頼まない</div><div class="why-desc">ポテト+コーラだけで500kcal。単品+水にするだけで半減する</div></div></div>
-        <div class="why-item"><div class="why-num">3</div><div class="why-body"><div class="why-title">ご飯は普通盛り</div><div class="why-desc">大盛りは+250kcal。ラーメン・ファストフードは月2回まで</div></div></div>
-      </div>
-
-      <h3 style="font-size:15px;color:var(--white);margin:28px 0 14px;font-weight:700;">酒の選び方</h3>
-      <div class="table-wrap">
-      <table class="data-table">
-        <thead><tr><th>種類</th><th>1杯あたり</th><th>判定</th></tr></thead>
-        <tbody>
-          <tr><td>ハイボール / ウィスキー+ゼロコーラ</td><td>約70kcal</td><td class="t-ok">OK</td></tr>
-          <tr><td>焼酎（ロック・水割り）</td><td>約70kcal</td><td class="t-ok">OK</td></tr>
-          <tr><td>ビール（中ジョッキ）</td><td>約150kcal</td><td class="t-ng">重い</td></tr>
-          <tr><td>日本酒（1合）</td><td>約180kcal</td><td class="t-ng">重い</td></tr>
-          <tr><td>サワー（甘い系）</td><td>約170kcal</td><td class="t-ng">重い</td></tr>
-        </tbody>
-      </table>
-      </div>
-    </div>
-
-  </div>
+  </details>
 </section>
 
-<!-- ===== Why ===== -->
-<section class="section" id="why">
-  <div class="section-inner">
-    <p class="section-eyebrow fi">WHY — 2026.08.10 見直し</p>
-    <h2 class="section-title fi d1">何を変えて、<span class="accent">何を変えなかったか</span></h2>
-    <p class="section-lead fi d2">半年やってきた内容の評価。方向性は合っていた。</p>
-
-    <div class="keep-box fi d2">
-      <div class="keep-title"><span class="material-icons" style="font-size:18px;">verified</span>変えなかったもの（判断は正しかった）</div>
-      <ul class="keep-list">
-        <li><strong>傾斜12.5%・5km/hの歩き</strong> — 走るのをやめた判断は正解。関節への負担が少なく、筋肉を残したまま脂肪を落とせる</li>
-        <li><strong>筋トレ → 有酸素の順番</strong> — この順序で合っている</li>
-        <li><strong>ルーマニアンデッドリフトの採用</strong> — 種目選択として正しい。頻度だけが過剰だった</li>
-        <li><strong>体重の数字を追っていないこと</strong> — 目的が「脂肪を落として筋肉を増やす」なら、体重は指標にならない</li>
-        <li><strong>キムチ・納豆の習慣</strong> — 継続</li>
-      </ul>
-    </div>
-
-    <div class="why-list fi d3">
-      <div class="why-item">
-        <div class="why-num">1</div>
-        <div class="why-body">
-          <div class="why-title">週1回/部位 → 週2回/部位</div>
-          <div class="why-desc">胸=水、背中=金、脚=土日で各部位が週1回だった。筋肥大は<strong>週2回が週1回より優位</strong>という研究結果が一貫している。上半身/下半身の2分割にすれば、同じ週3〜4回のままで頻度が2倍になる。</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-num">2</div>
-        <div class="why-body">
-          <div class="why-title">肩の種目を追加した</div>
-          <div class="why-desc">ジムにショルダープレスがあるのに一度も使っていなかった。<strong>ウエストヒップ比0.95（高判定）</strong>の見た目を改善するには、腹を細くするより肩幅を出す方が速い。加えて左右の腕に約5%の差があるため、片手ずつ扱うサイドレイズで埋める。</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-num">3</div>
-        <div class="why-body">
-          <div class="why-title">RDLを週3〜4回 → 週2回に減らした</div>
-          <div class="why-desc">腰の筋肉と裏ももは回復に48〜72時間かかる。毎回やると疲労が抜けず、かつ<strong>フォームが崩れると腰を壊すリスクが最も高い種目</strong>。トレーナーなしで週4回はリスクとリターンが釣り合わない。減らした分、重量を上げる。</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-num">4</div>
-        <div class="why-body">
-          <div class="why-title">お尻と腹横筋を追加した（下腹対策の本命）</div>
-          <div class="why-desc">骨盤前傾は「前もも・股関節が硬い」＋「<strong>お尻と腹横筋が弱い</strong>」の組み合わせで起きる。骨盤矯正ストレッチをやっていたのは方向として正しいが、<strong>伸ばす側だけで鍛える側が抜けていた</strong>。だから4ヶ月やっても変わらなかった。</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-num">5</div>
-        <div class="why-body">
-          <div class="why-title">アダクター（内もも）を削除した</div>
-          <div class="why-desc">優先度の低い小さい筋肉に3セット使っていた。40分という限られた枠の中では割に合わない。その枠をレッグカールとヒップスラストに回す。</div>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="why-num">6</div>
-        <div class="why-body">
-          <div class="why-title">全種目が「10回3セット」で止まっていた</div>
-          <div class="why-desc">重量が半年ほぼ伸びていない可能性が高い。<strong>だんだん重くしていくことは、筋肉を増やす絶対条件</strong>。これが今回いちばん大きな変更で、詳しくは<a href="#rule" style="color:var(--primary);text-decoration:underline;">冒頭のルール</a>に書いた。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ex-tip red fi d4" style="margin-top:24px;padding:18px 20px;"><span class="material-icons">info</span><div style="font-size:12.5px;line-height:1.85;"><strong>下腹について、事実として押さえておくこと。</strong><br>
-    腹筋を何回やっても腹の脂肪は落ちない（<strong>部分痩せは存在しない</strong>）。腹の脂肪は全身の体脂肪率が下がった結果としてのみ落ちる。「腹圧をかければ他の種目でも腹筋は鍛えられる」というのは<strong>腹筋を鍛える話としては正しいが、脂肪を落とす話とは無関係</strong>。<br>
-    そして内臓脂肪レベルは7で「低い」判定 — つまり下腹の正体は<strong>皮下脂肪 ＋ 骨盤前傾による見え方</strong>。前者は体脂肪率15%まで落ちるのを待つしかないが、<strong>後者は数週間で変えられる。</strong></div></div>
+<!-- ========== 4. 食事 ========== -->
+<section id="diet">
+  <div class="sec-head">
+    <h2>食事</h2>
+    <p class="lead">今が壊滅的に足りないわけではありません。変えるのは3ヶ所だけ。</p>
   </div>
+
+  <div class="big-num">
+    <div class="big-num-v">115<small>g</small></div>
+    <div class="big-num-t">1日に狙うタンパク質。<br>体重70.6kgに対して1.63g/kg で、学会が示す幅（99〜141g）のちょうど真ん中です。</div>
+  </div>
+
+  <div class="chg" style="margin-top:12px;">
+    <div class="chg-item">
+      <div class="chg-when">朝</div>
+      <div class="chg-body">ゆで卵を<strong>1個 → 3個</strong>に。納豆・キムチご飯はそのまま</div>
+      <div class="chg-plus">+12g</div>
+    </div>
+    <div class="chg-item">
+      <div class="chg-when">昼</div>
+      <div class="chg-body">豆腐を<strong>サラダチキン</strong>に替える（豆腐も残せるなら残す）</div>
+      <div class="chg-plus">+15g</div>
+    </div>
+    <div class="chg-item">
+      <div class="chg-when">プロテイン</div>
+      <div class="chg-body"><strong>毎日</strong>飲む。トレーニング日は筋トレ直後、休まった日は寝る前</div>
+      <div class="chg-plus">+20g</div>
+    </div>
+    <div class="chg-item">
+      <div class="chg-when">晩</div>
+      <div class="chg-body">変更なし。今までどおりで大丈夫です</div>
+      <div class="chg-plus">—</div>
+    </div>
+  </div>
+
+  <div class="note warn" style="margin-top:12px;"><strong>タンパク質を合わせても、それだけでは脂肪は落ちません。</strong>1日の総カロリーが消費を上回っていれば脂肪は減りません。ご飯の量・油・晩の主菜・間食が分からないため、<strong>総カロリーは現時点で判定できていません</strong>。月1回のInBodyで腹囲と体脂肪率が動いているかを見て、動いていなければ食事の量を見直す、という順番で進めます。なお<strong>炭水化物は減らさないでください</strong>。今の筋トレと傾斜歩き30分を支えているのはご飯です。</div>
+
+  <details>
+    <summary>115gの根拠（数字を訂正しています）</summary>
+    <div class="det-body">
+      <p>初版では必要量を「110〜140g（除脂肪体重に対して2.0〜2.5g）」、合計を「130g」と書いていましたが、<strong>どちらも誤りでした</strong>。</p>
+      <p>2.0〜2.5gという基準は、減量中の上級者やすでに体脂肪がかなり低い人が使う厳しめの数字です。学会（<a href="https://pubmed.ncbi.nlm.nih.gov/28642676/" target="_blank" rel="noopener">ISSNのポジションステートメント</a>）が運動する人に示しているのは<strong>体重あたり1.4〜2.0g</strong>で、体重70.6kgなら99〜141g。</p>
+      <p><a href="https://bjsm.bmj.com/content/52/6/376" target="_blank" rel="noopener">筋肥大とタンパク質量のメタ分析</a>では効果が約1.6g/kgで頭打ちになるため、130gまで増やす意味は薄いです。</p>
+      <p>つまり<strong>変更前の80〜90gは「やや低い」であって「明確な不足」ではありません</strong>。ただし<strong>ジムに行かない日の約60gだけは明確に低い</strong>ので、毎日プロテインを飲むのはそこを埋めるためです。半年伸びなかった原因をタンパク質のせいにはできません。本命は重量の上げ方です。</p>
+      <p>内訳: 朝31g ＋ 昼35g ＋ 晩30g ＋ プロテイン20g ＝ 約115g。<strong>※ 晩の30gは推定です。</strong>作っているのが本人ではないため実際の量は不明で、確定した数字ではありません。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>外食のカロリー目安</summary>
+    <div class="det-body">
+      <div class="tw">
+        <table>
+          <thead><tr><th>メニュー</th><th>目安</th><th>判定</th></tr></thead>
+          <tbody>
+            <tr><td>焼き魚定食</td><td>500〜600kcal</td><td class="ok">優秀</td></tr>
+            <tr><td>もんじゃ（1枚）</td><td>300〜400kcal</td><td class="ok">優秀</td></tr>
+            <tr><td>焼肉（ホルモン・赤身中心）</td><td>700〜900kcal</td><td class="ok">良い</td></tr>
+            <tr><td>回転寿司（8〜10皿）</td><td>700〜800kcal</td><td class="ok">良い</td></tr>
+            <tr><td>ヒレかつ定食</td><td>600〜700kcal</td><td class="ok">OK</td></tr>
+            <tr><td>お好み焼き（豚玉1枚）</td><td>500〜600kcal</td><td class="ok">OK</td></tr>
+            <tr><td>牛丼（並）</td><td>700kcal</td><td class="mid">普通</td></tr>
+            <tr><td>カレー（普通盛り）</td><td>800〜900kcal</td><td class="ng">重い</td></tr>
+            <tr><td>とんかつ ロース定食</td><td>900〜1,100kcal</td><td class="ng">重い</td></tr>
+            <tr><td>ラーメン</td><td>800〜1,000kcal</td><td class="ng">避けたい</td></tr>
+            <tr><td>マクド（セット）</td><td>1,000〜1,200kcal</td><td class="ng">避けたい</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>守るのは3つだけ。</strong>揚げ物は衣の薄いものを選ぶ（ヒレかつ・唐揚げ ＞ ロースかつ・天ぷら盛り）／セットを頼まない（ポテト＋コーラだけで500kcal）／ご飯は普通盛り（大盛りは+250kcal）。ラーメンとファストフードは月2回まで。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>焼肉の部位と、酒の選び方</summary>
+    <div class="det-body">
+      <div class="tw">
+        <table>
+          <thead><tr><th>部位</th><th>100gあたり</th><th>タンパク質</th><th>判定</th></tr></thead>
+          <tbody>
+            <tr><td>ミノ</td><td>180kcal</td><td>25g</td><td class="ok">最強</td></tr>
+            <tr><td>レバー</td><td>130kcal</td><td>20g</td><td class="ok">最強</td></tr>
+            <tr><td>ハツ</td><td>140kcal</td><td>17g</td><td class="ok">最強</td></tr>
+            <tr><td>赤身ロース</td><td>190kcal</td><td>20g</td><td class="ok">良い</td></tr>
+            <tr><td>鶏もも</td><td>200kcal</td><td>17g</td><td class="ok">良い</td></tr>
+            <tr><td>ロース</td><td>240kcal</td><td>19g</td><td class="mid">普通</td></tr>
+            <tr><td>タン</td><td>270kcal</td><td>15g</td><td class="mid">普通</td></tr>
+            <tr><td>ハラミ</td><td>340kcal</td><td>15g</td><td class="ng">重い</td></tr>
+            <tr><td>カルビ</td><td>370kcal</td><td>14g</td><td class="ng">重い</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>最初にタン・ハツ・ミノから。カルビとハラミは2〜3切れ味わう枠にすると、満足感を落とさずに収まります。<strong>白飯なし＋ハイボールが最強の組み合わせ</strong>です。</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>酒</th><th>1杯あたり</th><th>判定</th></tr></thead>
+          <tbody>
+            <tr><td>ハイボール / ウィスキー+ゼロコーラ</td><td>約70kcal</td><td class="ok">OK</td></tr>
+            <tr><td>焼酎（ロック・水割り）</td><td>約70kcal</td><td class="ok">OK</td></tr>
+            <tr><td>ビール（中ジョッキ）</td><td>約150kcal</td><td class="ng">重い</td></tr>
+            <tr><td>日本酒（1合）</td><td>約180kcal</td><td class="ng">重い</td></tr>
+            <tr><td>サワー（甘い系）</td><td>約170kcal</td><td class="ng">重い</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
 </section>
 
-<footer>
-  <p>BODY TRANSFORM — UPPER / LOWER SPLIT — 2026.08</p>
+<!-- ========== 5. 効果の測り方 ========== -->
+<section id="check">
+  <div class="sec-head">
+    <h2>効果の測り方</h2>
+    <p class="lead">体重は追いません。月1回のInBodyで、この3つだけ見ます。</p>
+  </div>
+
+  <div class="goals">
+    <div class="goal">
+      <div class="goal-l">腹囲 — 最優先</div>
+      <div class="goal-v num">90.7<i> → </i><em>85cm</em></div>
+    </div>
+    <div class="goal">
+      <div class="goal-l">体脂肪率</div>
+      <div class="goal-v num">22.5<i> → </i><em>15%</em></div>
+    </div>
+    <div class="goal">
+      <div class="goal-l">筋肉量</div>
+      <div class="goal-v num">51.8<i> → </i><em>53kg</em></div>
+    </div>
+  </div>
+
+  <div class="note tip" style="margin-top:12px;"><strong>体重が増えていても、脂肪が減って筋肉が増えていれば成功です。</strong>基準は2026-07-25の測定値（腹囲90.7cm / 体脂肪率22.5% / 筋肉量51.8kg）。次に撮ったとき、この3つとだけ比べてください。</div>
+
+  <details>
+    <summary>いつ変化が出るか</summary>
+    <div class="det-body">
+      <p><strong>最初に動くのは腹囲です。</strong>骨盤前傾の改善（ヒップスラスト＋デッドバグ）は数週間で腹囲に出る可能性があります。脂肪が落ちる前に見た目が変わるとしたら、まずここ。</p>
+      <p>体脂肪率22.5% → 15%は脂肪をあと5〜6kg落とす計算で、想定7〜8ヶ月。ここに近道はありません。直近の変化は体重 -0.5kgに対して脂肪 -0.8kg・筋肉 +0.3kgで、<strong>これは理想的な動き方</strong>です。</p>
+    </div>
+  </details>
+</section>
+
+<!-- ========== 6. 考え方 ========== -->
+<section id="why">
+  <div class="sec-head">
+    <h2>考え方</h2>
+    <p class="lead">開かなくても実行できます。理由が気になったときだけ。</p>
+  </div>
+
+  <details>
+    <summary>なぜ上半身／下半身の2分割にしたか</summary>
+    <div class="det-body">
+      <p>前は胸＝水曜、背中＝金曜、脚＝土日で、<strong>各部位が週1回</strong>でした。筋肥大は<strong>週2回が週1回より優位</strong>という研究結果が一貫しています。上下2分割にすれば、通う回数を増やさないまま各部位の頻度が2倍になります。</p>
+      <p>ただし週3回だと「各部位きっちり週2回」は成立しません。週4回できたときだけ成立します。それでも前より頻度は上がります。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>なぜ下半身をAとBに分けたか</summary>
+    <div class="det-body">
+      <p>下半身を週2回やること自体は変えていません。分けているのは<strong>ルーマニアンデッドリフトだけ</strong>です。理由は3つ。</p>
+      <p>1. この種目は腰と裏ももの疲労が突出して大きく、回復に48〜72時間かかる。週2回だと中2日しかない<br>
+      2. そこに傾斜12.5%の歩き30分が毎回入る。これも裏ももとお尻を使うので疲労が重なる<br>
+      3. 週6セット → 週5セットに落とし、減らした1セットをヒップスラストへ移す。<strong>お尻の総量は落とさず、腰の負担だけ下がる</strong></p>
+    </div>
+  </details>
+
+  <details>
+    <summary>なぜ肩の種目を足したか</summary>
+    <div class="det-body">
+      <p>ジムにショルダープレスがあるのに一度も使っていませんでした。<strong>ウエストヒップ比0.95（高判定）</strong>の見た目を改善するには、腹を細くするより<strong>肩幅を出す方が速い</strong>。肩に丸みがつくと、腹囲が同じでもウエストが細く見えます。</p>
+      <p>サイドレイズを足したのは、ショルダープレスが肩の前担当で、横はこれでしか作れないからです。加えて左右の腕に約5%の差があり、両手同時に動かすマシンでは差が開いたままになります。片手ずつ扱うダンベルで埋めます。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>なぜ削った種目があるか</summary>
+    <div class="det-body">
+      <p><strong>ペックフライ・ケーブルフライ</strong>　チェストプレスと役割が重複していました。その時間をショルダープレスに回した方が効果が大きい。</p>
+      <p><strong>アダクター（内もも）</strong>　優先度の低い小さい筋肉に3セット使っていました。40分という枠では割に合いません。その枠をレッグカールとヒップスラストに回します。</p>
+      <p><strong>ケーブルロープ</strong>　完全には削っていません。腕の予備枠（ケーブルプレスダウン）として残してあります。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>下腹について、事実として押さえておくこと</summary>
+    <div class="det-body">
+      <p>腹筋を何回やっても腹の脂肪は落ちません（<strong>部分痩せは存在しない</strong>）。腹の脂肪は全身の体脂肪率が下がった結果としてのみ落ちます。「腹圧をかければ他の種目でも腹筋は鍛えられる」は腹筋を鍛える話としては正しいのですが、脂肪を落とす話とは無関係です。</p>
+      <p>内臓脂肪レベルは7で「低い」判定。つまり下腹の正体は<strong>皮下脂肪＋骨盤前傾による見え方</strong>の2つです。前者は体脂肪率15%まで落ちるのを待つしかありませんが、<strong>後者は数週間で変えられます</strong>。骨盤矯正ストレッチをやっていたのは方向として正しく、伸ばす側だけで<strong>鍛える側が抜けていた</strong>のが問題でした。だから4ヶ月やっても変わらなかった。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>変えなかったもの（今までの判断が正しかった点）</summary>
+    <div class="det-body">
+      <p><strong>傾斜12.5%・5km/hの歩き</strong>　走るのをやめた判断は正解です。関節の負担が少なく、筋肉を残したまま脂肪を落とせます。</p>
+      <p><strong>筋トレ → 有酸素の順番</strong>　この順序で合っています。</p>
+      <p><strong>ルーマニアンデッドリフトの採用</strong>　種目選択として正しい。頻度だけが過剰でした。</p>
+      <p><strong>体重の数字を追っていないこと</strong>　目的が「脂肪を落として筋肉を増やす」なら、体重は指標になりません。</p>
+      <p><strong>キムチ・納豆の習慣</strong>　そのまま継続。</p>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer class="wrap">
+  上半身／下半身 2分割 — 2026年8月版<br>
+  基準値は2026-07-25のInBody測定。
 </footer>
 
 <script>
-/* Progress Bar */
-const bar=document.getElementById('progressBar');
-window.addEventListener('scroll',()=>{bar.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight))*100+'%';},{passive:true});
+(function(){
+  var KEY='bt-state-v2';
+  var st={};
+  try{ st=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ st={}; }
 
-/* Nav scroll */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40);},{passive:true});
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(st)); }catch(e){} }
+  function today(){
+    var d=new Date();
+    return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
+  }
 
-/* Smooth scroll */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});});
+  var LABEL={upper:'上半身の日',lowerA:'下半身 A の日（腰の日）',lowerB:'下半身 B の日（お尻の日）'};
+  var picks=document.querySelectorAll('[data-pick]');
+  var title=document.getElementById('menu-title');
+  var sugg=document.getElementById('suggest-text');
 
-/* Scroll Animation */
-document.addEventListener('DOMContentLoaded',()=>{
-  const els=document.querySelectorAll('.fi');
-  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return;}
-  const io=new IntersectionObserver((entries,obs)=>{entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('visible');obs.unobserve(en.target);}});},{threshold:0.06});
-  els.forEach(el=>{el.getBoundingClientRect().top<innerHeight*.92?el.classList.add('visible'):io.observe(el);});
-});
+  /* ---- 次にやる日を決める ---- */
+  function nextDay(){
+    if(!st.last) return 'upper';
+    if(st.last==='upper') return (st.lastLower==='lowerA')?'lowerB':'lowerA';
+    return 'upper';
+  }
 
-/* Tab Switch */
-function switchTab(id,btn){
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  btn.classList.add('active');
-}
+  function setDay(day,record){
+    document.body.setAttribute('data-day',day);
+    title.textContent=LABEL[day];
+    picks.forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.pick===day?'true':'false'); });
+    if(record){
+      st.last=day;
+      if(day!=='upper') st.lastLower=day;
+      st.date=today();
+      save();
+    }
+    updateProgress();
+  }
 
-/* Diet Tab Switch */
-function switchDiet(id,btn){
-  document.querySelectorAll('.diet-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.diet-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('diet-'+id).classList.add('active');
-  btn.classList.add('active');
-}
+  /* ---- 起動時の提案 ---- */
+  var rec=nextDay();
+  var start=rec;
+  if(st.date===today() && st.last){ start=st.last; }
 
-/* Exercise Toggle */
-function toggleEx(head){head.parentElement.classList.toggle('open');}
+  if(!st.last){
+    sugg.innerHTML='はじめての表示です。<b>上半身</b>から始めてください。';
+  }else if(st.date===today()){
+    sugg.innerHTML='今日はすでに<b>'+LABEL[st.last]+'</b>を選んでいます。違う日をやるなら押し直してください。';
+  }else{
+    sugg.innerHTML='前回は<b>'+LABEL[st.last]+'</b>でした。今日は<b>'+LABEL[rec]+'</b>です。';
+  }
+  document.querySelectorAll('[data-pick]').forEach(function(b){
+    if(b.dataset.pick===rec && st.date!==today()) b.classList.add('rec');
+  });
 
-/* Checklist */
-function toggleCheck(el){
-  el.classList.toggle('done');
-  const icon=el.querySelector('.material-icons');
-  icon.textContent=el.classList.contains('done')?'check_circle':'radio_button_unchecked';
-}
+  picks.forEach(function(b){
+    b.addEventListener('click',function(){
+      document.querySelectorAll('[data-pick]').forEach(function(x){x.classList.remove('rec');});
+      setDay(b.dataset.pick,true);
+      sugg.innerHTML='今日は<b>'+LABEL[b.dataset.pick]+'</b>です。上から順にどうぞ。';
+    });
+  });
+
+  /* ---- 種目の開閉 ---- */
+  document.querySelectorAll('.ex-open').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      btn.closest('.ex').classList.toggle('open');
+    });
+  });
+
+  /* ---- チェック（その日のうちだけ保持） ---- */
+  if(st.checkDate!==today()){ st.checkDate=today(); st.checks=[]; save(); }
+  if(!st.checks) st.checks=[];
+
+  function updateProgress(){
+    var day=document.body.getAttribute('data-day');
+    var all=[],done=0;
+    document.querySelectorAll('.ex[data-show]').forEach(function(ex){
+      if(ex.getAttribute('data-show').split(' ').indexOf(day)<0) return;
+      all.push(ex);
+      if(ex.classList.contains('done')) done++;
+    });
+    var fill=document.getElementById('progFill');
+    var txt=document.getElementById('progTxt');
+    txt.textContent=done+' / '+all.length;
+    fill.style.width=(all.length?done/all.length*100:0)+'%';
+  }
+
+  document.querySelectorAll('.ex').forEach(function(ex){
+    if(st.checks.indexOf(ex.dataset.id)>=0) ex.classList.add('done');
+    var btn=ex.querySelector('.ex-check');
+    btn.addEventListener('click',function(){
+      ex.classList.toggle('done');
+      var i=st.checks.indexOf(ex.dataset.id);
+      if(ex.classList.contains('done')){ if(i<0) st.checks.push(ex.dataset.id); }
+      else if(i>=0){ st.checks.splice(i,1); }
+      save();
+      updateProgress();
+    });
+  });
+
+  document.getElementById('progReset').addEventListener('click',function(){
+    st.checks=[];save();
+    document.querySelectorAll('.ex').forEach(function(ex){ex.classList.remove('done');});
+    updateProgress();
+  });
+
+  setDay(start,false);
+})();
 </script>
 </body>
 </html>
