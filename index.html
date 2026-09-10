@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>今日のメニュー | BODY TRANSFORM</title>
 <meta name="theme-color" content="#ffffff">
-<meta name="description" content="上半身/下半身2分割のトレーニングメニュー。">
+<meta name="description" content="水＝脚の日 / 金＝押す日 / 土日＝引く日。曜日固定の3分割トレーニングメニュー。">
 <style>
 :root{
   --bg:#ffffff;
@@ -67,15 +67,15 @@ h3{font-size:16px;font-weight:700;line-height:1.6;}
   padding:11px 13px;font-size:13.5px;color:#0a3fa8;margin-bottom:14px;line-height:1.7;
 }
 .suggest svg{flex-shrink:0;margin-top:4px;}
-.daypick{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
+.daypick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
 .daypick button{
   appearance:none;border:1.5px solid var(--line-strong);background:var(--bg);
-  border-radius:var(--r);padding:13px 6px 12px;cursor:pointer;
+  border-radius:var(--r);padding:13px 4px 12px;cursor:pointer;
   font-family:inherit;color:var(--ink-2);text-align:center;transition:.15s;
 }
 .daypick button:hover{border-color:var(--ink-3);}
-.daypick b{display:block;font-size:15px;font-weight:700;line-height:1.4;}
-.daypick small{display:block;font-size:11px;color:var(--ink-3);margin-top:2px;}
+.daypick b{display:block;font-size:14px;font-weight:700;line-height:1.4;}
+.daypick small{display:block;font-size:10.5px;color:var(--ink-3);margin-top:2px;}
 .daypick button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
 .daypick button[aria-pressed="true"] small{color:rgba(255,255,255,.62);}
 .daypick button.rec{border-color:var(--accent);}
@@ -254,11 +254,12 @@ footer{
 
 /* ===== 日ごとの出し分け ===== */
 [data-show]{display:none;}
-body[data-day="upper"] [data-show~="upper"],
-body[data-day="lower"] [data-show~="lower"]{display:block;}
+body[data-day="push"] [data-show~="push"],
+body[data-day="pull"] [data-show~="pull"],
+body[data-day="legs"] [data-show~="legs"]{display:block;}
 </style>
 </head>
-<body data-day="upper">
+<body data-day="legs">
 
 <header class="topbar">
   <div class="topbar-in">
@@ -278,19 +279,21 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
 
   <div class="suggest" id="suggest">
     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5v4M8 11h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-    <span id="suggest-text">はじめての表示です。上半身から始めてください。</span>
+    <span id="suggest-text">曜日で固定しました。水＝脚の日、金＝押す日、土日＝引く日です。</span>
   </div>
 
   <div class="daypick">
-    <button type="button" data-pick="upper" aria-pressed="true"><b>上半身</b><small>胸・背中・肩</small></button>
-    <button type="button" data-pick="lower" aria-pressed="false"><b>下半身</b><small>脚・お尻・下腹</small></button>
+    <button type="button" data-pick="legs" aria-pressed="true"><b>水 脚の日</b><small>脚・お尻</small></button>
+    <button type="button" data-pick="push" aria-pressed="false"><b>金 押す日</b><small>胸・二の腕の裏・肩の横</small></button>
+    <button type="button" data-pick="pull" aria-pressed="false"><b>土日 引く日</b><small>背中・力こぶ・肩の後ろ</small></button>
   </div>
 
   <details>
-    <summary>順番はどう回すのか</summary>
+    <summary>曜日はどう回すのか</summary>
     <div class="det-body">
-      <p>上半身 → 下半身 → 上半身 → 下半身、の繰り返しです。<strong>曜日は固定しません。</strong>ジムに行った日に前回と逆をやるだけなので、週3回でも週4回でも自然にずれていって崩れません。</p>
-      <p><strong>下半身のメニューは毎回同じです。</strong>覚えることはありません。どちらをやったか分からなくなったら、間隔が空いている方をやってください。</p>
+      <p><strong>曜日で固定しました。水曜＝脚の日、金曜＝押す日、土曜か日曜＝引く日。</strong>迷う余地をなくすためです。前回どちらをやったかを思い出す必要はありません。</p>
+      <p><strong>週4回行けた日は、押す日をもう一度やってください。</strong>胸が今いちばん足りていない部位なので、余った1回はそこに入れます。</p>
+      <p><strong>1回飛ばした週は、飛ばした日を追いかけずに次の曜日から再開します。</strong>取り返そうとして詰め込むほうが崩れます。</p>
     </div>
   </details>
 </section>
@@ -298,20 +301,20 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
 <!-- ========== 2. やること ========== -->
 <section id="menu">
   <div class="sec-head">
-    <h2 id="menu-title">上半身の日</h2>
-    <p class="lead" id="menu-lead">上から順に。筋トレ約40分＋有酸素30分。</p>
+    <h2 id="menu-title">水曜：脚の日</h2>
+    <p class="lead" id="menu-lead">上から順に。筋トレ約30分＋有酸素30分。</p>
   </div>
 
   <div class="prog">
     <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
-    <span class="prog-txt" id="progTxt">0 / 7</span>
+    <span class="prog-txt" id="progTxt">0 / 5</span>
     <button type="button" class="prog-reset" id="progReset">リセット</button>
   </div>
 
   <div class="exlist">
 
-    <!-- ---------- 上半身 ---------- -->
-    <article class="ex" data-show="upper" data-id="u1">
+    <!-- ---------- 金曜：押す日 ---------- -->
+    <article class="ex" data-show="push" data-id="p1">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>1</span></button>
         <button type="button" class="ex-open">
@@ -324,25 +327,148 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
       <div class="ex-detail">
         <div class="ex-img"><img src="img/m-chest-press.webp" alt="ワイドチェストプレス" loading="lazy"></div>
+        <div class="note plain"><strong>座面の高さ（座ってから確認）</strong><br>グリップを握って構えたとき、<strong>握った手が乳首の高さ</strong>にあれば正解。目安は「鎖骨と乳首の間〜乳首」の範囲。<br>・手が<strong>鎖骨より上</strong>にある → 座面が低すぎ。斜め上に押す形になり肩に効く。座面を上げる<br>・手が<strong>乳首より下</strong>にある → 座面が高すぎ。胸の下側と二の腕に逃げる。座面を下げる<br>合わせたら<strong>座面の番号を覚えておく</strong>。次回から迷いません。</div>
         <ol class="steps">
-          <li>シートに座り、<strong>背中を背もたれに完全につける</strong></li>
-          <li>グリップは胸の高さ。肩幅よりやや広め</li>
+          <li>シートに座り、<strong>背中を背もたれに完全につける</strong>。足は床にしっかり</li>
+          <li>グリップは肩幅よりやや広め。肘の真下に手首がくる位置</li>
           <li><strong>胸を張り、肩甲骨を寄せて固定</strong>したまま押す</li>
           <li>肘は<strong>伸ばしきらず</strong>手前で止める</li>
           <li>3秒かけて戻す。胸が伸びる位置まで下ろす</li>
         </ol>
         <div class="note tip"><strong>肩甲骨を寄せたまま腕だけ動かす。</strong>肩が前に出ると胸ではなく肩に効き、痛めます。</div>
-        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +2.5〜5kg。<strong>必ず左右同じ枚数</strong>にします。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +2.5〜5kg。<strong>必ず左右同じ枚数</strong>にします。2026-09-11時点で片側20kgは「10回ギリギリ」なので、まだ上げません。</div>
         <div class="links">
-          <a href="https://melos.media/training/137381/" target="_blank" rel="noopener">写真つき解説</a>
-          <a href="https://www.youtube.com/watch?v=O0K65G6gqMg" target="_blank" rel="noopener">動画: マシン・チェストプレスの正しいやり方（ビーレジェンド）</a>
+          <a href="https://www.fitnesslove.net/contestinfo/34452/" target="_blank" rel="noopener">文章: ハンマーストレングス型チェストプレスの座面・グリップの合わせ方（鈴木雅・FITNESS LOVE）</a>
+          <a href="https://www.youtube.com/watch?v=9XGi1mbhfFk" target="_blank" rel="noopener">動画: 丸い重りを横に付けるタイプ（ハンマーストレングス）のチェストプレスの使い方（ReXeR南青山／4分半）</a>
+          <a href="https://www.youtube.com/watch?v=rRXqirFVGO0" target="_blank" rel="noopener">動画: プレートロード ワイドチェストプレスの動きだけ見る（EVOLGEAR／1分半・解説なし）</a>
         </div>
       </div>
     </article>
 
-    <article class="ex" data-show="upper" data-id="u2">
+    <article class="ex" data-show="push" data-id="p2">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>2</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">インクラインチェストプレス<span class="tag new">新</span></span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">片側 5〜7.5kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-incline-press.webp" alt="インクラインチェストプレスマシン" loading="lazy"></div>
+        <div class="note plain"><strong>ずっと使っていなかった、斜め上に押すマシンです。</strong>担当は<strong>胸の上部（鎖骨の下あたり）</strong>。「胸が大きい」という見た目をつくるのはここで、平らに押すチェストプレスだけでは埋まりません。<strong>胸を伸ばしたいなら、平ら＋斜め上の2方向が最低ラインです。</strong></div>
+        <div class="note plain"><strong>座面の高さ（座ってから確認）</strong><br>グリップを握って構えたとき、<strong>握った手が「鎖骨と乳首の間」の高さ</strong>にあれば正解。平らのチェストプレスより<strong>少しだけ高い</strong>位置です。<br>・手が<strong>鎖骨と同じか上</strong> → 座面が低すぎ。頭上に押す形（ショルダープレスで痛めた動き）になる。座面を上げる<br>・手が<strong>乳首より下</strong> → 座面が高すぎ。平らのチェストプレスと同じになり、胸の上部に効かない。座面を下げる<br>・押し切ったとき、<strong>手が目の高さより上に来たら</strong>座面が低すぎのサイン<br>合わせたら<strong>座面の番号を覚えておく</strong>。</div>
+        <ol class="steps">
+          <li>シートに深く座り、背中を背もたれにつける</li>
+          <li>グリップは肩幅よりやや広め。肘は手首の真下〜やや外</li>
+          <li>胸を張り、肩甲骨を寄せて固定</li>
+          <li><strong>斜め上に</strong>押す。肘は伸ばしきらない</li>
+          <li>3秒かけて戻す</li>
+        </ol>
+        <div class="note warn"><strong>グリップが高すぎると、頭上に押す動作に近づいて肩が痛みます。</strong>ショルダープレスで痛めた動きと同じ形です。痛みが出たらその場でやめます。</div>
+        <div class="note plain"><strong>平らより極端に軽くて正常です（2026-09-11 初回の結果: 片側10kgは限界、5kgでなんとか）。</strong>理由は3つ。斜め上は使える筋肉が少ない／このマシンはアームが重く、重りゼロでも既に負荷がかかっている／初めての動きは筋力があっても力を伝えられない。平らのチェストプレスの枚数と比べる意味はありません。<strong>2〜3回目で急に上がるのがふつう</strong>なので、片側5〜7.5kgでフォームを固めてください。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +2.5kg。<strong>必ず左右同じ枚数</strong>にします。</div>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=yoyYt3XCC5c" target="_blank" rel="noopener">動画: 胸上部の筋トレ「インクラインチェストプレス」プレート式マシンの使い方（ルネサンス）</a>
+          <a href="https://www.youtube.com/watch?v=9eQH4Sx2lU0" target="_blank" rel="noopener">動画: インクラインマシンプレスの徹底解説（IRONMAN JAPAN・鈴木雅）</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="push" data-id="p3">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ペックフライ<span class="tag new">復活</span></span>
+            <span class="ex-num"><b>12〜15回</b> × 3セット<span class="ex-load">30kg（ピン）</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-rear-delt.webp" alt="REAR DELT / PEC FLY と書かれたマシンのラベル" loading="lazy"></div>
+        <div class="note plain"><strong>2026-08に「チェストプレスと重複する」として削った種目ですが、戻します。</strong>あのときは胸を週2回やる前提だったので重複でした。今は<strong>胸をやるのが金曜の1日だけ</strong>なので、その1日で胸に払う量を確保する必要があります。3種目×3セット＝週9セットで、ようやく必要量の下限に届きます。<br>使うのは<strong>リアデルト／ペックフライ複合機のペックフライ側（腕を前で閉じる向き）</strong>。リアデルト側は土日に使います。</div>
+        <div class="note plain"><strong>座面の高さ（座ってから確認）</strong><br>グリップを握って腕を前に伸ばしたとき、<strong>握った手が乳首の高さ、肘が肩より少し下</strong>にあれば正解。<br>・手が<strong>肩の高さ</strong>にある → 座面が低すぎ。肩の前で閉じる形になり、肩を痛める。座面を上げる<br>・手が<strong>みぞおち</strong>にある → 座面が高すぎ。胸の下側に逃げる。座面を下げる<br>合わせたら<strong>座面の番号を覚えておく</strong>。<br>このマシンは<strong>ピンで重さを選ぶタイプ</strong>（丸い重りを付けるチェストプレス2台とは別）。</div>
+        <ol class="steps">
+          <li>背もたれに背中をつけ、胸を張る</li>
+          <li><strong>肘を軽く曲げたまま固定</strong>し、腕を前で閉じる</li>
+          <li>閉じきった位置で1秒止め、胸を締める</li>
+          <li>3秒かけて開く。<strong>胸が伸びる手前</strong>で止める</li>
+        </ol>
+        <div class="note warn"><strong>重くしないでください。</strong>この種目は肩関節に負荷が集中するため、重いと肩を痛めます。開きすぎるのも同じ理由で危険です。<strong>12〜15回できる軽さが正解</strong>で、胸が締まる感覚が出ればそれで足りています。</div>
+        <div class="note up"><strong>今の重量</strong>　30kgで10回（2026-09-11測定。35kgはきつい）。この種目は12〜15回が目標なので、<strong>30kgのまま回数を15回まで伸ばす</strong>。35kgに上げるのは、30kgで3セットとも15回できてから。</div>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=Ff4OVE80zVc" target="_blank" rel="noopener">動画: ペックフライの正しいフォーム・やり方・コツ／「肩が痛い」人向けの解説つき（筋トレダンジョン）</a>
+          <a href="https://www.youtube.com/watch?v=K3RRPlsOcqA" target="_blank" rel="noopener">動画: ペックフライ使い方 基礎編（齋藤圭輔ワークアウトチャンネル）</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="push" data-id="p4">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ケーブルプレスダウン<span class="tag new">本採用</span></span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">15kgから探る</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="note plain"><strong>担当は二の腕の裏（上腕三頭筋）。腕を太くしたいなら、力こぶよりこちらが本命です。</strong>腕の太さは三頭筋が3分の2を占めます。<br><strong>2026-09変更：「予備枠・やるかはその日に決める」から、毎回やる種目に格上げしました。</strong>予備枠に置いていた結果、腕に払っていた量は週0〜2セットで、これでは太くなりません。</div>
+        <ol class="steps">
+          <li>ケーブルを<strong>一番上</strong>にセットし、ロープを付ける</li>
+          <li>マシンの正面に立ち、ロープを両手で握る</li>
+          <li><strong>脇を締めて肘を体の横に固定</strong>（ここから肘は動かさない）</li>
+          <li>肘から先だけで<strong>真下に押し下げる</strong></li>
+          <li>下で1秒止め、二の腕の裏を締める。ゆっくり戻す</li>
+        </ol>
+        <div class="note warn"><strong>肘が体から離れたら、それは重すぎです。</strong>上体を前に倒して体重で押すのもなし。重量より、肘を固定できているかが全て。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら目盛り1つ分。</div>
+        <div class="links">
+          <a href="https://melos.media/training/63058/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/watch?v=YZmak2TR6TM" target="_blank" rel="noopener">動画: ケーブル・プッシュダウンの効果的なやり方（ビーレジェンド）</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="push" data-id="p5">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>5</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">サイドレイズ</span>
+            <span class="ex-num"><b>12〜15回</b> × 3セット<span class="ex-load">片手 5kg</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベルラック" loading="lazy"></div>
+        <div class="note plain">ダンベルを両手に持って立ち、鳥が羽を広げるように<strong>真横に上げるだけ</strong>。担当は<strong>肩の横</strong>で、肩幅の見た目はほぼここで決まります。ウエストヒップ比0.95（高判定）の見た目は、腹を細くするより肩幅を出すほうが速く変わります。</div>
+        <ol class="steps">
+          <li>立って両手にダンベル。体の横に下ろす</li>
+          <li><strong>肘を軽く曲げたまま固定</strong></li>
+          <li><strong>真横に</strong>、肩の高さまで上げる</li>
+          <li>肩の高さで止める。それ以上上げない</li>
+          <li>3秒かけて下ろす</li>
+        </ol>
+        <div class="note warn"><strong>この種目だけは重くしません。</strong>重くすると反動を使って首の付け根に逃げます。12回できたら重量ではなく<strong>回数を15回まで伸ばす</strong>のが正解です。</div>
+        <div class="links">
+          <a href="https://melos.media/training/66723/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/watch?v=p3nHHeiKHGw" target="_blank" rel="noopener">動画: 三角筋を鍛えるサイドレイズの正しいやり方（MELOS）</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- 土日：引く日 ---------- -->
+    <article class="ex" data-show="pull" data-id="q1">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>1</span></button>
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">ラットプルダウン</span>
@@ -362,7 +488,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
           <li><strong>3秒かけて</strong>戻す</li>
         </ol>
         <div class="note tip"><strong>腕で引かず、肘を後ろの下に引く。</strong>腕ばかり疲れて背中が疲れないなら、握りを浅くします。</div>
-        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら目盛り1つ分。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら目盛り1つ分。<strong>体重70.6kgに対して30kgは軽い部類です。</strong>次回まず11回・12回まで粘ってみてください。</div>
         <div class="links">
           <a href="https://melos.media/training/53230/" target="_blank" rel="noopener">写真つき解説</a>
           <a href="https://www.youtube.com/watch?v=mG1T29lwrNI" target="_blank" rel="noopener">動画: ラットプルダウンの効果的なフォーム（GronG）</a>
@@ -370,39 +496,9 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
     </article>
 
-    <article class="ex" data-show="upper" data-id="u3">
+    <article class="ex" data-show="pull" data-id="q2">
       <div class="ex-head">
-        <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
-        <button type="button" class="ex-open">
-          <span class="ex-info">
-            <span class="ex-name">リアデルト<span class="tag new">変更</span></span>
-            <span class="ex-num"><b>12〜15回</b> × 3セット<span class="ex-load">15kgから探る</span></span>
-          </span>
-          <span class="ex-caret"></span>
-        </button>
-      </div>
-      <div class="ex-detail">
-        <div class="ex-img"><img src="img/m-rear-delt.webp" alt="REAR DELT / PEC FLY と書かれたマシンのラベル" loading="lazy"></div>
-        <div class="note warn"><strong>ショルダープレスは中止しました（2026-08-13）。</strong>座ってアームを上に押した時に肩が「ゴキン」と鳴って痛かったためです。これは頭上に押し上げる動作で肩の腱が骨に挟まれる、典型的なパターンです。<strong>痛いまま続けると腱を傷めます。頭の上に上げる種目は全部やめます。</strong></div>
-        <div class="note plain">代わりがこれです。<strong>写真のラベル「REAR DELT / PEC FLY」が貼ってあるマシン</strong>を、<strong>リアデルト側（腕を前から後ろに開く向き）</strong>で使います。ペックフライ側はチェストプレスと重複するので使いません。<strong>頭上に上げないので肩は痛みません。</strong></div>
-        <ol class="steps">
-          <li>マシンに<strong>向かって</strong>座り、胸をパッドにつける</li>
-          <li>グリップを両手で握る。<strong>肘は軽く曲げたまま固定</strong></li>
-          <li>腕を<strong>前から後ろへ、水平に開く</strong></li>
-          <li>開ききった位置で1秒止め、肩甲骨を軽く寄せる</li>
-          <li>3秒かけて戻す</li>
-        </ol>
-        <div class="note warn"><strong>肩がすくんだら首の付け根（僧帽筋）に逃げています。</strong>肩を落としたまま、腕だけを開く。効かない場合はほぼ重すぎです。</div>
-        <div class="note up"><strong>初回の決め方</strong>　15kgで12回できるか試す。15回いけるなら次のセットから目盛り1つ上げます。</div>
-        <div class="links">
-          <a href="https://www.youtube.com/watch?v=_is6BKOfR58" target="_blank" rel="noopener">動画: マシンリアデルトフライの解説（筋トレダンジョン）</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="ex" data-show="upper" data-id="u4">
-      <div class="ex-head">
-        <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
+        <button type="button" class="ex-check" aria-label="完了にする"><span>2</span></button>
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">シーテッドロウ</span>
@@ -413,6 +509,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
       <div class="ex-detail">
         <div class="ex-img"><img src="img/m-row.webp" alt="シーテッドロウ" loading="lazy"></div>
+        <div class="note plain">ラットプルダウンが<strong>上から引く（背中の広がり）</strong>、これが<strong>横から引く（背中の厚み）</strong>。方向が違うので両方やります。</div>
         <ol class="steps">
           <li>シートに座り、胸をパッドにつける</li>
           <li><strong>胸を張ったまま</strong>肘を後ろへ引く</li>
@@ -421,7 +518,6 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
           <li>ゆっくり戻す。背中が丸まらない範囲で</li>
         </ol>
         <div class="note tip"><strong>背中の真ん中を締める感覚。</strong>肩がすくむのは重すぎるサインです。</div>
-        <div class="note plain"><strong>腕の種目を入れる日は、これを2セットに減らします。</strong>時間を増やさないためです。</div>
         <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +2.5〜5kg。<strong>必ず左右同じ枚数</strong>にします。</div>
         <div class="links">
           <a href="https://melos.media/training/188467/" target="_blank" rel="noopener">写真つき解説</a>
@@ -430,48 +526,110 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
     </article>
 
-    <article class="ex" data-show="upper" data-id="u5">
+    <article class="ex" data-show="pull" data-id="q3">
       <div class="ex-head">
-        <button type="button" class="ex-check" aria-label="完了にする"><span>5</span></button>
+        <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
         <button type="button" class="ex-open">
           <span class="ex-info">
-            <span class="ex-name">サイドレイズ<span class="tag new">新</span></span>
-            <span class="ex-num"><b>12〜15回</b> × 3セット<span class="ex-load">片手 5kg</span></span>
+            <span class="ex-name">アシストチンニング<span class="tag new">新</span></span>
+            <span class="ex-num"><b>8〜12回</b> × 3セット<span class="ex-load">補助 40kgから探る</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
       </div>
       <div class="ex-detail">
-        <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベルラック" loading="lazy"></div>
-        <div class="note plain">ダンベルを両手に持って立ち、鳥が羽を広げるように<strong>真横に上げるだけ</strong>。マシンは使いません。肩の横を作ります。<strong>2026-08-13に2セット → 3セットへ増やしました。</strong>ショルダープレスが抜けた分、肩の横はこの種目だけが担当になるためです。</div>
+        <div class="ex-img"><img src="img/m-dip-chin.webp" alt="DIP / CHIN ASSIST マシン" loading="lazy"></div>
+        <div class="note plain"><strong>腹筋ローラーを外した枠に入れる新種目です。</strong>ずっと使っていなかった「DIP / CHIN ASSIST」マシン。膝を乗せるパッドが体を押し上げて補助してくれるので、懸垂ができなくてもできます。<br>担当は<strong>背中の広がり（広背筋）と力こぶ</strong>。土日が背中の唯一の日になるため、種目を1つ足して量を確保します。</div>
+        <div class="note warn"><strong>やるのは「懸垂」の方です。</strong>この機械は2通りの使い方ができますが、土日にやるのは<strong>頭の上の高いバーを握って、体を上に引き上げる方（チンニング＝懸垂）</strong>だけ。<br><strong>腰の横にある2本の取っ手を握って体を沈めるやつ（ディップス）はやりません。</strong>あれは「押す」動きで、効くのは胸の下側と二の腕の裏。土日は<strong>引く日（背中の日）</strong>なので、部位が違います。</div>
         <ol class="steps">
-          <li>立って両手にダンベル。体の横に下ろす</li>
-          <li><strong>肘を軽く曲げたまま固定</strong></li>
-          <li><strong>真横に</strong>、肩の高さまで上げる</li>
-          <li>肩の高さで止める。それ以上上げない</li>
-          <li>3秒かけて下ろす</li>
+          <li><strong>重りの数字＝補助してくれる重さ</strong>。数字が大きいほど楽になります（他のマシンと逆）</li>
+          <li>膝乗せパッドを下げ、上のバーを<strong>肩幅より少し広め</strong>で握る</li>
+          <li>膝をパッドに乗せる。ここから体は一直線</li>
+          <li><strong>胸を張り、肘を下・後ろへ引いて</strong>体を持ち上げる。あごがバーを越えるまで</li>
+          <li><strong>3秒かけて</strong>下ろす。腕が伸びきる手前で止める</li>
         </ol>
-        <div class="note warn"><strong>この種目だけは重くしません。</strong>重くすると反動を使って首の付け根に逃げます。12回できたら重量ではなく<strong>回数を15回まで伸ばす</strong>のが正解です。</div>
+        <div class="note tip"><strong>腕で体を引き上げようとしないこと。</strong>肘を体の後ろに引く意識にすると背中に乗ります。反動でぶら下がりを揺らすのはなし。</div>
+        <div class="note up"><strong>初回の決め方</strong>　補助40kg（＝実質30kg程度を自分で持ち上げる計算）で8回できるかを試す。12回できたら<strong>補助を5kg減らす</strong>のが「重くする」に当たります。数字が減る方向に進むので、そこだけ注意してください。</div>
         <div class="links">
-          <a href="https://melos.media/training/66723/" target="_blank" rel="noopener">写真つき解説</a>
-          <a href="https://www.youtube.com/watch?v=p3nHHeiKHGw" target="_blank" rel="noopener">動画: サイドレイズの正しいやり方（MELOS）</a>
+          <a href="https://www.youtube.com/watch?v=g15rbatPXwc" target="_blank" rel="noopener">動画: アシストマシンの正しい使い方（フィットネス大学／初心者向け・重り＝補助の説明あり）</a>
+          <a href="https://www.youtube.com/watch?v=je4KXCy16uw" target="_blank" rel="noopener">動画: アシストチンニングを広背筋に効かせるポイント（寺島遼）</a>
         </div>
       </div>
     </article>
 
-    <article class="ex" data-show="upper" data-id="u7">
+    <article class="ex" data-show="pull" data-id="q4">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">ダンベルカール（片手ずつ）<span class="tag new">本採用</span></span>
+            <span class="ex-num"><b>左右10〜12回</b> × 3セット<span class="ex-load">片手 7.5〜10kgから</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベル" loading="lazy"></div>
+        <div class="note plain"><strong>担当は力こぶ（上腕二頭筋）。2026-09に予備枠から本採用へ格上げしました。</strong>両手同時ではなく<strong>片手ずつ</strong>やります。左腕3.24kg / 右腕3.39kgの差があるためです。ただしこの5%は測定誤差の範囲でもあるので、右腕だけ追加で鍛えることはしません。</div>
+        <ol class="steps">
+          <li>立って片手にダンベル。もう片方は腰か手すりに添える</li>
+          <li><strong>肘を体の横に固定</strong>（前に出さない）</li>
+          <li>手のひらを上に向けたまま、肩に向けて巻き上げる。上で1秒止める</li>
+          <li><strong>3秒かけて</strong>下ろす。伸ばしきる手前で止める</li>
+          <li><strong>左腕から</strong>。終わったら右腕を同じ回数</li>
+        </ol>
+        <div class="note warn"><strong>反動を使ったら意味がありません。</strong>体を反らせて振り上げるのは重すぎのサイン。効いているのは腰であって腕ではない。</div>
+        <div class="note up"><strong>上げ幅</strong>　左右とも12回できたら次のダンベルへ（2.5kg刻み）。<strong>左が先にバテたら、その回数に右を合わせます。</strong></div>
+        <div class="links">
+          <a href="https://melos.media/training/66155/" target="_blank" rel="noopener">写真つき解説</a>
+          <a href="https://www.youtube.com/watch?v=7UmhY40g0EM" target="_blank" rel="noopener">動画: ダンベルカールの正しいやり方（MELOS）</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="pull" data-id="q5">
+      <div class="ex-head">
+        <button type="button" class="ex-check" aria-label="完了にする"><span>5</span></button>
+        <button type="button" class="ex-open">
+          <span class="ex-info">
+            <span class="ex-name">リアデルト</span>
+            <span class="ex-num"><b>12〜15回</b> × 3セット<span class="ex-load">15kgから探る</span></span>
+          </span>
+          <span class="ex-caret"></span>
+        </button>
+      </div>
+      <div class="ex-detail">
+        <div class="ex-img"><img src="img/m-rear-delt.webp" alt="REAR DELT / PEC FLY と書かれたマシンのラベル" loading="lazy"></div>
+        <div class="note plain">金曜にペックフライで使うのと<strong>同じマシンを、逆向き（腕を前から後ろに開く向き）で</strong>使います。担当は<strong>肩の後ろ</strong>。<strong>頭上に上げないので肩は痛みません。</strong></div>
+        <div class="note warn"><strong>ショルダープレスは中止のままです（2026-08-13）。</strong>頭上に押し上げる動作は、肩の腱が骨に挟まれる典型的なパターンです。<strong>頭の上に上げる種目は入れません。</strong></div>
+        <ol class="steps">
+          <li>マシンに<strong>向かって</strong>座り、胸をパッドにつける</li>
+          <li>グリップを両手で握る。<strong>肘は軽く曲げたまま固定</strong></li>
+          <li>腕を<strong>前から後ろへ、水平に開く</strong></li>
+          <li>開ききった位置で1秒止め、肩甲骨を軽く寄せる</li>
+          <li>3秒かけて戻す</li>
+        </ol>
+        <div class="note tip"><strong>肩がすくんだら首の付け根（僧帽筋）に逃げています。</strong>肩を落としたまま、腕だけを開く。効かない場合はほぼ重すぎです。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも15回できたら目盛り1つ分。</div>
+        <div class="links">
+          <a href="https://www.youtube.com/watch?v=_is6BKOfR58" target="_blank" rel="noopener">動画: マシンリアデルトフライの解説（筋トレダンジョン）</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="ex" data-show="pull" data-id="q6">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>6</span></button>
         <button type="button" class="ex-open">
           <span class="ex-info">
-            <span class="ex-name">フェイスプル（ケーブル）<span class="tag new">新</span></span>
+            <span class="ex-name">フェイスプル（ケーブル）</span>
             <span class="ex-num"><b>15回</b> × 2セット<span class="ex-load">10〜15kgから探る</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
       </div>
       <div class="ex-detail">
-        <div class="note plain">ケーブルマシンにロープを付けて、<strong>顔に向かって引く</strong>種目です。肩の後ろに加えて、<strong>肩関節を安定させる小さい筋肉（回旋筋腱板）</strong>が同時に鍛えられます。ショルダープレスで痛めた肩に対して、最も推奨される種目がこれです。続けるとプレス系の痛みが軽くなる可能性があります。</div>
+        <div class="note plain">ケーブルマシンにロープを付けて、<strong>顔に向かって引く</strong>種目です。肩の後ろに加えて、<strong>肩関節を安定させる小さい筋肉（回旋筋腱板）</strong>が同時に鍛えられます。<strong>ショルダープレスで痛めた肩に対して、最も推奨される種目がこれ</strong>なので、量は少なくても外しません。続けるとプレス系の痛みが軽くなる可能性があります。</div>
         <ol class="steps">
           <li>ケーブルを<strong>顔の高さ</strong>にセットし、ロープを付ける</li>
           <li>ロープの端を両手で握り、少し後ろに下がって張りを作る</li>
@@ -486,37 +644,9 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
     </article>
 
-    <article class="ex" data-show="upper" data-id="u6">
-      <div class="ex-head">
-        <button type="button" class="ex-check" aria-label="完了にする"><span>6</span></button>
-        <button type="button" class="ex-open">
-          <span class="ex-info">
-            <span class="ex-name">腹筋ローラー</span>
-            <span class="ex-num"><b>10回</b> × 3セット<span class="ex-load">自重</span></span>
-          </span>
-          <span class="ex-caret"></span>
-        </button>
-      </div>
-      <div class="ex-detail">
-        <div class="ex-img"><img src="img/m-ab-roller.webp" alt="腹筋ローラー" loading="lazy"></div>
-        <ol class="steps">
-          <li>膝をついて、ローラーを肩の真下に置く</li>
-          <li><strong>腰を丸めた状態</strong>から始める（反らせない）</li>
-          <li>ゆっくり前に転がす</li>
-          <li><strong>腰が反りそうになった位置</strong>が今日の限界。そこで止める</li>
-          <li>お腹の力で戻す</li>
-        </ol>
-        <div class="note warn"><strong>腰が反ったまま伸ばすと腰を痛めます。</strong>伸ばせる距離より「腰を丸めたまま」を優先。</div>
-        <div class="note plain">これは腹直筋（表面のシックスパック）の種目です。<strong>下腹の脂肪を落とす効果はありません。</strong>下腹（骨盤の傾き）の担当は<strong>自宅でやるデッドバグ</strong>です。この2つは役割が逆で、代わりにはなりません（ローラーは腰が反りやすい種目、デッドバグは腰の反りを止める種目）。</div>
-        <div class="links">
-          <a href="https://melos.media/training/15658/" target="_blank" rel="noopener">写真つき解説</a>
-          <a href="https://www.youtube.com/watch?v=RpSTzuMXgFE" target="_blank" rel="noopener">動画: 腹筋ローラー（膝コロ）の正しいやり方（MELOS）</a>
-        </div>
-      </div>
-    </article>
+    <!-- ---------- 水曜：脚の日 ---------- -->
 
-    <!-- ---------- 下半身 ---------- -->
-    <article class="ex" data-show="lower" data-id="l1">
+    <article class="ex" data-show="legs" data-id="l1">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>1</span></button>
         <button type="button" class="ex-open">
@@ -545,7 +675,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
     </article>
 
-    <article class="ex" data-show="lower" data-id="l2">
+    <article class="ex" data-show="legs" data-id="l2">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>2</span></button>
         <button type="button" class="ex-open">
@@ -558,7 +688,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
       <div class="ex-detail">
         <div class="ex-img"><img src="img/m-barbell.webp" alt="バーベル" loading="lazy"></div>
-        <div class="note plain">今まで毎回・週3〜4回×4セット（週12〜16セット）やっていたのを、<strong>下半身の日だけ・3セット（週6セット）</strong>に減らします。減らした分、重量を60kg → <strong>65〜70kg</strong>に上げます。</div>
+        <div class="note plain">今まで毎回・週3〜4回×4セット（週12〜16セット）やっていたのを、<strong>脚の日だけ・3セット（週6セット）</strong>に減らします。減らした分、重量を60kg → <strong>65〜70kg</strong>に上げます。</div>
         <ol class="steps">
           <li>バーを肩幅で握り、<strong>足は腰幅</strong>で立つ</li>
           <li>膝を軽く曲げた状態で固定（ここから膝は動かさない）</li>
@@ -577,7 +707,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
     </article>
 
-    <article class="ex" data-show="lower" data-id="l3">
+    <article class="ex" data-show="legs" data-id="l3">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>3</span></button>
         <button type="button" class="ex-open">
@@ -608,7 +738,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
     </article>
 
-    <article class="ex" data-show="lower" data-id="l4">
+    <article class="ex" data-show="legs" data-id="l4">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>4</span></button>
         <button type="button" class="ex-open">
@@ -640,7 +770,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
     </article>
 
     <!-- ---------- 有酸素（全日共通） ---------- -->
-    <article class="ex" data-show="upper lower" data-id="cardio">
+    <article class="ex" data-show="push pull legs" data-id="cardio">
       <div class="ex-head">
         <button type="button" class="ex-check" aria-label="完了にする"><span>7</span></button>
         <button type="button" class="ex-open">
@@ -672,11 +802,8 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       <summary>自宅でやる：デッドバグ（毎日・ジムのメニューからは外しました）</summary>
       <div class="det-body">
         <p><strong>2026-08-13にジムの下半身メニューから外し、自宅で毎日やることにしました。</strong>自重・器具なし・場所を取らないので、ジムの時間を使う必要がありません。この判断は正しいです。</p>
-        <p><strong>空いた枠に別の腹筋種目は入れません。</strong>理由は3つ。<br>
-        1. 腹筋を増やしても腹は凹みません（内臓脂肪レベルは7で低い。下腹の正体は皮下脂肪と姿勢）<br>
-        2. 腹筋ローラーが上半身の日にすでにあり、週3回は要りません<br>
-        3. 枠が空いたから埋める、は半年停滞したときと同じ増やし方です</p>
-        <p><strong>やらなくなったら骨盤前傾の対策が消えることは自覚しておいてください。</strong>デッドバグは見た目の腹筋を作る種目ではなく、腹の奥で腰の反りを止める種目です。腹筋ローラーは逆に腰が反りやすい種目なので、この2つは代わりになりません。</p>
+        <p><strong>2026-09に腹筋ローラーもジムから外しました。</strong>腹筋を増やしても腹は凹まないからです（内臓脂肪レベルは7で低く、下腹の正体は皮下脂肪と姿勢）。空いた枠は腹筋の別種目では埋めず、<strong>アシストチンニング（背中）に回しました。</strong>ジムの限られた時間は、増やしたい部位に払います。</p>
+        <p><strong>やらなくなったら、骨盤前傾の対策がゼロになることは自覚しておいてください。</strong>ジムから腹の種目を全部外した以上、腹まわりの担当はこれ1つだけです。デッドバグは見た目の腹筋を作る種目ではなく、腹の奥で腰の反りを止める種目です。</p>
         <p><strong>時間帯について。</strong>計画は「毎日、夜、家で」ですが、同じ日に「夜寝る前のプロテインは忘れるから朝に移す」と決めたばかりです。デッドバグはプロテインより手間がかかります（床に寝る・子供が起きる）。<strong>続かない兆候が出たら、朝の支度中か風呂上がりに移してください。</strong></p>
       </div>
     </details>
@@ -694,7 +821,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
           </button>
         </div>
         <div class="ex-detail">
-          <div class="note plain">仰向けで両手を天井・両膝を90度に上げた姿勢から、<strong>右手と左足を同時にゆっくり伸ばして戻す</strong>だけ。マットの上でできます。下腹を内側から引き締める<strong>腹横筋</strong>の担当で、腹筋ローラーでは鍛えられない場所です。</div>
+          <div class="note plain">仰向けで両手を天井・両膝を90度に上げた姿勢から、<strong>右手と左足を同時にゆっくり伸ばして戻す</strong>だけ。マットの上でできます。下腹を内側から引き締める<strong>腹横筋</strong>の担当です。腹筋ローラーでは鍛えられない場所で、ここが4ヶ月間ずっと抜けていました。</div>
           <ol class="steps">
             <li>仰向けに寝て、<strong>両手を天井にまっすぐ</strong>伸ばす</li>
             <li>膝を90度に曲げ、太ももが床と垂直になるまで上げる</li>
@@ -713,87 +840,13 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
     </div>
   </div>
 
-  <!-- ---------- 予備枠: 腕（上半身の日だけ） ---------- -->
-  <div data-show="upper" style="margin-top:22px;">
-    <details>
-      <summary>予備枠：腕（やるかどうかは、その日に決める）</summary>
-      <div class="det-body">
-        <p>チェストプレスやラットプルダウンでも腕は使われるので、腕の種目がないと筋肉が増えないというほどではありません。ただし<strong>腕が限界に達する前に胸や背中が先に限界になる</strong>ため、刺激は腕に届き切りません。腕の見た目を優先したい日だけ入れる、という位置づけです。ルールは3つ。</p>
-        <p><strong>入れる日はシーテッドロウを3 → 2セットに減らす。</strong>時間を増やさないためです。<br>
-        <strong>2種目とも同じ日にはやらない。</strong>やる日はどちらか片方だけ。次にやる日はもう片方。<br>
-        <strong>左腕から始めて、左右まったく同じ重量・同じ回数にする。</strong>左右差5%への対処はこれだけで十分です。</p>
-      </div>
-    </details>
-
-    <div class="exlist" style="margin-top:9px;">
-      <article class="ex" data-id="opt1" style="display:block;">
-        <div class="ex-head">
-          <button type="button" class="ex-check" aria-label="完了にする"><span>＋</span></button>
-          <button type="button" class="ex-open">
-            <span class="ex-info">
-              <span class="ex-name">ケーブルプレスダウン<span class="tag opt">予備</span></span>
-              <span class="ex-num"><b>10〜12回</b> × 2セット<span class="ex-load">15kgから探る</span></span>
-            </span>
-            <span class="ex-caret"></span>
-          </button>
-        </div>
-        <div class="ex-detail">
-          <div class="note plain"><strong>担当は二の腕の裏（上腕三頭筋）。</strong>今まで使っていたケーブルマシンにロープを付けて行う種目です。「二頭筋の裏側」と呼んでいたのは正確にはここ。腕の太さは<strong>三頭筋が3分の2</strong>を占めるので、腕を太く見せたいならこちらが本命です。</div>
-          <ol class="steps">
-            <li>ケーブルを<strong>一番上</strong>にセットし、ロープを付ける</li>
-            <li>マシンの正面に立ち、ロープを両手で握る</li>
-            <li><strong>脇を締めて肘を体の横に固定</strong>（ここから肘は動かさない）</li>
-            <li>肘から先だけで<strong>真下に押し下げる</strong></li>
-            <li>下で1秒止め、二の腕の裏を締める。ゆっくり戻す</li>
-          </ol>
-          <div class="note warn"><strong>肘が体から離れたら、それは重すぎです。</strong>上体を前に倒して体重で押すのもなし。重量より、肘を固定できているかが全て。</div>
-          <div class="note up"><strong>上げ幅</strong>　2セットとも12回できたら目盛り1つ分。</div>
-          <div class="links">
-            <a href="https://melos.media/training/63058/" target="_blank" rel="noopener">写真つき解説</a>
-            <a href="https://www.youtube.com/watch?v=YZmak2TR6TM" target="_blank" rel="noopener">動画: ケーブル・プッシュダウンの効果的なやり方（ビーレジェンド）</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="ex" data-id="opt2" style="display:block;">
-        <div class="ex-head">
-          <button type="button" class="ex-check" aria-label="完了にする"><span>＋</span></button>
-          <button type="button" class="ex-open">
-            <span class="ex-info">
-              <span class="ex-name">ダンベルカール（片手ずつ）<span class="tag opt">予備</span></span>
-              <span class="ex-num"><b>左右10〜12回</b> × 2セット<span class="ex-load">片手 7.5〜10kgから</span></span>
-            </span>
-            <span class="ex-caret"></span>
-          </button>
-        </div>
-        <div class="ex-detail">
-          <div class="ex-img"><img src="img/m-dumbbell.webp" alt="ダンベル" loading="lazy"></div>
-          <div class="note plain"><strong>担当は力こぶ（上腕二頭筋）。</strong>両手同時ではなく<strong>片手ずつ</strong>。左腕3.24kg / 右腕3.39kgの差があるためです。ただしこの5%は測定誤差の範囲でもあるので、右腕だけ追加で鍛えることはしません。</div>
-          <ol class="steps">
-            <li>立って片手にダンベル。もう片方は腰か手すりに添える</li>
-            <li><strong>肘を体の横に固定</strong>（前に出さない）</li>
-            <li>手のひらを上に向けたまま、肩に向けて巻き上げる。上で1秒止める</li>
-            <li><strong>3秒かけて</strong>下ろす。伸ばしきる手前で止める</li>
-            <li><strong>左腕から</strong>。終わったら右腕を同じ回数</li>
-          </ol>
-          <div class="note warn"><strong>反動を使ったら意味がありません。</strong>体を反らせて振り上げるのは重すぎのサイン。効いているのは腰であって腕ではない。</div>
-          <div class="note up"><strong>上げ幅</strong>　左右とも12回できたら次のダンベルへ（2.5kg刻み）。<strong>左が先にバテたら、その回数に右を合わせます。</strong></div>
-          <div class="links">
-            <a href="https://melos.media/training/66155/" target="_blank" rel="noopener">写真つき解説</a>
-            <a href="https://www.youtube.com/watch?v=7UmhY40g0EM" target="_blank" rel="noopener">動画: ダンベルカールの正しいやり方（MELOS）</a>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
-  <!-- 下半身の日だけ: 疲労が出たときの調整 -->
-  <div data-show="lower" style="margin-top:22px;">
+  <!-- 脚の日だけ: 疲労が出たときの調整 -->
+  <div data-show="legs" style="margin-top:22px;">
     <details>
       <summary>脚が回復していないと感じたら</summary>
       <div class="det-body">
         <p>次のどれかが出たら、<strong>有酸素の傾斜を12.5% → 10%に下げてください。</strong>感覚だけで判断できます。</p>
-        <p>下半身の日に重量・回数が落ち続ける ／ RDLの後、腰の張りが翌日まで残る ／ 翌朝まで脚の疲労が強い ／ 膝・アキレス腱・足の裏に痛みが出る</p>
+        <p>脚の日に重量・回数が落ち続ける ／ RDLの後、腰の張りが翌日まで残る ／ 翌朝まで脚の疲労が強い ／ 膝・アキレス腱・足の裏に痛みが出る</p>
       </div>
     </details>
   </div>
@@ -823,8 +876,35 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       </div>
       <div class="rule-line">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 5" stroke="#0c7a43" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div><strong>記録は取らなくていい。</strong>その場で「まだ上がるか」を感じるだけで判断できます。</div>
+        <div><strong>記録はこのページが持ちます。</strong>ジムでやった重量と回数を久保田さんが伝えれば、下の表を更新します。<strong>メモを取る必要はありません。</strong>次にジムへ来たとき、下の表の数字をそのまま使ってください。</div>
       </div>
+    </div>
+  </div>
+
+  <div class="rule-card">
+    <h3>今の重量（最終更新: 2026-09-11）</h3>
+    <p class="lead" style="margin:0 0 12px;">初回はまだ測っていません。1回やってベストが出たら伝えてください。この表を書き換えます。</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>種目</th><th>今の重量</th><th>回数</th><th>更新日</th></tr></thead>
+        <tbody>
+          <tr><td>ワイドチェストプレス</td><td>片側20kg（10回ギリギリ）</td><td>10〜12回</td><td>2026-09-11</td></tr>
+          <tr><td>インクラインチェストプレス</td><td>片側5〜7.5kg（10kgは限界）</td><td>10〜12回</td><td>2026-09-11</td></tr>
+          <tr><td>ペックフライ</td><td>30kg（35kgはきつい）</td><td>10回→15回まで伸ばす</td><td>2026-09-11</td></tr>
+          <tr><td>ケーブルプレスダウン</td><td class="ng">未測定（15kgから）</td><td>—</td><td>—</td></tr>
+          <tr><td>サイドレイズ</td><td>片手5kg</td><td>12〜15回</td><td>2026-08</td></tr>
+          <tr><td>ラットプルダウン</td><td>30kg</td><td>10〜12回</td><td>2026-08</td></tr>
+          <tr><td>シーテッドロウ</td><td>片側20kg</td><td>10〜12回</td><td>2026-08</td></tr>
+          <tr><td>アシストチンニング</td><td class="ng">未測定（補助40kgから）</td><td>—</td><td>—</td></tr>
+          <tr><td>ダンベルカール</td><td class="ng">未測定（片手7.5〜10kgから）</td><td>—</td><td>—</td></tr>
+          <tr><td>リアデルト</td><td class="ng">未測定（15kgから）</td><td>—</td><td>—</td></tr>
+          <tr><td>フェイスプル</td><td class="ng">未測定（10〜15kgから）</td><td>—</td><td>—</td></tr>
+          <tr><td>レッグプレス</td><td>片側45kg</td><td>10〜12回</td><td>2026-08</td></tr>
+          <tr><td>ルーマニアンデッドリフト</td><td>65〜70kg</td><td>10回</td><td>2026-08</td></tr>
+          <tr><td>レッグカール</td><td class="ng">未測定（20kgから）</td><td>—</td><td>—</td></tr>
+          <tr><td>ヒップスラスト</td><td class="ng">未測定（片側10kgから）</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
@@ -835,10 +915,12 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
         <table>
           <thead><tr><th>種類</th><th>1回の上げ幅</th><th>該当する種目</th></tr></thead>
           <tbody>
-            <tr><td>ピンを刺すマシン</td><td class="ok">目盛り1つ（2.5〜5kg）</td><td>ラットプルダウン / リアデルト / フェイスプル / レッグカール</td></tr>
-            <tr><td>プレートを差すマシン</td><td class="ok">片側 +2.5〜5kg（左右同じ枚数）</td><td>チェストプレス / シーテッドロウ / レッグプレス</td></tr>
-            <tr><td>プレートを差すマシン（お尻）</td><td class="ok">片側 +5kg（左右同じ枚数）</td><td>ヒップスラスト</td></tr>
+            <tr><td>ピンで重さを選ぶマシン</td><td class="ok">目盛り1つ（2.5〜5kg）</td><td>ラットプルダウン / ペックフライ / リアデルト / フェイスプル / プレスダウン / レッグカール</td></tr>
+            <tr><td>丸い重りを横に付けるマシン</td><td class="ok">片側 +2.5〜5kg（左右同じ枚数）</td><td>チェストプレス / インクラインチェストプレス / シーテッドロウ / レッグプレス</td></tr>
+            <tr><td>丸い重りを横に付けるマシン（お尻）</td><td class="ok">片側 +5kg（左右同じ枚数）</td><td>ヒップスラスト</td></tr>
+            <tr><td>アシストマシン</td><td class="ok">補助を 5kg <b>減らす</b></td><td>アシストチンニング（数字が減る方向が「重くする」）</td></tr>
             <tr><td>バーベル</td><td class="ok">両端に2.5kgずつ（+5kg）</td><td>ルーマニアンデッドリフト</td></tr>
+            <tr><td>ダンベル（カール）</td><td class="ok">次のダンベルへ（2.5kg刻み）</td><td>ダンベルカール</td></tr>
             <tr><td>ダンベル（サイドレイズ）</td><td class="ng">上げない</td><td>5kgのまま回数を15回まで</td></tr>
           </tbody>
         </table>
@@ -860,7 +942,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
 <section id="diet">
   <div class="sec-head">
     <h2>食事</h2>
-    <p class="lead">今が壊滅的に足りないわけではありません。変えるのは3ヶ所だけ。</p>
+    <p class="lead">2026-09-10に、実際に食べているものを聞き取って中身を差し替えました。変えるのは<strong>昼にプロテインをもう1杯足す</strong>、これだけです。</p>
   </div>
 
   <div class="big-num">
@@ -871,25 +953,27 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
   <div class="chg" style="margin-top:12px;">
     <div class="chg-item">
       <div class="chg-when">朝</div>
-      <div class="chg-body">ゆで卵を<strong>1個 → 3個</strong>に。納豆・キムチご飯はそのまま</div>
-      <div class="chg-plus">+12g</div>
+      <div class="chg-body">ゆで卵2個・納豆・キムチご飯（今までどおり）＋<strong>プロテイン1杯</strong></div>
+      <div class="chg-plus">45g</div>
     </div>
     <div class="chg-item">
       <div class="chg-when">昼</div>
-      <div class="chg-body">豆腐を<strong>サラダチキン</strong>に替える（豆腐も残せるなら残す）</div>
-      <div class="chg-plus">+15g</div>
-    </div>
-    <div class="chg-item">
-      <div class="chg-when">プロテイン</div>
-      <div class="chg-body"><strong>毎日、朝に1杯。</strong>ジムに行った日だけ、朝ではなく<strong>筋トレ直後</strong>に回してもいい（2026-08-13変更。寝る前は忘れるため）</div>
-      <div class="chg-plus">+20g</div>
+      <div class="chg-body">ゆで卵1個・豆腐・ささみ1本・キムチご飯（今までどおり）＋<strong>プロテインをもう1杯（2026-09-10に追加）</strong></div>
+      <div class="chg-plus">50g</div>
     </div>
     <div class="chg-item">
       <div class="chg-when">晩</div>
-      <div class="chg-body">変更なし。今までどおりで大丈夫です</div>
-      <div class="chg-plus">—</div>
+      <div class="chg-body">変更なし。魚か肉が出た日で20〜40g（作っているのが本人ではないため推定）</div>
+      <div class="chg-plus">20〜40g</div>
+    </div>
+    <div class="chg-item">
+      <div class="chg-when">合計</div>
+      <div class="chg-body"><strong>朝＋昼だけで95g確保できます。</strong>晩が軽い日でも目標の115gに届きます</div>
+      <div class="chg-plus">115〜135g</div>
     </div>
   </div>
+
+  <div class="note plain" style="margin-top:12px;"><strong>プロテインの作り方は袋の裏の指定どおりで合っています。</strong>水または牛乳250mlに、付属スプーン4杯（約28g・すりきり）。これでたんぱく質20.0g・111kcalです（ザバス ホエイプロテイン100の栄養成分表示より）。2200gの袋は78食分なので、1日2杯だと約39日で1袋。</div>
 
   <div class="note warn" style="margin-top:12px;"><strong>タンパク質を合わせても、それだけでは脂肪は落ちません。</strong>1日の総カロリーが消費を上回っていれば脂肪は減りません。ご飯の量・油・晩の主菜・間食が分からないため、<strong>総カロリーは現時点で判定できていません</strong>。月1回のInBodyで腹囲と体脂肪率が動いているかを見て、動いていなければ食事の量を見直す、という順番で進めます。なお<strong>炭水化物は減らさないでください</strong>。今の筋トレと傾斜歩き30分を支えているのはご飯です。</div>
 
@@ -899,7 +983,17 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       <p>初版で「休養日は寝る前」と書いたのは、トレーニング日の「直後」と対にしただけで、<strong>時間帯そのものに根拠はありませんでした</strong>。目的は<strong>ジムに行かない日に不足する分（約55g）を埋めること</strong>であって、寝ている間の補充ではありません。</p>
       <p>夜のプロテインは事業の時間・家族の時間と重なり、忘れる可能性が高い。<strong>飲み忘れで失う総量のほうが、時間帯の最適化より大きい</strong>ので、朝に移します。</p>
       <p>タイミングより<strong>1日の総量</strong>が効くことは示されています（<a href="https://jissn.biomedcentral.com/articles/10.1186/1550-2783-10-5" target="_blank" rel="noopener">Schoenfeld &amp; Aragon 2013</a>）。総量を揃えると、トレーニング直後という優位性は消えます。就寝前カゼインの研究（<a href="https://pubmed.ncbi.nlm.nih.gov/22218276/" target="_blank" rel="noopener">Res et al. 2012</a>）もありますが、これは総量を確保した上での上乗せの話で、飲まないと夜間に筋肉が減るという意味ではありません。</p>
-      <p><strong>残る小さな不利</strong>　朝に朝食31g＋プロテイン20g＝51gが集中します。1食20〜40gで頭打ちという説があるため、厳密には昼にずらす方がわずかに有利です。ただしこの差は飲み忘れの損失より小さいので、続けやすさを取りました。</p>
+      <p><strong>残る小さな不利</strong>　朝に朝食＋プロテインで45gが集中します。1食20〜40gで頭打ちという説があるため、厳密には昼にずらす方がわずかに有利です。ただしこの差は飲み忘れの損失より小さいので、続けやすさを取りました。<strong>2026-09-10に昼にも1杯足したので、この不利はほぼ解消しています。</strong></p>
+    </div>
+  </details>
+
+  <details>
+    <summary>なぜ「ささみを増やす」ではなく「プロテインをもう1杯」にしたか（2026-09-10）</summary>
+    <div class="det-body">
+      <p>聞き取った実際の食事を数えると、<strong>朝45g・昼30g・朝昼合計75g</strong>でした（日本食品標準成分表2020年版・八訂ベース）。目標115gに対して、晩に40g必要という状態です。晩は奥さんが作るため内容が読めず、<strong>足りない日が出る作りになっていました。</strong></p>
+      <p>昼の30gが一番の弱点です。1回の食事で使われる目安は体重1kgあたり0.4g（<a href="https://pubmed.ncbi.nlm.nih.gov/28642676/" target="_blank" rel="noopener">ISSN</a>）で、70.6kgなら1食28g前後。昼はちょうど下限でした。</p>
+      <p>最初に出した案は「昼にささみをもう1本」でしたが、<strong>買い足しと下ごしらえの手間が増えるので却下しました。</strong>卵の価格も上がっています。<strong>すでに家にある粉をもう1杯すくうほうが、手間ゼロ・追加の買い物ゼロで同じ20gが入ります。</strong>プロテインバー（1本10〜15g）やサラダチキン（1個200円前後）は、1gあたりの単価で今の粉に負けます。</p>
+      <p><strong>やってはいけないのは、昼食をプロテインに置き換えることです。</strong>液体は腹持ちがせず、夕方の間食が増えます。今の昼食はそのままにして、足すだけにしてください。</p>
     </div>
   </details>
 
@@ -910,7 +1004,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
       <p>2.0〜2.5gという基準は、減量中の上級者やすでに体脂肪がかなり低い人が使う厳しめの数字です。学会（<a href="https://pubmed.ncbi.nlm.nih.gov/28642676/" target="_blank" rel="noopener">ISSNのポジションステートメント</a>）が運動する人に示しているのは<strong>体重あたり1.4〜2.0g</strong>で、体重70.6kgなら99〜141g。</p>
       <p><a href="https://bjsm.bmj.com/content/52/6/376" target="_blank" rel="noopener">筋肥大とタンパク質量のメタ分析</a>では効果が約1.6g/kgで頭打ちになるため、130gまで増やす意味は薄いです。</p>
       <p>つまり<strong>変更前の80〜90gは「やや低い」であって「明確な不足」ではありません</strong>。ただし<strong>ジムに行かない日の約60gだけは明確に低い</strong>ので、毎朝プロテインを飲むのはそこを埋めるためです。半年伸びなかった原因をタンパク質のせいにはできません。本命は重量の上げ方です。</p>
-      <p>内訳: 朝31g ＋ 昼35g ＋ 晩30g ＋ プロテイン20g ＝ 約115g。<strong>※ 晩の30gは推定です。</strong>作っているのが本人ではないため実際の量は不明で、確定した数字ではありません。</p>
+      <p>内訳（2026-09-10の実測ベース）: 朝25g ＋ 昼30g ＋ プロテイン2杯40g ＋ 晩20〜40g ＝ <strong>115〜135g</strong>。<strong>※ 晩は推定です。</strong>作っているのが本人ではないため実際の量は不明で、確定した数字ではありません。</p>
     </div>
   </details>
 
@@ -1016,10 +1110,35 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
   </div>
 
   <details>
-    <summary>なぜ上半身／下半身の2分割にしたか</summary>
+    <summary>なぜ曜日固定の3分割にしたか（2026-09に変更）</summary>
     <div class="det-body">
-      <p>前は胸＝水曜、背中＝金曜、脚＝土日で、<strong>各部位が週1回</strong>でした。筋肥大は<strong>週2回が週1回より優位</strong>という研究結果が一貫しています。上下2分割にすれば、通う回数を増やさないまま各部位の頻度が2倍になります。</p>
-      <p>ただし週3回だと「各部位きっちり週2回」は成立しません。週4回できたときだけ成立します。それでも前より頻度は上がります。</p>
+      <p>前は上半身／下半身の2分割で、曜日を固定していませんでした。頻度を上げる狙いは正しかったのですが、<strong>1週間に各部位へ払っている量（セット数）を数えたら、目的と逆になっていました。</strong></p>
+      <div class="tw">
+        <table>
+          <thead><tr><th>部位</th><th>前（週）</th><th>今（週3回）</th><th>必要量の目安</th></tr></thead>
+          <tbody>
+            <tr><td>胸</td><td class="ng">6</td><td class="ok">9</td><td>10〜20</td></tr>
+            <tr><td>背中</td><td>12</td><td class="ok">9</td><td>10〜20</td></tr>
+            <tr><td>二の腕の裏</td><td class="ng">0〜2</td><td class="ok">3</td><td>8〜14</td></tr>
+            <tr><td>力こぶ</td><td class="ng">0〜2</td><td class="ok">3</td><td>8〜14</td></tr>
+            <tr><td>肩</td><td class="ng">16</td><td class="ok">8</td><td>8〜12</td></tr>
+            <tr><td>脚</td><td>12</td><td>12</td><td>維持なら6〜8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>「セット」は、10回×3セットの、あの1セットです。</strong>1週間でその部位に何セット払ったかを数えたものが上の数字。研究上おおむね週10〜20セットで筋肉は増え、それを下回ると増えません。</p>
+      <p>優先したいのは下腹・腕・胸・背中なのに、実際に一番払っていたのは<strong>肩（16）と脚（12）</strong>でした。腕は「予備枠・その日に決める」に置いていたので、実質ゼロです。<strong>腕は週2セットでは太くなりません。</strong>そこで、押す（胸・二の腕の裏・肩の横）／引く（背中・力こぶ・肩の後ろ）／脚の3つに分け、曜日に貼り付けました。</p>
+      <p><strong>正直に言うと、背中は週12 → 9セットに減ります。</strong>「背筋も大事にしたい」が"今より伸ばしたい"という意味なら、週3回では時間が足りません。腕・胸・背中を全部伸ばすには週4回が要ります。<strong>週4回行けた日に押す日をもう一度やる</strong>のは、胸を12〜18セットまで戻すためです。</p>
+      <p>曜日を固定したのは、前回どちらをやったか思い出すコストをなくすためです。ジムで迷う要素は少ないほど続きます。</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>なぜ腹筋ローラーをジムから外したか（2026-09）</summary>
+    <div class="det-body">
+      <p><strong>腹筋を鍛えても、腹の脂肪は落ちないからです。</strong>部分痩せは存在しません。腹筋ローラーは腹直筋（表面のシックスパック）の種目で、その上に乗っている皮下脂肪には何の作用もしません。</p>
+      <p>下腹の正体は<strong>皮下脂肪＋骨盤前傾による見え方</strong>の2つで、前者は体脂肪率15%まで落ちるのを待つしかなく、後者の担当は<strong>ヒップスラスト（ジム）と自宅のデッドバグ</strong>です。腹筋ローラーはどちらの担当でもありません。むしろ腰が反りやすい種目なので、骨盤前傾の対策としては逆方向です。</p>
+      <p>週3セット×2日＝<strong>年間およそ300セット分の時間</strong>を、増やしたい部位に回します。空いた枠に入れたのはアシストチンニング（背中）です。</p>
     </div>
   </details>
 
@@ -1028,7 +1147,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
     <div class="det-body">
       <p>この種目は腰と裏ももの疲労が突出して大きく、<strong>回復に48〜72時間かかります</strong>。そこに傾斜12.5%の歩き30分が毎回入り、これも裏ももとお尻を使うので疲労が重なる。加えて、フォームが崩れたときに腰を壊すリスクが全種目の中で最も高い。トレーナーなしで週3〜4回はリスクとリターンが釣り合っていませんでした。</p>
       <p>週12〜16セット（週3〜4回×4セット）から<strong>週6セット（週2回×3セット）へ、半分以下に落としています</strong>。減らした分は重量に回して60kg → 65〜70kg。総量を落として1回の質を上げる、という組み替えです。</p>
-      <p>なお、下半身の日はAとBの2種類に分けていた時期がありましたが、<strong>やめました。</strong>違いがこの種目とヒップスラストのセット数1つずつだけで、回復に意味のある差が出ないのに、ジムで「今日はどっちだったか」を思い出させるコストだけがかかっていたためです。腰の張りが残っている日は、その場で2セットに減らせば足ります。</p>
+      <p>なお、脚の日はAとBの2種類に分けていた時期がありましたが、<strong>やめました。</strong>違いがこの種目とヒップスラストのセット数1つずつだけで、回復に意味のある差が出ないのに、ジムで「今日はどっちだったか」を思い出させるコストだけがかかっていたためです。腰の張りが残っている日は、その場で2セットに減らせば足ります。</p>
     </div>
   </details>
 
@@ -1036,19 +1155,22 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
     <summary>なぜ肩の種目を足したか</summary>
     <div class="det-body">
       <p><strong>ウエストヒップ比0.95（高判定）</strong>の見た目を改善するには、腹を細くするより<strong>肩幅を出す方が速い</strong>。肩に丸みがつくと、腹囲が同じでもウエストが細く見えます。</p>
-      <p><strong>肩は3方向あります。</strong>前（チェストプレスで足りているので単独種目は不要）／横（サイドレイズ。肩幅の見た目はほぼここで決まる）／後ろ（リアデルトとフェイスプル）。<strong>2026-08-13まで、後ろはゼロでした。</strong></p>
+      <p><strong>肩は3方向あります。</strong>前（チェストプレスとインクラインで足りているので単独種目は不要）／横（<strong>金曜</strong>のサイドレイズ。肩幅の見た目はほぼここで決まる）／後ろ（<strong>土日</strong>のリアデルトとフェイスプル）。<strong>2026-08-13まで、後ろはゼロでした。</strong>なお2026-09に、肩の合計は週16 → 8セットへ減らしています。必要量を超えて払っていた分を、胸と腕に回しました。</p>
       <p>当初はショルダープレスを入れていましたが、実際にやったところ肩が「ゴキン」と鳴って痛みが出たため中止しました。頭上に押し上げる動作で腱が挟まれる典型的なパターンです。<strong>頭上系は全部やめて、横と後ろで組み直したのが今の形です。</strong>肩の前はチェストプレスで足りているので、これで3方向が埋まります。</p>
       <p>サイドレイズをダンベルでやるのは、左右の腕に約5%の差があり、両手同時に動かすマシンでは差が開いたままになるからです。片手ずつ扱うダンベルで埋めます。</p>
     </div>
   </details>
 
   <details>
-    <summary>なぜ削った種目があるか</summary>
+    <summary>種目の入れ替え履歴</summary>
     <div class="det-body">
-      <p><strong>ペックフライ・ケーブルフライ</strong>　チェストプレスと役割が重複していました。同じマシンでも<strong>リアデルト側（腕を後ろに開く向き）は鍛える筋肉が別</strong>なので、そちらは残しています。</p>
-      <p><strong>ショルダープレス</strong>　2026-08-13に中止。肩に痛みが出たためです。頭上に上げる種目は入れません。</p>
-      <p><strong>アダクター（内もも）</strong>　優先度の低い小さい筋肉に3セット使っていました。40分という枠では割に合いません。その枠をレッグカールとヒップスラストに回します。</p>
-      <p><strong>ケーブルロープ</strong>　完全には削っていません。腕の予備枠（ケーブルプレスダウン）として残してあります。</p>
+      <p><strong>ペックフライ　削除（2026-08） → 復活（2026-09）</strong>　削ったときは胸を週2回やる前提だったので、チェストプレスと重複していました。胸を金曜1日に集約した今は、その1日で量を確保する必要があるため戻します。判断が変わったのは前提が変わったからで、前回が間違っていたわけではありません。</p>
+      <p><strong>インクラインチェストプレス　新規（2026-09）</strong>　ジムにあるのにずっと使っていませんでした。胸の上部の担当で、「胸が大きい」という見た目をつくるのはここです。</p>
+      <p><strong>アシストチンニング　新規（2026-09）</strong>　腹筋ローラーを外した枠。背中の日が週1回になるため、種目を1つ足して量を確保します。</p>
+      <p><strong>ケーブルプレスダウン・ダンベルカール　予備枠 → 本採用（2026-09）</strong>　予備枠に置いた結果、腕に払っていた量は週0〜2セットでした。「腕を太くしたい」と言いながら実質やっていない状態だったので、毎回やる種目にします。</p>
+      <p><strong>腹筋ローラー　削除（2026-09）</strong>　上の項目を参照。自宅のデッドバグは残します。</p>
+      <p><strong>ショルダープレス　中止（2026-08-13）</strong>　肩に痛みが出たため。頭上に上げる種目は入れません。肩幅の見た目を決めるのは主に「横」なので、サイドレイズがあれば損失は小さいです。</p>
+      <p><strong>アダクター（内もも）　削除（2026-08）</strong>　優先度の低い小さい筋肉に3セットは割に合いません。その枠はレッグカールとヒップスラストに回しました。</p>
     </div>
   </details>
 
@@ -1075,13 +1197,13 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
 </div>
 
 <footer class="wrap">
-  上半身／下半身 2分割 — 2026年8月版<br>
+  水＝脚の日 ／ 金＝押す日 ／ 土日＝引く日 — 2026年9月版<br>
   基準値は2026-07-25のInBody測定。
 </footer>
 
 <script>
 (function(){
-  var KEY='bt-state-v3';
+  var KEY='bt-state-v4';
   var st={};
   try{ st=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ st={}; }
 
@@ -1091,21 +1213,21 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
     return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);
   }
 
-  var LABEL={upper:'上半身の日',lower:'下半身の日'};
+  var LABEL={push:'金曜：押す日',pull:'土日：引く日',legs:'水曜：脚の日'};
   var LEAD={
-    upper:'上から順に。筋トレ約40分＋有酸素30分。',
-    lower:'上から順に。筋トレ約35分＋有酸素30分。デッドバグは自宅に移したので4種目です。'
+    push:'胸・二の腕の裏・肩の横。上から順に。筋トレ約30分＋有酸素30分。',
+    pull:'背中・力こぶ・肩の後ろ。上から順に。筋トレ約35分＋有酸素30分。',
+    legs:'脚とお尻。毎回同じ4種目。筋トレ約25分＋有酸素30分。'
   };
+  /* 曜日 → その日のメニュー（0=日 … 6=土） */
+  var BYDOW=['pull','legs','legs','legs','push','push','pull'];
   var picks=document.querySelectorAll('[data-pick]');
   var title=document.getElementById('menu-title');
   var lead=document.getElementById('menu-lead');
   var sugg=document.getElementById('suggest-text');
 
-  /* ---- 次にやる日を決める ---- */
-  function nextDay(){
-    if(!st.last) return 'upper';
-    return (st.last==='upper')?'lower':'upper';
-  }
+  /* ---- 今日やる日を曜日から決める ---- */
+  function nextDay(){ return BYDOW[new Date().getDay()]; }
 
   function setDay(day,record){
     document.body.setAttribute('data-day',day);
@@ -1125,12 +1247,11 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
   var start=rec;
   if(st.date===today() && st.last){ start=st.last; }
 
-  if(!st.last){
-    sugg.innerHTML='はじめての表示です。<b>上半身</b>から始めてください。';
-  }else if(st.date===today()){
-    sugg.innerHTML='今日はすでに<b>'+LABEL[st.last]+'</b>を選んでいます。違う日をやるなら押し直してください。';
+  var DOWNAME=['日','月','火','水','木','金','土'];
+  if(st.date===today() && st.last && st.last!==rec){
+    sugg.innerHTML='今日は<b>'+LABEL[st.last]+'</b>を選んでいます。曜日どおりなら<b>'+LABEL[rec]+'</b>です。';
   }else{
-    sugg.innerHTML='前回は<b>'+LABEL[st.last]+'</b>でした。今日は<b>'+LABEL[rec]+'</b>です。';
+    sugg.innerHTML='今日は'+DOWNAME[new Date().getDay()]+'曜。<b>'+LABEL[rec]+'</b>です。';
   }
   document.querySelectorAll('[data-pick]').forEach(function(b){
     if(b.dataset.pick===rec && st.date!==today()) b.classList.add('rec');
@@ -1140,7 +1261,7 @@ body[data-day="lower"] [data-show~="lower"]{display:block;}
     b.addEventListener('click',function(){
       document.querySelectorAll('[data-pick]').forEach(function(x){x.classList.remove('rec');});
       setDay(b.dataset.pick,true);
-      sugg.innerHTML='今日は<b>'+LABEL[b.dataset.pick]+'</b>です。上から順にどうぞ。';
+      sugg.innerHTML='<b>'+LABEL[b.dataset.pick]+'</b>を選びました。上から順にどうぞ。';
     });
   });
 
