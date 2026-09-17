@@ -1555,12 +1555,15 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
     var inp=document.createElement('input'); inp.type='text'; inp.placeholder=defaultText; inp.setAttribute('enterkeyhint','done');
     var ok=document.createElement('button'); ok.type='button'; ok.textContent='保存';
     var clr=document.createElement('button'); clr.type='button'; clr.className='clear'; clr.textContent='元に戻す';
-    var hint=document.createElement('div'); hint.className='load-hint'; hint.textContent='例: 片側 55kg。保存するとこのスマホに残り、上の表示が変わります。';
+    var hint=document.createElement('div'); hint.className='load-hint'; hint.textContent='数字だけでOK（kgは自動で付きます）。例: 55 → 55kg、片側55 → 片側55kg。保存するとこのスマホに残ります。';
     box.appendChild(lab); box.appendChild(inp); box.appendChild(ok); box.appendChild(clr); box.appendChild(hint);
     detail.insertBefore(box, detail.firstChild);
 
     function commit(){
       var v=inp.value.trim();
+      /* 数字で終わっていたら kg を自動で付ける（例: 55 → 55kg、片側55 → 片側55kg） */
+      if(/[0-9０-９.．]$/.test(v)){ v=v.replace(/[０-９．]/g,function(c){ return c==='．'?'.':String.fromCharCode(c.charCodeAt(0)-0xFEE0); })+'kg'; }
+      inp.value=v;
       if(v){ st.loads[id]={v:v,d:today()}; }
       else{ delete st.loads[id]; }
       save(); render();
