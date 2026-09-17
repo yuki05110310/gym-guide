@@ -141,6 +141,26 @@ details[open] summary{color:var(--ink);}
 }
 .ex-num b{color:var(--ink);font-weight:700;}
 .ex-load{background:var(--surface-2);border-radius:6px;padding:1px 7px;font-size:12.5px;font-weight:700;color:var(--ink);}
+.ex-load.edited{background:var(--accent-soft);color:var(--accent);}
+.ex-load.edited small{font-weight:600;opacity:.75;margin-left:4px;}
+
+/* 重さの記録欄（種目を開くと出る） */
+.load-edit{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  background:var(--accent-soft);border-radius:var(--r-s);padding:10px 12px;
+}
+.load-edit label{font-size:12.5px;font-weight:700;color:var(--accent);white-space:nowrap;}
+.load-edit input{
+  flex:1;min-width:120px;appearance:none;border:1.5px solid var(--line-strong);
+  border-radius:8px;background:var(--bg);padding:8px 10px;font-size:16px;font-family:inherit;color:var(--ink);
+}
+.load-edit input:focus{outline:none;border-color:var(--accent);}
+.load-edit button{
+  appearance:none;border:none;border-radius:8px;padding:9px 14px;font-family:inherit;
+  font-size:13.5px;font-weight:700;cursor:pointer;background:var(--ink);color:#fff;
+}
+.load-edit button.clear{background:none;color:var(--ink-3);padding:9px 6px;}
+.load-edit .load-hint{flex-basis:100%;font-size:12px;color:var(--ink-3);}
 .tag{
   display:inline-block;vertical-align:2px;margin-left:6px;border-radius:5px;
   font-size:10.5px;font-weight:800;padding:1px 6px;letter-spacing:.02em;
@@ -661,7 +681,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">レッグプレス</span>
-            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">片側 45kg（左右で90kg）</span></span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">片側 55kg（左右で110kg）</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
@@ -676,7 +696,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
           <li>90度まで来たら<strong>かかとで押し上げる</strong>。膝は伸ばしきらない</li>
         </ol>
         <div class="note tip"><strong>膝がつま先より内側に入らないように。</strong></div>
-        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +5kg。<strong>この種目はそろそろ上げられるはず</strong>なので、次回まず試してください。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら片側 +5kg。2026-09-17に片側45kg → <strong>55kg</strong>へ上げました。</div>
         <div class="links">
           <a href="https://melos.media/training/138036/" target="_blank" rel="noopener">写真つき解説</a>
           <a href="https://www.youtube.com/watch?v=7_qPg97ys4g" target="_blank" rel="noopener">動画: レッグプレスマシンの使い方（フィットネス大学）</a>
@@ -690,7 +710,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">ルーマニアンデッドリフト</span>
-            <span class="ex-num"><b>10回</b> × 3セット<span class="ex-load">65〜70kg</span></span>
+            <span class="ex-num"><b>10回</b> × 3セット<span class="ex-load">片側 20kg（バー込みで約60kg）</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
@@ -722,7 +742,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">レッグカール<span class="tag new">新</span></span>
-            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">20kgから探る</span></span>
+            <span class="ex-num"><b>10〜12回</b> × 3セット<span class="ex-load">40kg</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
@@ -739,7 +759,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
         </ol>
         <div class="note tip"><strong>腰が浮くのは重すぎるサイン。</strong></div>
         <div class="note plain">裏ももへの直接刺激が今までルーマニアンデッドリフトだけだったので、<strong>そのセット数を減らす分をここで補います。</strong></div>
-        <div class="note up"><strong>初回の決め方</strong>　20kgで10回できるか試す。12回いけるなら次のセットから目盛り1つ上げます。</div>
+        <div class="note up"><strong>上げ幅</strong>　3セットとも12回できたら目盛り1つ。2026-09-17時点で<strong>40kg</strong>です。</div>
         <div class="links">
           <a href="https://melos.media/training/250474/" target="_blank" rel="noopener">写真つき解説</a>
           <a href="https://www.youtube.com/watch?v=Qqk6runZCFI" target="_blank" rel="noopener">動画: レッグカールの基本の使い方（ルネサンス）</a>
@@ -753,7 +773,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
         <button type="button" class="ex-open">
           <span class="ex-info">
             <span class="ex-name">ヒップスラスト（専用マシン）<span class="tag new">新</span></span>
-            <span class="ex-num"><b>12回</b> × 3セット<span class="ex-load">片側 10kg（左右で20kg）から</span></span>
+            <span class="ex-num"><b>12回</b> × 3セット<span class="ex-load">片側 25kg（左右で50kg）</span></span>
           </span>
           <span class="ex-caret"></span>
         </button>
@@ -769,7 +789,7 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
           <li>ゆっくり下ろす。下まで完全に戻さず、次の1回へ</li>
         </ol>
         <div class="note warn"><strong>腰を反って上げない。</strong>反らせると腰の種目になり、お尻に効きません。あごは軽く引いたまま。<br><strong>足が近すぎると太ももの前、遠すぎると裏ももに逃げます。</strong>膝90度の位置を最初に探してください。</div>
-        <div class="note up"><strong>初回</strong>　<strong>片側10kg（左右で20kg）</strong>から。左右は必ず同じ枚数。3セットとも12回できたら片側 +5kg。この種目は元々重い重量を扱えるので、伸びは速いです。</div>
+        <div class="note up"><strong>上げ幅</strong>　左右は必ず同じ枚数。3セットとも12回できたら片側 +5kg。2026-09-17時点で<strong>片側25kg（左右で50kg）</strong>です。</div>
         <div class="note plain"><strong>なぜダンベルをやめたか</strong>　骨盤にダンベルが食い込む痛みがなく、床に寝る準備も要らず、重量を伸ばしやすいためです。ダンベル15kgではすぐ頭打ちになります。</div>
         <div class="links">
           <a href="https://melos.media/training/67377/" target="_blank" rel="noopener">写真つき解説</a>
@@ -1504,6 +1524,54 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
       save();
       updateProgress();
     });
+  });
+
+  /* ---- 重さの記録（この端末のブラウザ内に残る） ---- */
+  if(!st.loads) st.loads={};
+  function shortDate(s){ return s? String(parseInt(s.slice(5,7),10))+'/'+String(parseInt(s.slice(8,10),10)) : ''; }
+  document.querySelectorAll('.ex').forEach(function(ex){
+    var loadEl=ex.querySelector('.ex-load');
+    var detail=ex.querySelector('.ex-detail');
+    if(!loadEl||!detail) return;
+    var id=ex.dataset.id;
+    var defaultText=loadEl.textContent;
+
+    function render(){
+      var rec=st.loads[id];
+      loadEl.textContent='';
+      if(rec&&rec.v){
+        loadEl.classList.add('edited');
+        loadEl.appendChild(document.createTextNode(rec.v));
+        var s=document.createElement('small'); s.textContent='('+shortDate(rec.d)+')';
+        loadEl.appendChild(s);
+      }else{
+        loadEl.classList.remove('edited');
+        loadEl.textContent=defaultText;
+      }
+    }
+
+    var box=document.createElement('div'); box.className='load-edit';
+    var lab=document.createElement('label'); lab.textContent='今の重さ';
+    var inp=document.createElement('input'); inp.type='text'; inp.placeholder=defaultText; inp.setAttribute('enterkeyhint','done');
+    var ok=document.createElement('button'); ok.type='button'; ok.textContent='保存';
+    var clr=document.createElement('button'); clr.type='button'; clr.className='clear'; clr.textContent='元に戻す';
+    var hint=document.createElement('div'); hint.className='load-hint'; hint.textContent='例: 片側 55kg。保存するとこのスマホに残り、上の表示が変わります。';
+    box.appendChild(lab); box.appendChild(inp); box.appendChild(ok); box.appendChild(clr); box.appendChild(hint);
+    detail.insertBefore(box, detail.firstChild);
+
+    function commit(){
+      var v=inp.value.trim();
+      if(v){ st.loads[id]={v:v,d:today()}; }
+      else{ delete st.loads[id]; }
+      save(); render();
+      inp.blur();
+    }
+    ok.addEventListener('click',commit);
+    inp.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); commit(); } });
+    clr.addEventListener('click',function(){ inp.value=''; commit(); });
+
+    if(st.loads[id]&&st.loads[id].v) inp.value=st.loads[id].v;
+    render();
   });
 
   document.getElementById('progReset').addEventListener('click',function(){
