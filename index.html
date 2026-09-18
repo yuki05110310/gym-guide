@@ -161,6 +161,12 @@ details[open] summary{color:var(--ink);}
 }
 .load-edit button.clear{background:none;color:var(--ink-3);padding:9px 6px;}
 .load-edit .load-hint{flex-basis:100%;font-size:12px;color:var(--ink-3);}
+/* 座面の番号（重さの横に短く） */
+.load-edit input.seat{flex:0 0 64px;min-width:0;text-align:center;}
+.ex-seat{
+  display:inline-block;margin-left:6px;border-radius:6px;padding:1px 7px;
+  font-size:12.5px;font-weight:700;background:var(--surface-2);color:var(--ink-2);
+}
 .tag{
   display:inline-block;vertical-align:2px;margin-left:6px;border-radius:5px;
   font-size:10.5px;font-weight:800;padding:1px 6px;letter-spacing:.02em;
@@ -1526,8 +1532,9 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
     });
   });
 
-  /* ---- 重さの記録（この端末のブラウザ内に残る） ---- */
+  /* ---- 重さ・座面の記録（この端末のブラウザ内に残る） ---- */
   if(!st.loads) st.loads={};
+  if(!st.seats) st.seats={};
   function shortDate(s){ return s? String(parseInt(s.slice(5,7),10))+'/'+String(parseInt(s.slice(8,10),10)) : ''; }
   document.querySelectorAll('.ex').forEach(function(ex){
     var loadEl=ex.querySelector('.ex-load');
@@ -1535,6 +1542,11 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
     if(!loadEl||!detail) return;
     var id=ex.dataset.id;
     var defaultText=loadEl.textContent;
+    /* 座面欄はマシン種目だけ（有酸素・自宅は器具の番号が無い） */
+    var hasSeat=!/^(cardio|home)/.test(id);
+
+    var seatEl=null;
+    if(hasSeat){ seatEl=document.createElement('span'); seatEl.className='ex-seat'; seatEl.hidden=true; loadEl.parentNode.insertBefore(seatEl, loadEl.nextSibling); }
 
     function render(){
       var rec=st.loads[id];
@@ -1548,15 +1560,29 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
         loadEl.classList.remove('edited');
         loadEl.textContent=defaultText;
       }
+      if(seatEl){
+        var sv=st.seats[id];
+        seatEl.hidden=!sv;
+        seatEl.textContent=sv? '座面 '+sv : '';
+      }
     }
 
     var box=document.createElement('div'); box.className='load-edit';
     var lab=document.createElement('label'); lab.textContent='今の重さ';
     var inp=document.createElement('input'); inp.type='text'; inp.placeholder=defaultText; inp.setAttribute('enterkeyhint','done');
+    var seatLab=null, seatInp=null;
+    if(hasSeat){
+      seatLab=document.createElement('label'); seatLab.textContent='座面';
+      seatInp=document.createElement('input'); seatInp.type='text'; seatInp.className='seat'; seatInp.placeholder='番号';
+      seatInp.setAttribute('inputmode','numeric'); seatInp.setAttribute('enterkeyhint','done'); seatInp.maxLength=2;
+    }
     var ok=document.createElement('button'); ok.type='button'; ok.textContent='保存';
     var clr=document.createElement('button'); clr.type='button'; clr.className='clear'; clr.textContent='元に戻す';
-    var hint=document.createElement('div'); hint.className='load-hint'; hint.textContent='数字だけでOK（kgは自動で付きます）。例: 55 → 55kg、片側55 → 片側55kg。保存するとこのスマホに残ります。';
-    box.appendChild(lab); box.appendChild(inp); box.appendChild(ok); box.appendChild(clr); box.appendChild(hint);
+    var hint=document.createElement('div'); hint.className='load-hint';
+    hint.textContent='数字だけでOK（kgは自動で付きます）。例: 55 → 55kg、片側55 → 片側55kg。'+(hasSeat?'座面はマシンの目盛りの番号（1〜6など）。':'')+'保存するとこのスマホに残ります。';
+    box.appendChild(lab); box.appendChild(inp);
+    if(hasSeat){ box.appendChild(seatLab); box.appendChild(seatInp); }
+    box.appendChild(ok); box.appendChild(clr); box.appendChild(hint);
     detail.insertBefore(box, detail.firstChild);
 
     function commit(){
@@ -1566,14 +1592,22 @@ body[data-day="arms"] [data-show~="arms"]{display:block;}
       inp.value=v;
       if(v){ st.loads[id]={v:v,d:today()}; }
       else{ delete st.loads[id]; }
+      if(seatInp){
+        /* 座面は数字だけ残す（全角→半角、数字以外は捨てる） */
+        var sv=seatInp.value.replace(/[０-９]/g,function(c){ return String.fromCharCode(c.charCodeAt(0)-0xFEE0); }).replace(/[^0-9]/g,'');
+        seatInp.value=sv;
+        if(sv){ st.seats[id]=sv; } else { delete st.seats[id]; }
+      }
       save(); render();
-      inp.blur();
+      inp.blur(); if(seatInp) seatInp.blur();
     }
     ok.addEventListener('click',commit);
     inp.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); commit(); } });
-    clr.addEventListener('click',function(){ inp.value=''; commit(); });
+    if(seatInp) seatInp.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); commit(); } });
+    clr.addEventListener('click',function(){ inp.value=''; if(seatInp) seatInp.value=''; commit(); });
 
     if(st.loads[id]&&st.loads[id].v) inp.value=st.loads[id].v;
+    if(seatInp&&st.seats[id]) seatInp.value=st.seats[id];
     render();
   });
 
